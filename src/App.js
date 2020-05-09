@@ -1,22 +1,10 @@
 import React from 'react';
 import { IonRouterOutlet, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
-import logo from './logo.svg';
 import './App.css';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
-
-const Page = () => (
-  <IonPage>
-    <IonSegment>
-      <IonSegmentButton>Hi</IonSegmentButton>
-      <IonSegmentButton>Bye</IonSegmentButton>
-      <IonSegmentButton>Go Away</IonSegmentButton>
-    </IonSegment>
-    <IonButton expand='full'>Map</IonButton>
-  </IonPage>
-)
-
-const Settings = () => <IonPage>Hi, it's settings</IonPage>
+import LoginContainer from './users/LoginContainer'
+import RegisterContainer from './users/RegisterContainer'
 
 function App() {
   return (
@@ -30,16 +18,15 @@ function App() {
         <IonContent>
           <IonTabs>
             <IonRouterOutlet>
-              <Route path='/page' component={Page} exact />
-              <Route path='/settings' component={Settings} exact />
-              <Redirect from='/' to='/page' />
+              <Route path='/login' component={LoginContainer} exact />
+              <Route path='/register' component={RegisterContainer} exact />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
-              <IonTabButton tab='page' href='/page'>
-                <IonLabel> Page </IonLabel>
+              <IonTabButton tab='login' href='/login'>
+                <IonLabel> Login </IonLabel>
               </IonTabButton>
-              <IonTabButton tab='settings' href='/settings'>
-                <IonLabel> Settings </IonLabel>
+              <IonTabButton tab='register' href='/register'>
+                <IonLabel> Register </IonLabel>
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
