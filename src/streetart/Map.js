@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IonPage, IonTitle, IonButton } from '@ionic/react'
 
 export default function Map(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState([])
+
+	useEffect(() => {
+		getAllStreetArt()
+	}, [])
 
 	const getAllStreetArt = async () => {
 		try {
