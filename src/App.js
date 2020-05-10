@@ -23,6 +23,8 @@ import RegisterContainer from './users/RegisterContainer'
 import Home from './home/Home'
 import Menu from './menu/Menu'
 import UsersAccount from './users/UsersAccount'
+import NewStreetArt from './streetart/NewStreetArt'
+import MapContainer from './streetart/Map'
 
 function App(props) {
   console.log('APP PROPS', props);
@@ -168,6 +170,20 @@ function App(props) {
                   exact
                   render={props => {
                     return <UsersAccount loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                  }}
+                />
+                <Route 
+                  path='/map' 
+                  exact
+                  render={props => {
+                    return <MapContainer loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                  }}
+                />
+                <Route 
+                  path='/newstreetart' 
+                  exact
+                  render={props => {
+                    return <NewStreetArt loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
                   }}
                 />
               </Switch>

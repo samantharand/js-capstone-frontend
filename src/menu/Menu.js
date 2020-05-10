@@ -38,9 +38,16 @@ export default function Menu(props) {
 	  }
 	];
 
+	if(props.loggedIn) {
+		appPages.push({
+			title: 'Add Art',
+			url: '/newstreetart',
+			icon: mapOutline
+		})
+	}
+
+
 	let authPages;
-
-
 
 	if(props.loggedIn) {
 
