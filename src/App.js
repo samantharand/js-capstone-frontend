@@ -26,8 +26,11 @@ import Menu from './menu/Menu'
 function App(props) {
   console.log('APP PROPS', props);
   const [loggedIn, setLoggedIn] = useState(false)
+  const [currentUser, setCurrentUser] = useState('')
   
-  console.log(loggedIn);
+  console.log('loggedIn from app.js', loggedIn);
+  console.log('currentUser from app.js -- ( ', currentUser, ' )');
+
 
 
   const login = async (loginInfo) => {
@@ -51,6 +54,7 @@ function App(props) {
 
       if(loginJson.status === 201) {
         setLoggedIn(true)
+        setCurrentUser(loginJson.data)
       } else {
         console.log("loginJson.message --> ", loginJson.message);
         console.log("loginJson.status --> ", loginJson.status);
@@ -82,6 +86,7 @@ function App(props) {
       if(registerJson.status === 201) {
 
         setLoggedIn(true)
+        setCurrentUser(registerJson.data)
 
       } else {
 
@@ -108,6 +113,7 @@ function App(props) {
 
     if(logoutJson.status === 200) {
       setLoggedIn(false)
+      setCurrentUser('')
 
     } else {
       console.log("logoutJson.message --> ", logoutJson.message);
