@@ -4,11 +4,11 @@ import { IonPage, IonTitle, IonList, IonItem } from '@ionic/react'
 export default function Map(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState('')
+	let listStreetArt;
 
 	useEffect(() => {
 		getAllStreetArt()
 		console.log('allStreetArt.length in useEffect', allStreetArt.length);
-		console.log('listStreetArt',listStreetArt());
 	}, [])
 
 	const getAllStreetArt = async () => {
@@ -34,26 +34,27 @@ export default function Map(props) {
 		}
 	}
 
-	const listStreetArt = () => {
-		console.log('allStreetArt.length from listStreetArt before if', allStreetArt.length);
-		if(allStreetArt.length > 0) {
-			console.log('allStreetArt.length from inside if statement',allStreetArt.length);
-			console.log('allStreetArt from inside if statement',allStreetArt);	
-			allStreetArt.map((art, i) => {
-				return (
-					<IonItem key={i}> {allStreetArt[i].name} </IonItem>
-				)
-			})
-		}
+	if(allStreetArt.length > 0) {
+		listStreetArt = allStreetArt.map((art, i) => {
+					return (
+						<IonItem key={i}> {allStreetArt[i].name}, {allStreetArt[i].artist} </IonItem>
+					)
+		})
 	}
+
+
 
 	return (
 		<IonPage className="MapPage">
+		<IonTitle> map :) </IonTitle>
+		{
+			allStreetArt.length > 0
+			&&
 			<IonList>
 				<IonItem> hi </IonItem>
-				{ listStreetArt() }
+				{ listStreetArt }
 			</IonList>	
-			<IonTitle> map :) </IonTitle>
+		}
 		</IonPage>
 	)
 }
