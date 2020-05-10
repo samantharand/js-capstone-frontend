@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 
 export default function Register(props){
 	console.log("props in reg", props);
@@ -81,6 +81,15 @@ export default function Register(props){
 							onIonChange={handleChange}
 							value={userInfo.zip_code}
 						></IonInput>
+					</IonItem>
+					<IonItem>
+						<IonLabel position='stacked'> Bio </IonLabel>
+						<IonTextarea
+							type='text'
+							name='bio'
+							onIonChange={handleChange}
+							value={userInfo.bio}
+						/>
 					</IonItem>
 					<IonButton onClick={ handleSubmit }>Create Account</IonButton>
 				</form>
