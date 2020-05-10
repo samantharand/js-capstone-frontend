@@ -167,7 +167,7 @@ function App(props) {
                   path='/myaccount' 
                   exact
                   render={props => {
-                    return <UsersAccount routeProps={props} />;
+                    return <UsersAccount loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
                   }}
                 />
               </Switch>
