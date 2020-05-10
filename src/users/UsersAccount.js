@@ -35,7 +35,7 @@ export default function UsersAccount(props) {
 				</IonPage>
 				:
 				<IonContent>
-					<IonTitle> Must be Logged iN </IonTitle>
+					<IonTitle> Must be logged in to access account details </IonTitle>
 				</IonContent>
 
 		}
