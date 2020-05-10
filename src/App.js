@@ -35,13 +35,50 @@ function App() {
         console.log("loginJson.status --> ", loginJson.status);
       }
 
+      await console.log("loginJson.message --> ", loginJson.message);
       await console.log("loggedIn value from app.login()", loggedIn);
 
 
     } catch (error) {
+      console.error("ERROR in LOGIN")
       console.error(error)
     }
   }
+
+  const register = async (registerInfo) => {
+    const url = process.env.REACT_APP_API_URL + '/users/register'
+
+    try {
+
+      const registerResponse = await fetch(url, {
+        credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify(registerInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const registerJson = await registerResponse.json()
+
+      if(registerJson.status === 201) {
+
+        setLoggedIn(true)
+
+      } else {
+
+        await console.log("registerJson.message --> ", registerJson.message);
+        await console.log("registerJson.status --> ", registerJson.status);
+
+      }
+      
+    } catch (error) {
+      console.error("ERROR in REGISTER")
+      console.error(error)
+    }
+  }
+
+
 
   return (
     <IonApp>
@@ -57,13 +94,14 @@ function App() {
               <Route path='/home' exact>
                 <Home />
               </Route>
-              <Route path='/register' component={RegisterContainer} exact />
             </IonRouterOutlet>
             <IonRouterOutlet>
               <Route path='/login' exact>
                 <LoginContainer login={login} />
               </Route>
-              <Route path='/register' component={RegisterContainer} exact />
+              <Route path='/register' exact>
+                <RegisterContainer register={register} />
+              </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
               <IonTabButton tab='login' href='/login'>

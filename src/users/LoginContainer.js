@@ -30,6 +30,7 @@ export default function LoginContainer(props) {
 		  password: ''
 		})
 	}
+	
 	return (
 		<IonPage className="LoginPage">
 			<IonHeader translucent>
