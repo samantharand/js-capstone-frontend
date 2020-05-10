@@ -22,6 +22,7 @@ import LoginContainer from './users/LoginContainer'
 import RegisterContainer from './users/RegisterContainer'
 import Home from './home/Home'
 import Menu from './menu/Menu'
+import UsersAccount from './users/UsersAccount'
 
 function App(props) {
   console.log('APP PROPS', props);
@@ -160,6 +161,13 @@ function App(props) {
                   exact
                   render={props => {
                     return <Home routeProps={props} />;
+                  }}
+                />
+                <Route 
+                  path='/myaccount' 
+                  exact
+                  render={props => {
+                    return <UsersAccount routeProps={props} />;
                   }}
                 />
               </Switch>

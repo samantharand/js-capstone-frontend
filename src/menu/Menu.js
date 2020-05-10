@@ -15,7 +15,7 @@ import {
 
 import React, { useState } from 'react';
 import { useLocation, Route, useHistory } from 'react-router-dom';
-import { mapOutline, mapSharp, bookmarkOutline, heartOutline, heartSharp, paperPlaneOutline, paperPlaneSharp, homeSharp, homeOutline } from 'ionicons/icons';
+import { exitSharp, mapOutline, mapSharp, bookmarkOutline, heartOutline, heartSharp, paperPlaneOutline, paperPlaneSharp, homeSharp, homeOutline } from 'ionicons/icons';
 // import './Menu.css';
 import LoginContainer from '../users/LoginContainer'
 
@@ -46,8 +46,8 @@ export default function Menu(props) {
 
 		authPages = [
 		  {
-		    title: 'Logout',
-		    url: '/logout'
+		    title: 'View Account',
+		    url: '/myaccount'
 		  }
 		];
 
@@ -88,30 +88,26 @@ export default function Menu(props) {
 	}
 
 	const renderAuthMenu = () => {
-		if(props.loggedIn) {
-			return <IonItem>
-					<IonLabel onClick={logout}> logout </IonLabel>
+					
+		return authPages.map((page) => (
+			<IonMenuToggle key={page.title} auto-hide='false'>
+				<IonItem 
+					onClick={ (e) => navToPage(page, e) } 
+					className={location.pathname === authPages.url ? 'selected' : ''}
+					// routerLink={page.url} 
+					// routerDirection="none" 
+					lines="none" 
+					detail={false} 
+
+				>
+					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
+					<IonLabel> {page.title} </IonLabel>
 				</IonItem>
-		} else {			
-			return authPages.map((page) => (
-				<IonMenuToggle key={page.title} auto-hide='false'>
-					<IonItem 
-						onClick={ (e) => navToPage(page, e) } 
-						className={location.pathname === authPages.url ? 'selected' : ''}
-						// routerLink={page.url} 
-						// routerDirection="none" 
-						lines="none" 
-						detail={false} 
+			</IonMenuToggle>
 
-					>
-						<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
-						<IonLabel> {page.title} </IonLabel>
-					</IonItem>
-				</IonMenuToggle>
-			))
-		}
+		))
 
-	}
+	} // renderAuthMenu
 
 	const navToPage = (page, event) => {
 		event.preventDefault()
@@ -138,9 +134,19 @@ export default function Menu(props) {
           { renderAppMenu() }
         </IonList>
     	
-	        <IonList>
-	          { renderAuthMenu() }
-	        </IonList>
+	      <IonList>
+	        { renderAuthMenu() }
+	        
+	        {  			
+						props.loggedIn
+						&&
+						<IonItem>
+									<IonIcon name='exitSharp'></IonIcon>
+									<IonLabel onClick={logout}> Logout </IonLabel>
+						</IonItem>
+					}
+
+	      </IonList>
 
       </IonContent>
     </IonMenu>
