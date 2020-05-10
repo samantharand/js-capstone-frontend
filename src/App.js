@@ -29,6 +29,14 @@ function App() {
 
       console.log("lj", loginJson);
 
+      if(loginJson.status === 201) {
+        setLoggedIn(true)
+      } else {
+        console.log("loginJson.status --> ", loginJson.status);
+      }
+
+      await console.log("loggedIn value from app.login()", loggedIn);
+
 
     } catch (error) {
       console.error(error)

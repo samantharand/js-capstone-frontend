@@ -9,19 +9,26 @@ export default function LoginContainer(props) {
 	    password: ''
 	  })
 
-	const handleChange = (event) => {
+	const handleChange = async (event) => {
+		console.log("event", event);
 		setUserInfo({
 		  ...userInfo,
-		  [event.target.name]: event.target.value
+		  [event.target.name]: event.detail.value
 		})
 
-		console.log("user info from change",userInfo);
+		await console.log("user info from change",userInfo);
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault()
 		props.login(userInfo)
 		console.log('user info from submit', userInfo);
+	
+		setUserInfo({
+		  ...userInfo,
+		  username: '',
+		  password: ''
+		})
 	}
 	return (
 		<IonPage className="LoginPage">
