@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 
 export default function LoginContainer(props) {
 	console.log("props in login", props);
+	const [userInfo, setUserInfo] = useState({
+	    username: '',  
+	    password: ''
+	  })
 	return (
 		<IonPage className="LoginPage">
 			<IonHeader translucent>
@@ -26,7 +30,7 @@ export default function LoginContainer(props) {
 							name='password'
 						></IonInput>
 					</IonItem>
-					<IonButton>Login</IonButton>
+					<IonButton onClick={ () => props.login(userInfo) }>Login</IonButton>
 				</form>
 			</IonContent>
 		</IonPage>

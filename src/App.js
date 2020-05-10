@@ -9,9 +9,29 @@ import RegisterContainer from './users/RegisterContainer'
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const login = () => {
+  const login = async (loginInfo) => {
     const url = process.env.REACT_APP_API_URL + '/users/login'
-    console.log(url);
+    
+    try {
+
+      const loginResponse = await fetch(url, {
+        credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify(loginInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      console.log("lr", loginResponse);
+      // const loginJson = await loginResponse.json()
+
+      // console.log("lj", loginJson);
+
+
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
