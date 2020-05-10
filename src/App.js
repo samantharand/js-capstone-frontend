@@ -5,6 +5,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
 import LoginContainer from './users/LoginContainer'
 import RegisterContainer from './users/RegisterContainer'
+import Home from './home/Home'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -22,11 +23,11 @@ function App() {
           'Content-Type': 'application/json'
         }
       })
-      
-      console.log("lr", loginResponse);
-      // const loginJson = await loginResponse.json()
 
-      // console.log("lj", loginJson);
+      console.log("lr", loginResponse);
+      const loginJson = await loginResponse.json()
+
+      console.log("lj", loginJson);
 
 
     } catch (error) {
@@ -44,6 +45,12 @@ function App() {
         </IonHeader>
         <IonContent>
           <IonTabs>
+            <IonRouterOutlet>
+              <Route path='/home' exact>
+                <Home />
+              </Route>
+              <Route path='/register' component={RegisterContainer} exact />
+            </IonRouterOutlet>
             <IonRouterOutlet>
               <Route path='/login' exact>
                 <LoginContainer login={login} />
