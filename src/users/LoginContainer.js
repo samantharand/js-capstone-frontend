@@ -29,6 +29,7 @@ export default function LoginContainer(props) {
 		  username: '',
 		  password: ''
 		})
+		props.routeProps.history.push('/')
 	}
 	
 	return (

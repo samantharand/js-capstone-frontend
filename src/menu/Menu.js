@@ -14,27 +14,34 @@ import {
 } from '@ionic/react';
 
 import React, { useState } from 'react';
-import { useLocation, Route } from 'react-router-dom';
+import { useLocation, Route, useHistory } from 'react-router-dom';
 import { mapOutline, mapSharp, bookmarkOutline, heartOutline, heartSharp, paperPlaneOutline, paperPlaneSharp, homeSharp, homeOutline } from 'ionicons/icons';
 // import './Menu.css';
 import LoginContainer from '../users/LoginContainer'
 
-const appPages = [
-  {
-    title: 'Home',
-    url: '/',
-    icon: homeOutline
-  },
-  {
-    title: 'Map',
-    url: '/map',
-    icon: mapOutline
-  }
-];
-
-let authPages;
 
 export default function Menu(props) {
+	console.log("menu props", props);
+  const location = useLocation();
+  const history = useHistory()
+
+	const appPages = [
+	  {
+	    title: 'Home',
+	    url: '/',
+	    icon: homeOutline
+	  },
+	  {
+	    title: 'Map',
+	    url: '/map',
+	    icon: mapOutline
+	  }
+	];
+
+	let authPages;
+
+
+
 	if(props.loggedIn) {
 
 		authPages = [
@@ -60,15 +67,18 @@ export default function Menu(props) {
 		];
 
 	}
+
 	const [activePage, setActivePage] = useState(appPages[0].title)
 
 	const renderAppMenu = () => {
 		return appPages.map((page) => (
 			<IonMenuToggle key={page.title} auto-hide='false'>
-				<IonItem button
-					color={page.title === activePage ? 'primary' : ''}
-					onClick={ () => navToPage(page) }
-					routerLink={page.url} routerDirection="none" lines="none" detail={false} 
+				<IonItem 
+					onClick={ (e) => navToPage(page, e) }
+					className={location.pathname === appPages.url ? 'selected' : ''}
+					// routerLink={page.url} 
+					// routerDirection="none" 
+					lines="none" detail={false} 
 				>
 					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
 					<IonLabel> {page.title} </IonLabel>
@@ -76,31 +86,50 @@ export default function Menu(props) {
 			</IonMenuToggle>
 		))
 	}
+
 	const renderAuthMenu = () => {
-		return authPages.map((page) => (
-			<IonMenuToggle key={page.title} auto-hide='false'>
-				<IonItem button
-					color={page.title === activePage ? 'primary' : ''}
-					onClick={ () => navToPage(page) } 
-					routerLink={page.url} routerDirection="none" lines="none" detail={false} 
-
-				>
-					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
-					<IonLabel> {page.title} </IonLabel>
+		if(props.loggedIn) {
+			return <IonItem>
+					<IonLabel onClick={logout}> logout </IonLabel>
 				</IonItem>
-			</IonMenuToggle>
-		))
+		} else {			
+			return authPages.map((page) => (
+				<IonMenuToggle key={page.title} auto-hide='false'>
+					<IonItem 
+						onClick={ (e) => navToPage(page, e) } 
+						className={location.pathname === authPages.url ? 'selected' : ''}
+						// routerLink={page.url} 
+						// routerDirection="none" 
+						lines="none" 
+						detail={false} 
+
+					>
+						<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
+						<IonLabel> {page.title} </IonLabel>
+					</IonItem>
+				</IonMenuToggle>
+			))
+		}
+
 	}
 
-	const navToPage = (page) => {
-		setActivePage(page.title)
+	const navToPage = (page, event) => {
+		event.preventDefault()
+		history.push(page.url)
 	}
+
+	const logout = () => {
+		props.logout();
+		history.push('/')
+	}
+
+
   return (
     <IonMenu contentId="main">
     	<IonHeader>
     		<IonToolbar>
     			<IonTitle>
-    				Menu in Menu
+    				Menu
     			</IonTitle>
     		</IonToolbar>
     	</IonHeader>
