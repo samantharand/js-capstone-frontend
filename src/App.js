@@ -69,13 +69,36 @@ function App() {
 
       } else {
 
-        await console.log("registerJson.message --> ", registerJson.message);
-        await console.log("registerJson.status --> ", registerJson.status);
+        console.log("registerJson.message --> ", registerJson.message);
+        console.log("registerJson.status --> ", registerJson.status);
 
       }
       
     } catch (error) {
       console.error("ERROR in REGISTER")
+      console.error(error)
+    }
+  }
+
+  const logout = async () => {
+    try {
+    const url = process.env.REACT_APP_API_URL + '/users/logout'
+
+    const logoutResponse = await fetch(url, {
+      credentials: 'include'
+    })
+
+    const logoutJson = await logoutResponse.json()
+
+    if(logoutJson.status === 200) {
+      setLoggedIn(false)
+    } else {
+      console.log("logoutJson.message --> ", logoutJson.message);
+      console.log("logoutJson.status --> ", logoutJson.status);
+    }
+
+    } catch (error) {
+      console.error('ERROR in LOGOUT')
       console.error(error)
     }
   }
@@ -88,14 +111,7 @@ function App() {
       <div id='app'>
         <IonApp>
           <IonSplitPane contentId='main'>
-            <Menu />
-            <div id='menu'>
-              <IonToolbar>
-                <IonTitle>
-                  Menu in App
-                </IonTitle>
-              </IonToolbar>
-            </div>
+            <Menu loggedIn={loggedIn}/>
             <IonPage id='main'>
               <Switch>
                 <Route path='/login' exact>

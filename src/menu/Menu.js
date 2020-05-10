@@ -29,40 +29,37 @@ const appPages = [
     title: 'Map',
     url: '/map',
     icon: mapOutline
-  },  
-  {
-    title: 'Login',
-    url: '/login',
-    icon: homeOutline
-  },
-  {
-    title: 'Register',
-    url: '/register',
-    icon: mapOutline
   }
-  // {
-  //   title: 'Favorites',
-  //   url: '/page/Favorites',
-  //   iosIcon: heartOutline,
-  //   mdIcon: heartSharp
-  // }
 ];
 
+let authPages;
 
-// const authPages = [
-//   {
-//     title: 'Login',
-//     url: '/login',
-//     icon: homeOutline
-//   },
-//   {
-//     title: 'Register',
-//     url: '/register',
-//     icon: mapOutline
-//   }
-// ];
+export default function Menu(props) {
+	if(props.loggedIn) {
 
-export default function Menu() {
+		authPages = [
+		  {
+		    title: 'Logout',
+		    url: '/logout'
+		  }
+		];
+
+	} else {
+
+		authPages = [
+		  {
+		    title: 'Login',
+		    url: '/login',
+		    icon: homeOutline
+		  },
+		  {
+		    title: 'Register',
+		    url: '/register',
+		    icon: mapOutline
+		  }
+		];
+
+	}
 	const [activePage, setActivePage] = useState(appPages[0].title)
 
 	const renderAppMenu = () => {
@@ -79,19 +76,21 @@ export default function Menu() {
 			</IonMenuToggle>
 		))
 	}
-	// const renderAuthMenu = () => {
-	// 	return authPages.map((page) => (
-	// 		<IonMenuToggle key={page.title} auto-hide='false'>
-	// 			<IonItem button
-	// 				color={page.title === activePage ? 'primary' : ''}
-	// 				onClick={ () => navToPage(page) } 
-	// 			>
-	// 				<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
-	// 				<IonLabel> {page.title} </IonLabel>
-	// 			</IonItem>
-	// 		</IonMenuToggle>
-	// 	))
-	// }
+	const renderAuthMenu = () => {
+		return authPages.map((page) => (
+			<IonMenuToggle key={page.title} auto-hide='false'>
+				<IonItem button
+					color={page.title === activePage ? 'primary' : ''}
+					onClick={ () => navToPage(page) } 
+					routerLink={page.url} routerDirection="none" lines="none" detail={false} 
+
+				>
+					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
+					<IonLabel> {page.title} </IonLabel>
+				</IonItem>
+			</IonMenuToggle>
+		))
+	}
 
 	const navToPage = (page) => {
 		setActivePage(page.title)
@@ -109,6 +108,11 @@ export default function Menu() {
         <IonList>
           { renderAppMenu() }
         </IonList>
+    	
+	        <IonList>
+	          { renderAuthMenu() }
+	        </IonList>
+
       </IonContent>
     </IonMenu>
   );
