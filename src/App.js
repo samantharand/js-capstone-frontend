@@ -9,7 +9,7 @@ import Home from './home/Home'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-
+  console.log(loggedIn);
   const login = async (loginInfo) => {
     const url = process.env.REACT_APP_API_URL + '/users/login'
     
@@ -32,11 +32,9 @@ function App() {
       if(loginJson.status === 201) {
         setLoggedIn(true)
       } else {
+        console.log("loginJson.message --> ", loginJson.message);
         console.log("loginJson.status --> ", loginJson.status);
       }
-
-      await console.log("loginJson.message --> ", loginJson.message);
-      await console.log("loggedIn value from app.login()", loggedIn);
 
 
     } catch (error) {
@@ -80,6 +78,7 @@ function App() {
 
 
 
+    console.log('loggedIn',loggedIn);
   return (
     <IonApp>
       <IonReactRouter>
@@ -103,14 +102,27 @@ function App() {
                 <RegisterContainer register={register} />
               </Route>
             </IonRouterOutlet>
-            <IonTabBar slot="bottom">
-              <IonTabButton tab='login' href='/login'>
-                <IonLabel> Login </IonLabel>
-              </IonTabButton>
-              <IonTabButton tab='register' href='/register'>
-                <IonLabel> Register </IonLabel>
-              </IonTabButton>
-            </IonTabBar>
+              {
+                !loggedIn
+                &&
+                <IonTabBar slot="bottom">
+                  <IonTabButton tab='login' href='/login'>
+                    <IonLabel> Login </IonLabel>
+                  </IonTabButton>
+                  <IonTabButton tab='register' href='/register'>
+                    <IonLabel> Register </IonLabel>
+                  </IonTabButton>
+                </IonTabBar>
+              }
+              {
+                loggedIn
+                &&
+                <IonTabBar slot="bottom">
+                  <IonTabButton tab='login' href='/login'>
+                      <IonLabel> login </IonLabel>
+                  </IonTabButton>
+                </IonTabBar>
+              }
           </IonTabs>
         </IonContent>
       </IonReactRouter>
