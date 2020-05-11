@@ -12,25 +12,27 @@ export default function NewStreetArt(props) {
 		})
 
 	const addArt = async (artInfo) => {
-		const url = process.env.REACT_APP_API_URL + '/streetart/add'
+		// const url = process.env.REACT_APP_API_URL + '/streetart/add'
+		console.log('newArtInfo.location.split("").join(+)', newArtInfo.location.split(' ').join('+'));
+		const geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + newArtInfo.location.split(' ').join('+') + '&key=AIzaSyB7G8yZAkGYtf2QQzkS1n0E1gZtpPF_h8w'
+		console.log(geocodeUrl);
+		// const addArtResponse = await fetch(url, {
+		// 	credentials: 'include',
+		// 	method: 'POST',
+		// 	body: JSON.stringify(artInfo),
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// })
 
-		const addArtResponse = await fetch(url, {
-			credentials: 'include',
-			method: 'POST',
-			body: JSON.stringify(artInfo),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
+		// const addArtJson = await addArtResponse.json()
 
-		const addArtJson = await addArtResponse.json()
-
-		if(addArtJson.status === 201) {
-			console.log("addArtJson.message --> ", addArtJson.message);
-		} else {
-			console.log("addArtJson.message --> ", addArtJson.message);
-        	console.log("addArtJson.status --> ", addArtJson.status);
-		}
+		// if(addArtJson.status === 201) {
+		// 	console.log("addArtJson.message --> ", addArtJson.message);
+		// } else {
+		// 	console.log("addArtJson.message --> ", addArtJson.message);
+  //       	console.log("addArtJson.status --> ", addArtJson.status);
+		// }
 	}
 
 	const handleSelectedFile = async (event) => {
@@ -40,7 +42,7 @@ export default function NewStreetArt(props) {
 	    const url = 'https://api.cloudinary.com/v1_1/samantharand/image/upload'
 	    
 	    data.append('file', files)
-	    data.append('upload_preset', 'quart-app')
+	    data.append('upload_preset', 'streetartmap')
 
 	    console.log({
 	    	event,
@@ -63,7 +65,7 @@ export default function NewStreetArt(props) {
 	}
 	
 	const handleChange = async (event) => {
-		console.log("event", event);
+		// console.log("event", event);
 		setNewArtInfo({
 		  ...newArtInfo,
 		  [event.target.name]: event.detail.value
@@ -75,7 +77,7 @@ export default function NewStreetArt(props) {
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		addArt(newArtInfo)
-		console.log('art info from submit', newArtInfo);
+		// console.log('art info from submit', newArtInfo);
 	
 		setNewArtInfo({
 		  ...newArtInfo,
@@ -122,18 +124,12 @@ export default function NewStreetArt(props) {
 						</IonItem>
 						<IonItem>
 							<IonLabel position='stacked'> Image </IonLabel>
-							<IonInput
-								type='file'
-								name='image'
-								accept='C:/*'
-								onIonChange={handleSelectedFile}
-							/>
-						</IonItem>
 							<input 
 								type='file'
 								name='image'
 								onChange={handleSelectedFile}
 							/>
+						</IonItem>
 						<IonItem>
 							<IonLabel position='stacked'> Year </IonLabel>
 							<IonInput

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { IonPage, IonTitle, IonList, IonItem, IonImg } from '@ionic/react'
+import GoogleApiWrapper from './GoogleMap'
 
-export default function Map(props) {
+export default function MapContainer(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState('')
 	let listStreetArt;
@@ -34,16 +35,18 @@ export default function Map(props) {
 		}
 	}
 
+
+
 	if(allStreetArt.length > 0) {
 		listStreetArt = allStreetArt.map((art, i) => {
-					return (
-						<IonItem key={i}> 
-							{allStreetArt[i].name}, {allStreetArt[i].artist} 
-							<img src={allStreetArt[i].image} />
-						</IonItem>
-					)
+			return (
+				<IonItem key={i}> 
+					{allStreetArt[i].name}, {allStreetArt[i].artist} 
+				</IonItem>
+			)
 		})
 	}
+					// <img src={allStreetArt[i].image} />
 
 
 
@@ -52,9 +55,15 @@ export default function Map(props) {
 		{
 			allStreetArt.length > 0
 			&&
-			<IonList>
-				{ listStreetArt }
-			</IonList>	
+			<IonPage>
+				<div className="mapContainer">
+					<p>map should be here vvv </p>
+	         		<GoogleApiWrapper />
+	        	</div>	 
+				<IonList>
+					{ listStreetArt }
+				</IonList>	
+	        </IonPage>
 		}
 		<IonTitle> map :) </IonTitle>
 		</IonPage>
