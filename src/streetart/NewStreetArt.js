@@ -12,27 +12,33 @@ export default function NewStreetArt(props) {
 		})
 
 	const addArt = async (artInfo) => {
-		// const url = process.env.REACT_APP_API_URL + '/streetart/add'
-		console.log('newArtInfo.location.split("").join(+)', newArtInfo.location.split(' ').join('+'));
-		const geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + newArtInfo.location.split(' ').join('+') + '&key=AIzaSyB7G8yZAkGYtf2QQzkS1n0E1gZtpPF_h8w'
-		console.log(geocodeUrl);
-		// const addArtResponse = await fetch(url, {
-		// 	credentials: 'include',
-		// 	method: 'POST',
-		// 	body: JSON.stringify(artInfo),
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	}
+		const url = process.env.REACT_APP_API_URL + '/streetart/add'
+		// console.log('newArtInfo.location.split("").join(+)', newArtInfo.location.split(' ').join('+'));
+		// const geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + newArtInfo.location.split(' ').join('+') + '&key=AIzaSyB7G8yZAkGYtf2QQzkS1n0E1gZtpPF_h8w'
+		// console.log(geocodeUrl);
+
+		// const geocodeResponse = await fetch(geocodeUrl, {
+		// 	method: 'GET'
 		// })
+		// const geocodeJson = await geocodeResponse.json()
+		// console.log(geocodeJson);
+		const addArtResponse = await fetch(url, {
+			credentials: 'include',
+			method: 'POST',
+			body: JSON.stringify(artInfo),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
 
-		// const addArtJson = await addArtResponse.json()
+		const addArtJson = await addArtResponse.json()
 
-		// if(addArtJson.status === 201) {
-		// 	console.log("addArtJson.message --> ", addArtJson.message);
-		// } else {
-		// 	console.log("addArtJson.message --> ", addArtJson.message);
-  //       	console.log("addArtJson.status --> ", addArtJson.status);
-		// }
+		if(addArtJson.status === 201) {
+			console.log("addArtJson.message --> ", addArtJson.message);
+		} else {
+			console.log("addArtJson.message --> ", addArtJson.message);
+        	console.log("addArtJson.status --> ", addArtJson.status);
+		}
 	}
 
 	const handleSelectedFile = async (event) => {
