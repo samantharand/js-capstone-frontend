@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { IonPage, IonTitle, IonList, IonItem } from '@ionic/react'
+import { IonPage, IonTitle, IonList, IonItem, IonImg } from '@ionic/react'
 
 export default function Map(props) {
 
@@ -37,7 +37,10 @@ export default function Map(props) {
 	if(allStreetArt.length > 0) {
 		listStreetArt = allStreetArt.map((art, i) => {
 					return (
-						<IonItem key={i}> {allStreetArt[i].name}, {allStreetArt[i].artist} </IonItem>
+						<IonItem key={i}> 
+							{allStreetArt[i].name}, {allStreetArt[i].artist} 
+							<img src={allStreetArt[i].image} />
+						</IonItem>
 					)
 		})
 	}
@@ -46,15 +49,14 @@ export default function Map(props) {
 
 	return (
 		<IonPage className="MapPage">
-		<IonTitle> map :) </IonTitle>
 		{
 			allStreetArt.length > 0
 			&&
 			<IonList>
-				<IonItem> hi </IonItem>
 				{ listStreetArt }
 			</IonList>	
 		}
+		<IonTitle> map :) </IonTitle>
 		</IonPage>
 	)
 }

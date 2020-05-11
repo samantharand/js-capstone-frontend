@@ -6,6 +6,7 @@ export default function NewStreetArt(props) {
 			name: '',
 			location: '',
 			year: '',
+			image: '',
 			artist: '',
 			description: ''
 		})
@@ -31,6 +32,35 @@ export default function NewStreetArt(props) {
         	console.log("addArtJson.status --> ", addArtJson.status);
 		}
 	}
+
+	const handleSelectedFile = async (event) => {
+
+		const files = event.target.files[0]
+	    const data = new FormData()
+	    const url = 'https://api.cloudinary.com/v1_1/samantharand/image/upload'
+	    
+	    data.append('file', files)
+	    data.append('upload_preset', 'quart-app')
+
+	    console.log({
+	    	event,
+	    	files,
+	    	url,
+	    });
+
+	    const uploadImageResponse = await fetch(url, {
+	      method: 'POST',
+	      body: data
+	    })
+
+	    const file = await uploadImageResponse.json()
+
+	    setNewArtInfo({
+	    	...newArtInfo,
+	    	image: file.secure_url
+	    })
+
+	}
 	
 	const handleChange = async (event) => {
 		console.log("event", event);
@@ -52,9 +82,11 @@ export default function NewStreetArt(props) {
 			name: '',
 			location: '',
 			year: '',
+			image: '',
 			artist: '',
 			description: ''
 		})
+
 		props.routeProps.history.push('/map')
 	}
 
@@ -88,6 +120,20 @@ export default function NewStreetArt(props) {
 								onIonChange={handleChange}
 							/>
 						</IonItem>
+						<IonItem>
+							<IonLabel position='stacked'> Image </IonLabel>
+							<IonInput
+								type='file'
+								name='image'
+								accept='C:/*'
+								onIonChange={handleSelectedFile}
+							/>
+						</IonItem>
+							<input 
+								type='file'
+								name='image'
+								onChange={handleSelectedFile}
+							/>
 						<IonItem>
 							<IonLabel position='stacked'> Year </IonLabel>
 							<IonInput
