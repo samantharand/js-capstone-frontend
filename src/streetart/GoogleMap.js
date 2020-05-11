@@ -3,14 +3,25 @@ import { Map as ReactMap, InfoWindow, Marker, GoogleApiWrapper } from 'google-ma
 
 function GoogleMap(props) {
 	return (
-		<ReactMap 
-			google={props.google} 
-			zoom={14} 
-			initialCenter={{
-				lat: 41.8781, 
-				lng: -87.6298
-			}}
-		/>
+		<React.Fragment>
+			<ReactMap 
+				google={props.google} 
+				zoom={14} 
+				initialCenter={{
+					lat: 41.8781, 
+					lng: -87.6298
+				}}
+			>
+
+				<Marker 
+					position={{
+						lat: 41.8781, 
+						lng: -87.6298
+					}}
+				/>
+				
+			</ReactMap>
+		</React.Fragment>
 	)
 }
 
