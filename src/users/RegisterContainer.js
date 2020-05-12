@@ -31,7 +31,8 @@ export default function Register(props){
 		  username: '',
 		  password: '',
 		  email: '',
-		  zip_code: ''
+		  zip_code: '',
+		  bio: ''
 		})
 	}
 

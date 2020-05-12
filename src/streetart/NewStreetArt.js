@@ -35,6 +35,7 @@ export default function NewStreetArt(props) {
 
 		if(addArtJson.status === 201) {
 			console.log("addArtJson.message --> ", addArtJson.message);
+			props.routeProps.history.push('/map')
 		} else {
 			console.log("addArtJson.message --> ", addArtJson.message);
         	console.log("addArtJson.status --> ", addArtJson.status);
@@ -94,8 +95,6 @@ export default function NewStreetArt(props) {
 			artist: '',
 			description: ''
 		})
-
-		props.routeProps.history.push('/map')
 	}
 
 	return (

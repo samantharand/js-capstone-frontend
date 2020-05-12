@@ -15,6 +15,7 @@ export default function UsersAccount(props) {
 	console.log('props.currentUser from UsersAccount', props.currentUser);
 	console.log('loggedin from UsersAccount', props.loggedIn);
 
+
 	return (
 		<IonPage>
 		{

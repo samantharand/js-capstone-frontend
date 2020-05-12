@@ -55,6 +55,9 @@ export default function Menu(props) {
 		  {
 		    title: 'View Account',
 		    url: '/myaccount'
+		  }, {
+		  	title: 'Edit Account',
+		    url: '/editaccount'
 		  }
 		];
 

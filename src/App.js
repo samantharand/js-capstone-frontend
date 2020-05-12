@@ -16,6 +16,7 @@ import {
   IonSegmentButton, 
   IonSplitPane} from '@ionic/react'
 import './App.css';
+import './index.css'
 import { IonReactRouter } from '@ionic/react-router';
 import { BrowserRouter as Router, Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import LoginContainer from './users/LoginContainer'
@@ -23,6 +24,7 @@ import RegisterContainer from './users/RegisterContainer'
 import Home from './home/Home'
 import Menu from './menu/Menu'
 import UsersAccount from './users/UsersAccount'
+import EditUser from './users/EditUser'
 import NewStreetArt from './streetart/NewStreetArt'
 import MapContainer from './streetart/Map'
 
@@ -170,6 +172,13 @@ function App(props) {
                   exact
                   render={props => {
                     return <UsersAccount loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                  }}
+                />
+                <Route 
+                  path='/editaccount' 
+                  exact
+                  render={props => {
+                    return <EditUser loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
                   }}
                 />
                 <Route 

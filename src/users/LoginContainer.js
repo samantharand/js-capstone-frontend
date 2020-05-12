@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 
 export default function LoginContainer(props) {
-	console.log("props in login container", props);
+	// console.log("props in login container", props);
 
 	const [userInfo, setUserInfo] = useState({
 	    username: '',  
@@ -10,19 +10,19 @@ export default function LoginContainer(props) {
 	  })
 
 	const handleChange = async (event) => {
-		console.log("event", event);
+		// console.log("event", event);
 		setUserInfo({
 		  ...userInfo,
 		  [event.target.name]: event.detail.value
 		})
 
-		await console.log("user info from change",userInfo);
+		// await console.log("user info from change",userInfo);
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		props.login(userInfo)
-		console.log('user info from submit', userInfo);
+		// console.log('user info from submit', userInfo);
 	
 		setUserInfo({
 		  ...userInfo,

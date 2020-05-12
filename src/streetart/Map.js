@@ -4,16 +4,18 @@ import GoogleApiWrapper from './GoogleMap'
 
 export default function MapContainer(props) {
 
-	const [allStreetArt, setAllStreetArt] = useState('')
+	const [allStreetArt, setAllStreetArt] = useState([])
 	const [loading, setLoading] = useState(true)
 	let listStreetArt;
 
 	useEffect(() => {
 		getAllStreetArt()
+		console.log("USE EFFECT IS GETTING CALLED RIGHT NOOOOW");
 		console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [])
 
 	const getAllStreetArt = async () => {
+		console.log("GET ALL STREET ART BEING CALLED");
 		try {
 			const url = process.env.REACT_APP_API_URL + '/streetart/map'
 
@@ -26,7 +28,7 @@ export default function MapContainer(props) {
 			if(getAllStreetArtJson.status === 200) {
 				setAllStreetArt(getAllStreetArtJson.data)
 				setLoading(false)
-				console.log('loadingggg', loading);
+				// console.log('loadingggg', loading);
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
 			} else {
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
@@ -41,7 +43,7 @@ export default function MapContainer(props) {
 
 
 	if(allStreetArt.length > 0) {
-		console.log('ALL STREET ART LENGTH', allStreetArt.length);
+		// console.log('ALL STREET ART LENGTH', allStreetArt.length);
 		listStreetArt = allStreetArt.map((art, i) => {
 			return (
 				<IonItem key={i}> 
@@ -71,7 +73,7 @@ export default function MapContainer(props) {
 					}
 	        	</div>	 
 				<IonList>
-					{ listStreetArt }
+					
 				</IonList>	
 	        </IonPage>
 		}

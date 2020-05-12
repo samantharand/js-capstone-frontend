@@ -24,6 +24,7 @@ function GoogleMap(props) {
 	return (
 		<React.Fragment>
 			<ReactMap 
+				id="map"
 				google={props.google} 
 				zoom={14} 
 				initialCenter={{
