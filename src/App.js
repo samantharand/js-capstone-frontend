@@ -24,7 +24,7 @@ import RegisterContainer from './users/RegisterContainer'
 import Home from './home/Home'
 import Menu from './menu/Menu'
 import UsersAccount from './users/UsersAccount'
-import EditUser from './users/EditUser'
+import UpdateUser from './users/UpdateUser'
 import NewStreetArt from './streetart/NewStreetArt'
 import MapContainer from './streetart/Map'
 
@@ -176,7 +176,7 @@ function App(props) {
                   path='/editaccount' 
                   exact
                   render={props => {
-                    return <EditUser setCurrentUser={setCurrentUser} loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <UpdateUser setCurrentUser={setCurrentUser} loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
                   }}
                 />
                 <Route 
