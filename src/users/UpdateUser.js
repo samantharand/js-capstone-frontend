@@ -13,7 +13,8 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonTextarea
+  IonTextarea,
+  IonModal
 } from '@ionic/react';
 
 import { useHistory } from 'react-router-dom';
@@ -28,6 +29,7 @@ export default function UpdateUser(props) {
 
 	const [allUsers, setAllUsers] = useState([])
 
+	const [confirmDeleteOpen, changeConfirmDeleteOpen] = useState(false)
 
 	useEffect(() => {
 		// getAllUsers()
@@ -106,7 +108,10 @@ export default function UpdateUser(props) {
 	}
 
 	// destroy -- put inside edit user page
+	const deleteUser = () => {
+		console.log('delete user!!!');
 		// delete user and all user posts
+	}
 
 	return (
 		<IonPage>
@@ -139,8 +144,24 @@ export default function UpdateUser(props) {
 									value={updateUserInfo.bio}
 								/>
 							</IonItem>
-							<IonButton onClick={ handleSubmit }>Edit Account</IonButton>
+							<IonButton onClick={ handleSubmit }>Update Account</IonButton>
 						</form>
+						<IonButton 
+							color="danger"
+							onClick={() => changeConfirmDeleteOpen(true)}
+							>Delete Account</IonButton>
+						<IonModal isOpen={confirmDeleteOpen}>
+							<IonContent>
+								<IonTitle>
+									Are you sure you want to delete your account?
+								</IonTitle>
+								<IonButton 
+									color='danger'
+									onClick={deleteUser}> DELETE </IonButton>
+								<IonButton
+									onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+							</IonContent>
+						</IonModal>
 					</IonContent>
 				</IonPage>
 				:
