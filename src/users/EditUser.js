@@ -16,12 +16,12 @@ import {
   IonTextarea
 } from '@ionic/react';
 
+import { useHistory } from 'react-router-dom';
+
 export default function EditUser(props) {
+	const history = useHistory()
 
 	const [editUserInfo, setEditUserInfo] = useState({
-		username: props.currentUser.username,  
-	    password: props.currentUser.username,
-	    email: props.currentUser.email,
 	    zip_code: props.currentUser.zip_code,
 	    bio: props.currentUser.bio
 	})
@@ -30,45 +30,56 @@ export default function EditUser(props) {
 
 
 	useEffect(() => {
-		getAllUsers()
+		// getAllUsers()
+		console.log('all users in USE EFFECT', allUsers);
 	}, [])
 
 
 
-	const getAllUsers = async () => {
-		const url = process.env.REACT_APP_API_URL + '/users/all'
+	// const getAllUsers = async () => {
+	// 	try {
 
-		const getAllUsersResponse = await fetch (url, {
-			credentials: 'include',
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
+	// 		const url = process.env.REACT_APP_API_URL + '/users/all'
 
-		console.log('getAllUsersResponse', getAllUsersResponse);
+	// 		const getAllUsersResponse = await fetch (url, {
+	// 			credentials: 'include',
+	// 			method: 'GET',
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			}
+	// 		})
 
-		const getAllUsersJson = await getAllUsersResponse.json()
-		console.log('getAllUsersJson', getAllUsersJson);
-		console.log('getAllUsersJson.data', getAllUsersJson.data);
+	// 		// console.log('getAllUsersResponse', getAllUsersResponse);
 
-
-		if(getAllUsersJson.status === 200){
-
-			setAllUsers(
-				getAllUsersJson.data.forEach((user) => {
-					allUsers.push(user)
-				})
-			)
-
-		} else {
-			console.log('getAllUsersJson.status ---- ', getAllUsersJson.status);
-			console.log('getAllUsersJson.message ---- ', getAllUsersJson.message);
-		}
-	}
+	// 		const getAllUsersJson = await getAllUsersResponse.json()
+	// 		// console.log('getAllUsersJson', getAllUsersJson);
+	// 		// console.log('getAllUsersJson.data', getAllUsersJson.data);
 
 
-	const handleChange = async (event) => {
+	// 		if(getAllUsersJson.status === 200){
+	// 			console.log('get all users called !!!');
+
+	// 			setAllUsers(
+	// 				getAllUsersJson.data.forEach((user) => {
+	// 					allUsers.push(user)
+	// 				})
+	// 			)
+
+	// 			console.log('allUsers in getAllUsers', allUsers);
+
+	// 		} else {
+	// 			console.log('getAllUsersJson.status ---- ', getAllUsersJson.status);
+	// 			console.log('getAllUsersJson.message ---- ', getAllUsersJson.message);
+	// 		}
+			
+	// 	} catch (error) {
+			
+	// 		console.error(error)
+	// 	}
+	// }
+
+
+	const handleChange = (event) => {
 		// console.log("event", event);
 		setEditUserInfo({
 		  ...editUserInfo,
@@ -79,24 +90,28 @@ export default function EditUser(props) {
 	}
 
 
-	const handleSubmit = async (event) => {
-		event.preventDefault()
-		props.editUser(editUserInfo)
-	
-		setEditUserInfo({
-			  ...editUserInfo,
-			username: props.currentUser.username,  
-		    password: props.currentUser.username,
-		    email: props.currentUser.email,
-		    zip_code: props.currentUser.zip_code,
-		    bio: props.currentUser.bio
-		})
+	const handleSubmit =  (event) => {
+
+			event.preventDefault()
+
+			setEditUserInfo({
+				  ...editUserInfo,
+			    zip_code: props.currentUser.zip_code,
+			    bio: props.currentUser.bio
+			})
+
+			editUser(editUserInfo)
+			// getAllUsers()
+			console.log('ALL USERS in HANDLE SUBMIT', allUsers);
+			
+
 	}
 
 
 
 	const editUser = async (editInfo) => {
 		console.log('EDIT USER CALLED');
+		console.log('all users in EditUser', allUsers);
 		try {
 			const url = process.env.REACT_APP_API_URL + '/users/' + props.currentUser.id
 			
@@ -117,6 +132,9 @@ export default function EditUser(props) {
 			if(editUserJson.status === 201) {
 				
 				console.log('editUserJson.message --->', editUserJson.message);
+				props.setCurrentUser(editUserJson.data)
+				history.push('/')
+
 
 
 			} else {
@@ -131,24 +149,17 @@ export default function EditUser(props) {
 
 	}
 
-	// update
-	const updateUser = async (updateInfo) => {
-		
-	}
-		// find index of current user
-		// replace with new info 
-		// submit updates
 
 
 	// destroy -- put inside edit user page
 		// delete user and all user posts
 
 
-	console.log('props in EditUser', props);
-	console.log('props.currentUser from EditUser', props.currentUser);
-	console.log('loggedin from EditUser', props.loggedIn);
-	console.log('editUserInfo', editUserInfo);
-	// const url = process.env.REACT_APP_API_URL + '/users/' + props.currentUser.id
+	// console.log('props in EditUser', props);
+	// console.log('props.currentUser from EditUser', props.currentUser);
+	// console.log('loggedin from EditUser', props.loggedIn);
+	// console.log('editUserInfo', editUserInfo);
+	// // const url = process.env.REACT_APP_API_URL + '/users/' + props.currentUser.id
 
 	return (
 		<IonPage>
@@ -163,33 +174,6 @@ export default function EditUser(props) {
 						</IonHeader>
 						<IonContent>
 							<form className="editForm" onSubmit={handleSubmit}>
-								<IonItem>
-									<IonLabel position='stacked'> Email </IonLabel>
-									<IonInput
-										type='text'
-										name='email'
-										onIonChange={handleChange}
-										value={editUserInfo.email}
-									></IonInput>
-								</IonItem>
-								<IonItem>
-									<IonLabel position='stacked'> Username </IonLabel>
-									<IonInput
-										type='text'
-										name='username'
-										onIonChange={handleChange}
-										value={editUserInfo.username}
-									></IonInput>
-								</IonItem>
-								<IonItem>
-									<IonLabel position='stacked'> Password </IonLabel>
-									<IonInput
-										type='password'
-										name='password'
-										onIonChange={handleChange}
-										value={editUserInfo.password}
-									></IonInput>
-								</IonItem>
 								<IonItem>
 									<IonLabel position='stacked'> Zipcode </IonLabel>
 									<IonInput
@@ -208,7 +192,7 @@ export default function EditUser(props) {
 										value={editUserInfo.bio}
 									/>
 								</IonItem>
-								<IonButton onClick={ handleSubmit }>Create Account</IonButton>
+								<IonButton onClick={ handleSubmit }>Edit Account</IonButton>
 							</form>
 						</IonContent>
 					</IonPage>

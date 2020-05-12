@@ -131,8 +131,6 @@ function App(props) {
     }
   }
 
-
-
   console.log('loggedIn',loggedIn);
 
 
@@ -178,7 +176,7 @@ function App(props) {
                   path='/editaccount' 
                   exact
                   render={props => {
-                    return <EditUser loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <EditUser setCurrentUser={setCurrentUser} loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
                   }}
                 />
                 <Route 
