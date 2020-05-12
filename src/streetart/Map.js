@@ -5,6 +5,7 @@ import GoogleApiWrapper from './GoogleMap'
 export default function MapContainer(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState('')
+	const [loading, setLoading] = useState(true)
 	let listStreetArt;
 
 	useEffect(() => {
@@ -24,6 +25,8 @@ export default function MapContainer(props) {
 
 			if(getAllStreetArtJson.status === 200) {
 				setAllStreetArt(getAllStreetArtJson.data)
+				setLoading(false)
+				console.log('loadingggg', loading);
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
 			} else {
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
@@ -38,10 +41,11 @@ export default function MapContainer(props) {
 
 
 	if(allStreetArt.length > 0) {
+		console.log('ALL STREET ART LENGTH', allStreetArt.length);
 		listStreetArt = allStreetArt.map((art, i) => {
 			return (
 				<IonItem key={i}> 
-					{allStreetArt[i].name}, {allStreetArt[i].artist} 
+					{allStreetArt[i].name} {allStreetArt[i].latitude}, {allStreetArt[i].longitude} 
 				</IonItem>
 			)
 		})
@@ -53,12 +57,18 @@ export default function MapContainer(props) {
 	return (
 		<IonPage className="MapPage">
 		{
-			allStreetArt.length > 0
-			&&
+			loading === true
+			?
+			<div>nooo</div>
+			:
 			<IonPage>
 				<div className="mapContainer">
 					<p>map should be here vvv </p>
-	         		<GoogleApiWrapper />
+					{	
+						allStreetArt.length > 0
+						&&
+		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading}/>
+					}
 	        	</div>	 
 				<IonList>
 					{ listStreetArt }
