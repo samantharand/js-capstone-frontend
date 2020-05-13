@@ -8,7 +8,7 @@ export default function UpdateStreetArt(props) {
 	console.log('props in updateStreetArt', props);
 	const [updatedArtInfo, setUpdatedArtInfo] = useState({
 			name: props.streetArtToUpdate.name,
-			location: props.streetArtToUpdate.location,
+			// location: props.streetArtToUpdate.location,
 			year: props.streetArtToUpdate.year,
 			image: props.streetArtToUpdate.image,
 			artist: props.streetArtToUpdate.artist,
@@ -74,9 +74,38 @@ export default function UpdateStreetArt(props) {
 
 	//update 
 	const updateStreetArt = async (infoToUpdate) => {
-		const url = process.env.REACT_APP_API_URL + '/streetart/' 
+		const url = process.env.REACT_APP_API_URL + '/streetart/' + props.streetArtToUpdate.id
+		console.log(url);
+		try {
+			
+			const updateStreetArtResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'PUT',
+				body: JSON.stringify(infoToUpdate),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
 
+			const updateStreetArtJson = await updateStreetArtResponse.json()
 
+			console.log({
+				infoToUpdate,
+				updateStreetArtResponse,
+				updateStreetArtJson
+			});
+
+			if(updateStreetArtJson.status === 200) {
+				console.log('updated!');
+			} else {
+				console.log('updateStreetArtJson.message -->', updateStreetArtJson.message);
+				console.log('updateStreetArtJson.status -->', updateStreetArtJson.status);
+			}
+
+		} catch (error) {
+			console.error('ERROR in UPDATESTREETART')
+			console.error(error)
+		}
 	}
 	// delete 
 
@@ -101,15 +130,7 @@ export default function UpdateStreetArt(props) {
 								onIonChange={handleChange}
 							/>
 						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Location </IonLabel>
-							<IonInput
-								type='text'
-								name='location'
-								value={updatedArtInfo.location}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
+						
 						<IonItem>
 							<IonLabel position='stacked'> Image </IonLabel>
 							<input 
