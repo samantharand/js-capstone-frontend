@@ -18,6 +18,7 @@ import {
 } from '@ionic/react';
 
 import { useHistory } from 'react-router-dom';
+import '../index.css'
 
 export default function UpdateUser(props) {
 	const history = useHistory()
@@ -108,9 +109,30 @@ export default function UpdateUser(props) {
 	}
 
 	// destroy -- put inside edit user page
-	const deleteUser = () => {
+	const deleteUser = async () => {
 		console.log('delete user!!!');
 		// delete user and all user posts
+		try {
+			const url = process.env.REACT_APP_API_URL + '/users/' + props.currentUser.id
+
+			const deleteUserResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'DELETE'
+			})
+
+			const deleteUserJson = await deleteUserResponse.json()
+
+			if(deleteUserJson.status === 200) {
+				props.logout()
+				history.push('/')
+			}
+
+
+
+		} catch (error) {
+			console.error('ERROR in DELETE USER')
+			console.error(error)
+		}
 	}
 
 	return (
@@ -150,16 +172,19 @@ export default function UpdateUser(props) {
 							color="danger"
 							onClick={() => changeConfirmDeleteOpen(true)}
 							>Delete Account</IonButton>
-						<IonModal isOpen={confirmDeleteOpen}>
+						<IonModal
+							isOpen={confirmDeleteOpen}
+							id='confirmDelete'
+						>
 							<IonContent>
-								<IonTitle>
-									Are you sure you want to delete your account?
-								</IonTitle>
-								<IonButton 
-									color='danger'
-									onClick={deleteUser}> DELETE </IonButton>
-								<IonButton
-									onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+									<IonTitle>
+										Are you sure you want to delete your account?
+									</IonTitle>
+									<IonButton 
+										color='danger'
+										onClick={deleteUser}> DELETE </IonButton>
+									<IonButton
+										onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
 							</IonContent>
 						</IonModal>
 					</IonContent>

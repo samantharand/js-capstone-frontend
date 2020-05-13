@@ -169,28 +169,46 @@ function App(props) {
                   path='/myaccount' 
                   exact
                   render={props => {
-                    return <UsersAccount loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <UsersAccount
+                      loggedIn={loggedIn}
+                      routeProps={props}
+                      currentUser={currentUser}
+                    />;
                   }}
                 />
                 <Route 
                   path='/editaccount' 
                   exact
                   render={props => {
-                    return <UpdateUser setCurrentUser={setCurrentUser} loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <UpdateUser 
+                      logout={logout} 
+                      setCurrentUser={setCurrentUser} 
+                      loggedIn={loggedIn} 
+                      routeProps={props} 
+                      currentUser={currentUser}
+                    />;
                   }}
                 />
                 <Route 
                   path='/map' 
                   exact
                   render={props => {
-                    return <MapContainer loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <MapContainer
+                      loggedIn={loggedIn}
+                      routeProps={props}
+                      currentUser={currentUser}
+                    />;
                   }}
                 />
                 <Route 
                   path='/newstreetart' 
                   exact
                   render={props => {
-                    return <NewStreetArt loggedIn={loggedIn} routeProps={props} currentUser={currentUser} />;
+                    return <NewStreetArt 
+                      loggedIn={loggedIn} 
+                      routeProps={props} 
+                      currentUser={currentUser}
+                    />;
                   }}
                 />
               </Switch>
