@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   IonRouterOutlet, 
   IonTabs, 
@@ -29,14 +29,46 @@ import NewStreetArt from './streetart/NewStreetArt'
 import MapContainer from './streetart/Map'
 
 function App(props) {
+
   console.log('APP PROPS', props);
   const [loggedIn, setLoggedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState('')
-  
+  const [currentLoc, setCurrentLoc] = useState({
+    lat: '',
+    lng: ''
+  })
+
   console.log('loggedIn from app.js', loggedIn);
   console.log('currentUser from app.js -- ( ', currentUser, ' )');
 
 
+  const findBrowserLocation = async () => {
+    try {
+
+      const success = (position) => {
+        console.log('successss');
+        console.log('position', position);
+        setCurrentLoc({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        })
+        console.log('currentLoc !!!!!!!!',currentLoc);
+      }
+
+      const error = () => {
+        console.log('ERRORRRR in findBrowserLocation');
+      }
+
+      if(!navigator.geolocation) {
+        console.log("error");
+      } else {
+        const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
+      }
+      
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const login = async (loginInfo) => {
     const url = process.env.REACT_APP_API_URL + '/users/login'
@@ -133,7 +165,10 @@ function App(props) {
 
   console.log('loggedIn',loggedIn);
 
-
+  useEffect(() => {
+    console.log('useEffect in app.js called');
+    findBrowserLocation()
+  }, [])
 
 
   return (
@@ -197,6 +232,7 @@ function App(props) {
                       loggedIn={loggedIn}
                       routeProps={props}
                       currentUser={currentUser}
+                      currentLoc={currentLoc}
                     />;
                   }}
                 />

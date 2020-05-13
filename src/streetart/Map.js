@@ -7,50 +7,51 @@ export default function MapContainer(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState([])
 	const [loading, setLoading] = useState(true)
-	const [currentLoc, setCurrentLoc] = useState({
-		lat: '',
-		lng: ''
-	})
+	// const [currentLoc, setCurrentLoc] = useState({
+	// 	lat: '',
+	// 	lng: ''
+	// })
 	let listStreetArt;
 
 	useEffect(() => {
 		getAllStreetArt()
 		console.log("USE EFFECT IS GETTING CALLED RIGHT NOOOOW");
-		findBrowserLocation()
+		// findBrowserLocation()
 		console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [loading])
 
 
-	const findBrowserLocation = async () => {
-		try {
+	// const findBrowserLocation = async () => {
+	// 	try {
 
-			const success = (position) => {
-				// console.log('successss');
-				// console.log('position', position);
-				setCurrentLoc({
-					lat: position.coords.latitude,
-					lng: position.coords.longitude
-				})
-				// console.log('currentLoc !!!!!!!!',currentLoc);
-			}
+	// 		const success = (position) => {
+	// 			console.log('successss');
+	// 			console.log('position', position);
+	// 			setCurrentLoc({
+	// 				lat: position.coords.latitude,
+	// 				lng: position.coords.longitude
+	// 			})
+	// 			console.log('currentLoc !!!!!!!!',currentLoc);
+	// 		}
 
-			const error = () => {
-				console.log(error);
-			}
+	// 		const error = () => {
+	// 			console.log('ERRORRRR in findBrowserLocation');
+	// 		}
 
-			if(!navigator.geolocation) {
-				console.log("error");
-			} else {
-				const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
-			}
+	// 		if(!navigator.geolocation) {
+	// 			console.log("error");
+	// 		} else {
+	// 			const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
+	// 		}
 			
-		} catch (error) {
-			console.error(error)
-		}
-	}
+	// 	} catch (error) {
+	// 		console.error(error)
+	// 	}
+	// }
 
-	// takes a little to update, so it has to be called after everything has loaded 
-
+	// IF LOCATION IS DISABLED -->
+		// FROM CONSOLE (googlemaps line 14) --> currentLoc from inside googlemaps.js {lat: "", lng: ""}
+		// if lat and lng === "" ask user for a location to center on
 
 
 	const getAllStreetArt = async () => {
@@ -106,7 +107,7 @@ export default function MapContainer(props) {
 					{	
 						allStreetArt.length > 0
 						&&
-		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={currentLoc} findBrowserLocation={findBrowserLocation} />
+		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={props.currentLoc}/>
 					}
 	        	</div>	 
 				<IonList>
