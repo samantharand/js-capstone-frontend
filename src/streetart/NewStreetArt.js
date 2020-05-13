@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 
 export default function NewStreetArt(props) {
 	const [newArtInfo, setNewArtInfo] = useState({
@@ -13,15 +13,7 @@ export default function NewStreetArt(props) {
 
 	const addArt = async (artInfo) => {
 		const url = process.env.REACT_APP_API_URL + '/streetart/add'
-		// console.log('newArtInfo.location.split("").join(+)', newArtInfo.location.split(' ').join('+'));
-		// const geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + newArtInfo.location.split(' ').join('+') + '&key=AIzaSyB7G8yZAkGYtf2QQzkS1n0E1gZtpPF_h8w'
-		// console.log(geocodeUrl);
 
-		// const geocodeResponse = await fetch(geocodeUrl, {
-		// 	method: 'GET'
-		// })
-		// const geocodeJson = await geocodeResponse.json()
-		// console.log(geocodeJson);
 		const addArtResponse = await fetch(url, {
 			credentials: 'include',
 			method: 'POST',
@@ -155,11 +147,11 @@ export default function NewStreetArt(props) {
 						</IonItem>
 						<IonItem>
 							<IonLabel position='stacked'> Description </IonLabel>
-							<IonInput
+							<IonTextarea
 								type='text'
 								name='description'
-								value={newArtInfo.description}
 								onIonChange={handleChange}
+								value={newArtInfo.description}
 							/>
 						</IonItem>
 

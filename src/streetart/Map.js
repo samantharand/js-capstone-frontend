@@ -9,10 +9,6 @@ export default function MapContainer(props) {
 	const [loading, setLoading] = useState(true)
 	const [idOfMockInfoWindowToShow, setIdOfMockInfoWindowToShow] = useState('')
 
-	// const [currentLoc, setCurrentLoc] = useState({
-	// 	lat: '',
-	// 	lng: ''
-	// })
 	let listStreetArt;
 
 	useEffect(() => {
@@ -22,40 +18,6 @@ export default function MapContainer(props) {
 		console.log('idOfMockInfoWindowToShow {{{{ ', idOfMockInfoWindowToShow, " }}}}");
 		// console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [loading, idOfMockInfoWindowToShow])
-
-
-	// const findBrowserLocation = async () => {
-	// 	try {
-
-	// 		const success = (position) => {
-	// 			console.log('successss');
-	// 			console.log('position', position);
-	// 			setCurrentLoc({
-	// 				lat: position.coords.latitude,
-	// 				lng: position.coords.longitude
-	// 			})
-	// 			console.log('currentLoc !!!!!!!!',currentLoc);
-	// 		}
-
-	// 		const error = () => {
-	// 			console.log('ERRORRRR in findBrowserLocation');
-	// 		}
-
-	// 		if(!navigator.geolocation) {
-	// 			console.log("error");
-	// 		} else {
-	// 			const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
-	// 		}
-			
-	// 	} catch (error) {
-	// 		console.error(error)
-	// 	}
-	// }
-
-	// IF LOCATION IS DISABLED -->
-		// FROM CONSOLE (googlemaps line 14) --> currentLoc from inside googlemaps.js {lat: "", lng: ""}
-		// if lat and lng === "" ask user for a location to center on
-
 
 	const getAllStreetArt = async () => {
 		console.log("GET ALL STREET ART BEING CALLED");
@@ -85,8 +47,6 @@ export default function MapContainer(props) {
 			console.error(error)
 		}
 	}
-
-
 
 	if(allStreetArt.length > 0) {
 		// console.log('ALL STREET ART LENGTH', allStreetArt.length);
@@ -119,6 +79,7 @@ export default function MapContainer(props) {
 		         			currentLoc={props.currentLoc}
 		         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
 		         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
+		         			setStreetArtToUpdate={props.setStreetArtToUpdate}
 		         		/>
 					}
 	        	</div>	 

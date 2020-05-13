@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import {
   IonButton
 } from '@ionic/react';
+import '../index.css'
+import { useHistory } from 'react-router-dom';
+import UpdateStreetArt from './UpdateStreetArt'
 
 export default function PopoverInfo(props) {
 	console.log('props in PopoverInfo', props);
+	const history = useHistory()
+
 	return (
 		<React.Fragment>
 			<p> { props.allStreetArt[props.artIndex].name }</p>
@@ -25,8 +30,27 @@ export default function PopoverInfo(props) {
 			{
 				props.currentUser.id === props.allStreetArt[props.artIndex].poster.id
 				&&
-				<IonButton> Das Right beesh its urs </IonButton>
+				<IonButton 
+					fill='outline' 
+					size='small'
+					color='dark'
+					onClick={ () => {
+						history.push('/updatestreetart')
+						props.setStreetArtToUpdate(props.allStreetArt[props.artIndex])
+					}}
+				> edit </IonButton>
 			}
+
+
 		</React.Fragment>
 	)
 }
+			// <UpdateStreetArt artworkToEdit={props.allStreetArt[props.artIndex]}/>
+
+
+
+/*
+
+/updatestreetart
+
+*/

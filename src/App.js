@@ -27,11 +27,13 @@ import UsersAccount from './users/UsersAccount'
 import UpdateUser from './users/UpdateUser'
 import NewStreetArt from './streetart/NewStreetArt'
 import MapContainer from './streetart/Map'
+import UpdateStreetArt from './streetart/UpdateStreetArt'
 
 function App(props) {
 
   console.log('APP PROPS', props);
   const [loggedIn, setLoggedIn] = useState(false)
+  const [streetArtToUpdate, setStreetArtToUpdate] = useState({})
   const [currentUser, setCurrentUser] = useState('')
   const [currentLoc, setCurrentLoc] = useState({
     lat: '',
@@ -233,6 +235,7 @@ function App(props) {
                       routeProps={props}
                       currentUser={currentUser}
                       currentLoc={currentLoc}
+                      setStreetArtToUpdate={setStreetArtToUpdate}
                     />;
                   }}
                 />
@@ -247,6 +250,18 @@ function App(props) {
                     />;
                   }}
                 />
+                <Route 
+                  path='/updatestreetart' 
+                  exact
+                  render={props => {
+                    return <UpdateStreetArt 
+                      loggedIn={loggedIn} 
+                      routeProps={props} 
+                      currentUser={currentUser}
+                      streetArtToUpdate={streetArtToUpdate}
+                    />;
+                  }}
+                />                
               </Switch>
             </IonPage>
           </IonSplitPane>

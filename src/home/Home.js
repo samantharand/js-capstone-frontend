@@ -4,7 +4,12 @@ import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTa
 export default function Home(props) {
 	return (
 		<IonPage className="HomePage">
-			<IonTitle> home :) </IonTitle>
+			<IonContent>
+				<IonTitle> home :) </IonTitle>
+				<IonButton> IonButton </IonButton>
+				<button 
+					style={{border: 'solid black 1px'}}> button </button>
+			</IonContent>
 		</IonPage>
 	)
 }

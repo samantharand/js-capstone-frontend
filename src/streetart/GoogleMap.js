@@ -89,6 +89,7 @@ function GoogleMap(props) {
 									artIndex={artIndex}
 									allStreetArt={props.allStreetArt}
 									currentUser={props.currentUser}
+									setStreetArtToUpdate={props.setStreetArtToUpdate}
 								/> 
 
 							</IonPopover>

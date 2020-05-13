@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.edit-link, .edit-link > a {
+	font-style: italic;
+	font-size: .5em;
+}
