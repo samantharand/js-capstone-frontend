@@ -7,18 +7,20 @@ export default function MapContainer(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState([])
 	const [loading, setLoading] = useState(true)
+	const [idOfMockInfoWindowToShow, setIdOfMockInfoWindowToShow] = useState('')
+
 	// const [currentLoc, setCurrentLoc] = useState({
 	// 	lat: '',
 	// 	lng: ''
 	// })
 	let listStreetArt;
-
 	useEffect(() => {
 		getAllStreetArt()
-		console.log("USE EFFECT IS GETTING CALLED RIGHT NOOOOW");
+		console.log("USE EFFECT IS GETTING CALLED FROM MAP.js RIGHT NOOOOW");
 		// findBrowserLocation()
-		console.log('allStreetArt.length in useEffect', allStreetArt.length);
-	}, [loading])
+		console.log('idOfMockInfoWindowToShow {{{{ ', idOfMockInfoWindowToShow, " }}}}");
+		// console.log('allStreetArt.length in useEffect', allStreetArt.length);
+	}, [loading, idOfMockInfoWindowToShow])
 
 
 	// const findBrowserLocation = async () => {
@@ -107,7 +109,13 @@ export default function MapContainer(props) {
 					{	
 						allStreetArt.length > 0
 						&&
-		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={props.currentLoc}/>
+		         		<GoogleApiWrapper 
+		         			allStreetArt={allStreetArt} 
+		         			loading={loading} 
+		         			currentLoc={props.currentLoc}
+		         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
+		         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
+		         		/>
 					}
 	        	</div>	 
 				<IonList>

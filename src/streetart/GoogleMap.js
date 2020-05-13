@@ -5,7 +5,8 @@ import {
   IonPage,
   IonModal,
   IonContent,
-  IonTitle
+  IonTitle,
+  IonButton
 } from '@ionic/react';
 import '../index.css'
 
@@ -20,7 +21,7 @@ function GoogleMap(props) {
 	const [mockInfoWindow, toggleMockInfoWindow] = useState(false)
 
 	// id of mock info window to show in state
-	const [idOfMockInfoWindowToShow, setIdOfMockInfoWindowToShow] = useState('')
+	// const [idOfMockInfoWindowToShow, setIdOfMockInfoWindowToShow] = useState('')
 
 	const containerStyle = {
 		height: "75%",
@@ -40,12 +41,36 @@ function GoogleMap(props) {
 					lng: lng
 				}}
 				onClick={ () => toggleMockInfoWindow(true) }
+				onClick={ () => props.setIdOfMockInfoWindowToShow(streetArt.id) }
+				// onClick={ () => artToShowInPopover() }
 				// Label={streetArt.name[0]}
 				// onMouseover={ () => toggleMockInfoWindow(true) }
 			/>
 		)
 		
 	})
+
+
+
+	const artToShowInPopover = () => {
+		let artInfo;
+		console.log('artToShowInPopover being called rn');
+		console.log('idOfMock in artToShow', props.idOfMockInfoWindowToShow);
+		// write function to grab info from allStreetArt[id that matches id of window to show]
+		for(let i = 0; i < props.allStreetArt.length; i++) {
+
+			if(props.allStreetArt[i].id === props.idOfMockInfoWindowToShow) {
+				artInfo = props.allStreetArt[i]
+				console.log('artInfo', artInfo);
+			}
+
+		}
+		// call it on click of marker
+		// call toggle mock window true
+
+		
+	}
+
 
 	// const infowindow = new InfoWindow({
 	// 	content: "AAHHHH"
@@ -79,7 +104,7 @@ function GoogleMap(props) {
 
 
 					</ReactMap>
-
+					<IonButton onClick={artToShowInPopover}> TEST </IonButton>
 				</IonContent>
 			</IonPage>
 		</React.Fragment>
