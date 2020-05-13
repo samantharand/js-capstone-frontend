@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import {
+  IonButton
+} from '@ionic/react';
 
 export default function PopoverInfo(props) {
 	console.log('props in PopoverInfo', props);
@@ -17,6 +20,12 @@ export default function PopoverInfo(props) {
 				props.allStreetArt[props.artIndex].description
 				&&
 				<p> {props.allStreetArt[props.artIndex].description} </p>
+			}
+
+			{
+				props.currentUser.id === props.allStreetArt[props.artIndex].poster.id
+				&&
+				<IonButton> Das Right beesh its urs </IonButton>
 			}
 		</React.Fragment>
 	)
