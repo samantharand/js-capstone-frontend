@@ -8,25 +8,27 @@ import {
   IonTitle,
   IonButton
 } from '@ionic/react';
+import PopoverInfo from './PopoverInfo'
 import '../index.css'
 
 function GoogleMap(props) {
-	// console.log('props in google maps', props);
-	console.log('currentLoc from inside googlemaps.js', props.currentLoc);
-
-	// useEffect(() => {
-	// 	props.findBrowserLocation()	
-	// }, [props.currentLoc])
 
 	const [mockInfoWindow, toggleMockInfoWindow] = useState(false)
-
-	// id of mock info window to show in state
-	// const [idOfMockInfoWindowToShow, setIdOfMockInfoWindowToShow] = useState('')
 
 	const containerStyle = {
 		height: "75%",
 		width: "75%"
 	}
+
+	const findArtToShowInPopover = async (id) => {
+		console.log('artToShowInPopover being called rn');
+		console.log('id argument in findArtToShowInPopover', id);
+
+		props.setIdOfMockInfoWindowToShow(id)
+
+	}
+	
+	let artIndex = props.allStreetArt.findIndex(art => art.id === props.idOfMockInfoWindowToShow)
 
 	const streetArtMarkers = props.allStreetArt.map((streetArt, i) => {
 		const lng = streetArt.longitude
@@ -40,41 +42,17 @@ function GoogleMap(props) {
 					lat: lat,
 					lng: lng
 				}}
-				onClick={ () => toggleMockInfoWindow(true) }
-				onClick={ () => props.setIdOfMockInfoWindowToShow(streetArt.id) }
-				// onClick={ () => artToShowInPopover() }
-				// Label={streetArt.name[0]}
-				// onMouseover={ () => toggleMockInfoWindow(true) }
+				onClick={ async () => {
+
+					console.log('idOfMockInfoWindowToShow in streetArtMarkers', props.idOfMockInfoWindowToShow);
+					findArtToShowInPopover(streetArt.id)
+
+				}}
+				Label={streetArt.name}
 			/>
 		)
 		
 	})
-
-
-
-	const artToShowInPopover = () => {
-		let artInfo;
-		console.log('artToShowInPopover being called rn');
-		console.log('idOfMock in artToShow', props.idOfMockInfoWindowToShow);
-		// write function to grab info from allStreetArt[id that matches id of window to show]
-		for(let i = 0; i < props.allStreetArt.length; i++) {
-
-			if(props.allStreetArt[i].id === props.idOfMockInfoWindowToShow) {
-				artInfo = props.allStreetArt[i]
-				console.log('artInfo', artInfo);
-			}
-
-		}
-		// call it on click of marker
-		// call toggle mock window true
-
-		
-	}
-
-
-	// const infowindow = new InfoWindow({
-	// 	content: "AAHHHH"
-	// })
 
 	return (
 		<React.Fragment>
@@ -95,21 +73,31 @@ function GoogleMap(props) {
 
 						{ streetArtMarkers }
 
-
-						<IonPopover
-								isOpen={mockInfoWindow}
-								id='confirmDelete'
-								onDidDismiss={ () => toggleMockInfoWindow(false) }
-						> hihihi </IonPopover>
+						{
+							props.idOfMockInfoWindowToShow !== ""
+							&&
+							<IonPopover
+									isOpen={true}
+									id='confirmDelete'
+									onDidDismiss={ () => {
+										// toggleMockInfoWindow(false)
+										props.setIdOfMockInfoWindowToShow('')
+									} }
+							> <PopoverInfo /> </IonPopover>
+						}
 
 
 					</ReactMap>
-					<IonButton onClick={artToShowInPopover}> TEST </IonButton>
+					<IonButton onClick={() => console.log(artIndex)}> TEST </IonButton>
 				</IonContent>
 			</IonPage>
 		</React.Fragment>
 	)
 }
+
+
+// new component that shows what i want in the modal -- rener component in the ionpopover
+
 
 
 

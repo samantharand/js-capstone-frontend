@@ -14,6 +14,7 @@ export default function MapContainer(props) {
 	// 	lng: ''
 	// })
 	let listStreetArt;
+
 	useEffect(() => {
 		getAllStreetArt()
 		console.log("USE EFFECT IS GETTING CALLED FROM MAP.js RIGHT NOOOOW");
@@ -59,6 +60,7 @@ export default function MapContainer(props) {
 	const getAllStreetArt = async () => {
 		console.log("GET ALL STREET ART BEING CALLED");
 		try {
+
 			const url = process.env.REACT_APP_API_URL + '/streetart/map'
 
 			const getAllStreetArtResponse = await fetch(url, {
@@ -77,6 +79,7 @@ export default function MapContainer(props) {
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
         		console.log("getAllStreetArtJson.status --> ", getAllStreetArtJson.status);
 			}
+
 		} catch (error) {
 			console.error('ERROR in GETALLSTREETART')
 			console.error(error)
