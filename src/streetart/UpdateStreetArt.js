@@ -8,7 +8,7 @@ export default function UpdateStreetArt(props) {
 	console.log('props in updateStreetArt', props);
 	const [updatedArtInfo, setUpdatedArtInfo] = useState({
 			name: props.streetArtToUpdate.name,
-			// location: props.streetArtToUpdate.location,
+			location: props.streetArtToUpdate.location,
 			year: props.streetArtToUpdate.year,
 			image: props.streetArtToUpdate.image,
 			artist: props.streetArtToUpdate.artist,
@@ -52,23 +52,11 @@ export default function UpdateStreetArt(props) {
 		  [event.target.name]: event.detail.value
 		})
 
-		// await console.log("art info from change", updatedArtInfo);
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		updateStreetArt(updatedArtInfo)
-		// console.log('art info from submit', updatedArtInfo);
-	
-		// setUpdatedArtInfo({
-		//   ...updatedArtInfo,
-		// 	name: '',
-		// 	location: '',
-		// 	year: '',
-		// 	image: '',
-		// 	artist: '',
-		// 	description: ''
-		// })
 	}
 
 
@@ -131,7 +119,15 @@ export default function UpdateStreetArt(props) {
 								onIonChange={handleChange}
 							/>
 						</IonItem>
-						
+						<IonItem>
+							<IonLabel position='stacked'> Location </IonLabel>
+							<IonInput
+								type='text'
+								name='location'
+								value={updatedArtInfo.location}
+								onIonChange={handleChange}
+							/>
+						</IonItem>
 						<IonItem>
 							<IonLabel position='stacked'> Image </IonLabel>
 							<input 

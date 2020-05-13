@@ -33,6 +33,7 @@ function App(props) {
 
   console.log('APP PROPS', props);
   const [loggedIn, setLoggedIn] = useState(false)
+  const [loginResponse, setLoginResponse] = useState('')
   const [streetArtToUpdate, setStreetArtToUpdate] = useState({})
   const [currentUser, setCurrentUser] = useState('')
   const [currentLoc, setCurrentLoc] = useState({
@@ -88,7 +89,7 @@ function App(props) {
 
       console.log("lr", loginResponse);
       const loginJson = await loginResponse.json()
-
+      setLoginResponse(loginJson.status)
       console.log("lj", loginJson);
 
       if(loginJson.status === 201) {
@@ -185,7 +186,7 @@ function App(props) {
                   path='/login' 
                   exact
                   render={props => {
-                    return <LoginContainer routeProps={props} login={login} />;
+                    return <LoginContainer routeProps={props} login={login} loginResponse={loginResponse} />;
                   }}
                 />
                 <Route 

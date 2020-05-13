@@ -22,13 +22,14 @@ export default function LoginContainer(props) {
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		props.login(userInfo)
-		// console.log('user info from submit', userInfo);
 	
-		setUserInfo({
-		  ...userInfo,
-		  username: '',
-		  password: ''
-		})
+		// setUserInfo({
+		//   ...userInfo,
+		//   username: '',
+		//   password: ''
+		// })
+
+		
 		props.routeProps.history.push('/')
 	}
 	
