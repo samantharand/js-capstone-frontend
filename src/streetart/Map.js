@@ -1,18 +1,64 @@
 import React, { useState, useEffect } from 'react'
 import { IonPage, IonTitle, IonList, IonItem, IonImg, IonHeader } from '@ionic/react'
 import GoogleApiWrapper from './GoogleMap'
+import '../index.css'
 
 export default function MapContainer(props) {
 
 	const [allStreetArt, setAllStreetArt] = useState([])
 	const [loading, setLoading] = useState(true)
+	const [currentLoc, setCurrentLoc] = useState({
+		lat: '',
+		lng: ''
+	})
 	let listStreetArt;
 
 	useEffect(() => {
 		getAllStreetArt()
+		// findBrowserLocation()
 		console.log("USE EFFECT IS GETTING CALLED RIGHT NOOOOW");
 		console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [])
+
+
+	const findBrowserLocation = async () => {
+		console.log('!!!!!!!! findBrowserLocation !!!!!!!');
+		
+		try {
+
+			const success = (position) => {
+				console.log('successss');
+				console.log('position', position);
+				setCurrentLoc({
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				})
+				console.log('currentLoc !!!!!!!!',currentLoc);
+			}
+
+			const error = () => {
+				console.log(error);
+			}
+			if(!navigator.geolocation) {
+				console.log("error");
+			} else {
+				const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
+				console.log('cuuuuurent looooocation', currentLocation)
+				// setCurrentLoc({
+				// 	lat: currentLocation.coords.latitude,
+				// 	lng: currentLocation.coords.longitude
+				// })
+			}
+			
+		} catch (error) {
+			console.error(error)
+		}
+
+		console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	}
+
+	findBrowserLocation()
+
 
 	const getAllStreetArt = async () => {
 		console.log("GET ALL STREET ART BEING CALLED");
@@ -68,7 +114,7 @@ export default function MapContainer(props) {
 					{	
 						allStreetArt.length > 0
 						&&
-		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading}/>
+		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={currentLoc}/>
 					}
 	        	</div>	 
 				<IonList>
