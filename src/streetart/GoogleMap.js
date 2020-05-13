@@ -1,9 +1,17 @@
 import React, {useState } from 'react'
 import { Map as ReactMap, GoogleMapsReact, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import {
+  IonPopover,
+  IonPage,
+  IonModal,
+  IonContent
+} from '@ionic/react';
 
 function GoogleMap(props) {
 
 	console.log('props in google maps', props);
+
+	const [mockInfoWindow, toggleMockInfoWindow] = useState(false)
 
 	const streetArtMarkers = props.allStreetArt.map((streetArt, i) => {
 			const lng = streetArt.longitude
@@ -16,6 +24,7 @@ function GoogleMap(props) {
 					lat: lat,
 					lng: lng
 				}}
+				onClick={ () => toggleMockInfoWindow(true) }
 			/>
 		)
 		
@@ -23,19 +32,31 @@ function GoogleMap(props) {
 
 	return (
 		<React.Fragment>
-			<ReactMap 
-				id="map"
-				google={props.google} 
-				zoom={14} 
-				initialCenter={{
-					lat: 41.8781, 
-					lng: -87.6298
-				}}
-			>
+			<IonPage>
+				<IonContent>
 
-				{ streetArtMarkers }
+					<ReactMap 
+						id="map"
+						google={props.google} 
+						zoom={14} 
+						initialCenter={{
+							lat: 41.8781, 
+							lng: -87.6298
+						}}
+					>
+						{ streetArtMarkers }
 
-			</ReactMap>
+					</ReactMap>
+
+					<IonPopover
+							isOpen={mockInfoWindow}
+							id='confirmDelete'
+							onDidDismiss={ () => toggleMockInfoWindow(false) }
+					> hihihi </IonPopover>
+
+
+				</IonContent>
+			</IonPage>
 		</React.Fragment>
 	)
 }
