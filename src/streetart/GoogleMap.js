@@ -32,7 +32,6 @@ function GoogleMap(props) {
 					lng: -87.6298
 				}}
 			>
-
 				{ streetArtMarkers }
 
 			</ReactMap>

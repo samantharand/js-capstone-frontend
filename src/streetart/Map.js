@@ -77,7 +77,6 @@ export default function MapContainer(props) {
 				</IonList>	
 	        </IonPage>
 		}
-		<IonTitle> map :) </IonTitle>
 		</IonPage>
 	)
 }
