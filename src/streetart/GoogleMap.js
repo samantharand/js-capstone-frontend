@@ -83,7 +83,15 @@ function GoogleMap(props) {
 										// toggleMockInfoWindow(false)
 										props.setIdOfMockInfoWindowToShow('')
 									} }
-							> <PopoverInfo /> </IonPopover>
+							> 
+
+								<PopoverInfo 
+									artIndex={artIndex}
+									allStreetArt={props.allStreetArt}
+									currentUser={props.currentUser}
+								/> 
+
+							</IonPopover>
 						}
 
 

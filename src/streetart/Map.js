@@ -114,6 +114,7 @@ export default function MapContainer(props) {
 						&&
 		         		<GoogleApiWrapper 
 		         			allStreetArt={allStreetArt} 
+		         			currentUser={props.currentUser}
 		         			loading={loading} 
 		         			currentLoc={props.currentLoc}
 		         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
