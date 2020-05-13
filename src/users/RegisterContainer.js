@@ -51,6 +51,8 @@ export default function Register(props){
 		  zip_code: '',
 		  bio: ''
 		})
+		props.routeProps.history.push('/')
+
 	}
 
 

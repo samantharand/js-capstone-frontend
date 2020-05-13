@@ -14,7 +14,8 @@ import {
   IonLabel,
   IonInput,
   IonTextarea,
-  IonModal
+  IonModal,
+  IonPopover
 } from '@ionic/react';
 
 import { useHistory } from 'react-router-dom';
@@ -172,13 +173,14 @@ export default function UpdateUser(props) {
 							color="danger"
 							onClick={() => changeConfirmDeleteOpen(true)}
 							>Delete Account</IonButton>
-						<IonModal
+						<IonPopover
 							isOpen={confirmDeleteOpen}
 							id='confirmDelete'
+							backdropDismiss={false}
 						>
 							<IonContent>
 									<IonTitle>
-										Are you sure you want to delete your account?
+										You sure?
 									</IonTitle>
 									<IonButton 
 										color='danger'
@@ -186,7 +188,7 @@ export default function UpdateUser(props) {
 									<IonButton
 										onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
 							</IonContent>
-						</IonModal>
+						</IonPopover>
 					</IonContent>
 				</IonPage>
 				:

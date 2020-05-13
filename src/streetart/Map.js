@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { IonPage, IonTitle, IonList, IonItem, IonImg } from '@ionic/react'
+import { IonPage, IonTitle, IonList, IonItem, IonImg, IonHeader } from '@ionic/react'
 import GoogleApiWrapper from './GoogleMap'
 
 export default function MapContainer(props) {
@@ -65,7 +65,6 @@ export default function MapContainer(props) {
 			:
 			<IonPage>
 				<div className="mapContainer">
-					<p>map should be here vvv </p>
 					{	
 						allStreetArt.length > 0
 						&&

@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import { Map as ReactMap, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { Map as ReactMap, GoogleMapsReact, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 function GoogleMap(props) {
 
@@ -32,10 +32,10 @@ function GoogleMap(props) {
 					lng: -87.6298
 				}}
 			>
+
 				{ streetArtMarkers }
 
 			</ReactMap>
-
 		</React.Fragment>
 	)
 }
