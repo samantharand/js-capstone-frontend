@@ -15,49 +15,42 @@ export default function MapContainer(props) {
 
 	useEffect(() => {
 		getAllStreetArt()
-		// findBrowserLocation()
 		console.log("USE EFFECT IS GETTING CALLED RIGHT NOOOOW");
+		findBrowserLocation()
 		console.log('allStreetArt.length in useEffect', allStreetArt.length);
-	}, [])
+	}, [loading])
 
 
 	const findBrowserLocation = async () => {
-		console.log('!!!!!!!! findBrowserLocation !!!!!!!');
-		
 		try {
 
 			const success = (position) => {
-				console.log('successss');
-				console.log('position', position);
+				// console.log('successss');
+				// console.log('position', position);
 				setCurrentLoc({
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				})
-				console.log('currentLoc !!!!!!!!',currentLoc);
+				// console.log('currentLoc !!!!!!!!',currentLoc);
 			}
 
 			const error = () => {
 				console.log(error);
 			}
+
 			if(!navigator.geolocation) {
 				console.log("error");
 			} else {
 				const currentLocation = navigator.geolocation.getCurrentPosition(success, error)
-				console.log('cuuuuurent looooocation', currentLocation)
-				// setCurrentLoc({
-				// 	lat: currentLocation.coords.latitude,
-				// 	lng: currentLocation.coords.longitude
-				// })
 			}
 			
 		} catch (error) {
 			console.error(error)
 		}
-
-		console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	}
 
-	findBrowserLocation()
+	// takes a little to update, so it has to be called after everything has loaded 
+
 
 
 	const getAllStreetArt = async () => {
@@ -75,6 +68,7 @@ export default function MapContainer(props) {
 				setAllStreetArt(getAllStreetArtJson.data)
 				setLoading(false)
 				// console.log('loadingggg', loading);
+				// findBrowserLocation()
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
 			} else {
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
@@ -100,8 +94,6 @@ export default function MapContainer(props) {
 	}
 					// <img src={allStreetArt[i].image} />
 
-
-
 	return (
 		<IonPage className="MapPage">
 		{
@@ -114,7 +106,7 @@ export default function MapContainer(props) {
 					{	
 						allStreetArt.length > 0
 						&&
-		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={currentLoc}/>
+		         		<GoogleApiWrapper allStreetArt={allStreetArt} loading={loading} currentLoc={currentLoc} findBrowserLocation={findBrowserLocation} />
 					}
 	        	</div>	 
 				<IonList>

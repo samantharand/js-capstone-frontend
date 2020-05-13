@@ -13,6 +13,10 @@ function GoogleMap(props) {
 	// console.log('props in google maps', props);
 	console.log('currentLoc from inside googlemaps.js', props.currentLoc);
 
+	// useEffect(() => {
+	// 	props.findBrowserLocation()	
+	// }, [props.currentLoc])
+
 	const [mockInfoWindow, toggleMockInfoWindow] = useState(false)
 
 	const containerStyle = {
@@ -37,7 +41,7 @@ function GoogleMap(props) {
 			}}
 			onClick={ () => toggleMockInfoWindow(true) }
 			// Label={streetArt.name[0]}
-			onMouseover={ () => toggleMockInfoWindow(true) }
+			// onMouseover={ () => toggleMockInfoWindow(true) }
 		/>
 	)
 		
