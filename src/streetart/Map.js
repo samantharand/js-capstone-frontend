@@ -13,9 +13,9 @@ export default function MapContainer(props) {
 
 	useEffect(() => {
 		getAllStreetArt()
-		console.log("USE EFFECT IS GETTING CALLED FROM MAP.js RIGHT NOOOOW");
+		// console.log("USE EFFECT IS GETTING CALLED FROM MAP.js RIGHT NOOOOW");
 		// findBrowserLocation()
-		console.log('idOfMockInfoWindowToShow {{{{ ', idOfMockInfoWindowToShow, " }}}}");
+		// console.log('idOfMockInfoWindowToShow {{{{ ', idOfMockInfoWindowToShow, " }}}}");
 		// console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [loading, idOfMockInfoWindowToShow])
 
