@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { IonPopover, IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 import { useHistory } from 'react-router-dom';
 
 export default function UpdateStreetArt(props) {
 
 	const history = useHistory()
 	console.log('props in updateStreetArt', props);
+	const [confirmDeleteOpen, changeConfirmDeleteOpen] = useState(false)
 	const [updatedArtInfo, setUpdatedArtInfo] = useState({
 			name: props.streetArtToUpdate.name,
 			location: props.streetArtToUpdate.location,
@@ -96,7 +97,34 @@ export default function UpdateStreetArt(props) {
 			console.error(error)
 		}
 	}
-	// delete 
+
+
+	// destroy
+	const deleteStreetArt = async () => {
+		const url = process.env.REACT_APP_API_URL + '/streetart/' + props.streetArtToUpdate.id
+		console.log(url);
+		console.log('deleteStreetArt');
+		try {
+				
+			const deleteStreetArtResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'DELETE'
+			})
+
+			const deleteStreetArtJson = await deleteStreetArtResponse.json()
+
+			if(deleteStreetArtJson.status === 200) {
+				console.log('deleteStreetArtJson.message -->', deleteStreetArtJson.message);
+				props.routeProps.history.push('/map')
+			} else {
+				console.log(deleteStreetArtJson.message, deleteStreetArtJson.status);
+			}
+
+
+		} catch (error) {
+			console.error(error)
+		}
+	}
 
 	return (
 		<IonPage className="UpdateArtPage">
@@ -166,6 +194,26 @@ export default function UpdateStreetArt(props) {
 
 						<IonButton onClick={ handleSubmit }>Update Post</IonButton>
 					</form>
+					<IonButton 
+							color="danger"
+							onClick={() => changeConfirmDeleteOpen(true)}
+							>Delete Post</IonButton>
+					<IonPopover
+							isOpen={confirmDeleteOpen}
+							id='confirmDelete'
+							backdropDismiss={false}
+						>
+							<IonContent>
+									<IonTitle>
+										You sure?
+									</IonTitle>
+									<IonButton 
+										color='danger'
+										onClick={deleteStreetArt}> DELETE </IonButton>
+									<IonButton
+										onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+							</IonContent>
+						</IonPopover>
 				</IonContent>
 				:
 				<IonContent>
