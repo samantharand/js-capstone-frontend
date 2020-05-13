@@ -75,7 +75,7 @@ export default function UpdateStreetArt(props) {
 	//update 
 	const updateStreetArt = async (infoToUpdate) => {
 		const url = process.env.REACT_APP_API_URL + '/streetart/' + props.streetArtToUpdate.id
-		console.log(url);
+		// console.log(url);
 		try {
 			
 			const updateStreetArtResponse = await fetch(url, {
@@ -89,14 +89,15 @@ export default function UpdateStreetArt(props) {
 
 			const updateStreetArtJson = await updateStreetArtResponse.json()
 
-			console.log({
-				infoToUpdate,
-				updateStreetArtResponse,
-				updateStreetArtJson
-			});
+			// console.log({
+			// 	infoToUpdate,
+			// 	updateStreetArtResponse,
+			// 	updateStreetArtJson
+			// });
 
-			if(updateStreetArtJson.status === 200) {
+			if(updateStreetArtJson.status === 201) {
 				console.log('updated!');
+				props.routeProps.history.push('/map')
 			} else {
 				console.log('updateStreetArtJson.message -->', updateStreetArtJson.message);
 				console.log('updateStreetArtJson.status -->', updateStreetArtJson.status);
