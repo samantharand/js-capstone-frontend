@@ -76,7 +76,7 @@ function App(props) {
 
   const login = async (loginInfo) => {
     const url = process.env.REACT_APP_API_URL + '/users/login'
-    
+    console.log(url)
     try {
 
       const loginResponse = await fetch(url, {
