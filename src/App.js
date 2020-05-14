@@ -110,7 +110,7 @@ function App(props) {
 
   const register = async (registerInfo) => {
     const url = process.env.REACT_APP_API_URL + '/users/register'
-
+    console.log(url);
     try {
 
       const registerResponse = await fetch(url, {
