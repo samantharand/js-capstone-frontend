@@ -19,6 +19,18 @@ export default function UsersAccount(props) {
         props.getPostsByCurrentUser()
 	}, [])
 	
+
+	let userPosts;
+	if(props.postsByCurrentUser) {
+
+		userPosts = props.postsByCurrentUser.map((post) => {
+			return (
+				<li key={post.id}> {post.name} </li>
+			)
+		})
+
+	}
+
 	return (
 		<IonPage>
 		{
@@ -35,6 +47,9 @@ export default function UsersAccount(props) {
 								{props.currentUser.zip_code}
 							</IonCardSubtitle>
 						</IonCard>
+						<ul>
+							{userPosts}
+						</ul>
 					</IonContent>
 				</IonPage>
 				:
