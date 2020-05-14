@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Map as ReactMap, GoogleMapsReact, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { map, Map as ReactMap, GoogleMapsReact, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import {
   IonPopover,
   IonPage,
@@ -59,44 +59,85 @@ function GoogleMap(props) {
 			<IonPage>
 				<IonContent>
 				<IonTitle> Map </IonTitle>
+					{
+						props.currentLoc.lat !== ""
+						?
+						<ReactMap 
+							id="map"
+							google={props.google} 
+							zoom={14} 
+							initialCenter={{
+								lat: props.currentLoc.lat, 
+								lng: props.currentLoc.lng
+							}}
+							containerStyle={containerStyle}
+						>
 
-					<ReactMap 
-						id="map"
-						google={props.google} 
-						zoom={14} 
-						initialCenter={{
-							lat: props.currentLoc.lat, 
-							lng: props.currentLoc.lng
-						}}
-						containerStyle={containerStyle}
-					>
+							{ streetArtMarkers }
 
-						{ streetArtMarkers }
+							{
+								props.idOfMockInfoWindowToShow !== ""
+								&&
+								<IonPopover
+										isOpen={true}
+										id='confirmDelete'
+										onDidDismiss={ () => {
+											// toggleMockInfoWindow(false)
+											props.setIdOfMockInfoWindowToShow('')
+										} }
+								> 
 
-						{
-							props.idOfMockInfoWindowToShow !== ""
-							&&
-							<IonPopover
-									isOpen={true}
-									id='confirmDelete'
-									onDidDismiss={ () => {
-										// toggleMockInfoWindow(false)
-										props.setIdOfMockInfoWindowToShow('')
-									} }
-							> 
+									<PopoverInfo 
+										artIndex={artIndex}
+										allStreetArt={props.allStreetArt}
+										currentUser={props.currentUser}
+										setStreetArtToUpdate={props.setStreetArtToUpdate}
+									/> 
 
-								<PopoverInfo 
-									artIndex={artIndex}
-									allStreetArt={props.allStreetArt}
-									currentUser={props.currentUser}
-									setStreetArtToUpdate={props.setStreetArtToUpdate}
-								/> 
-
-							</IonPopover>
-						}
+								</IonPopover>
+							}
 
 
-					</ReactMap>
+						</ReactMap>
+						:
+						<ReactMap 
+							id="map"
+							google={props.google} 
+							zoom={14} 
+							initialCenter={{
+								lat: 41.8757,
+								lng: -87.6243
+							}}
+							containerStyle={containerStyle}
+						>
+
+							{ streetArtMarkers }
+
+							{
+								props.idOfMockInfoWindowToShow !== ""
+								&&
+								<IonPopover
+										isOpen={true}
+										id='confirmDelete'
+										onDidDismiss={ () => {
+											// toggleMockInfoWindow(false)
+											props.setIdOfMockInfoWindowToShow('')
+										} }
+								> 
+
+									<PopoverInfo 
+										artIndex={artIndex}
+										allStreetArt={props.allStreetArt}
+										currentUser={props.currentUser}
+										setStreetArtToUpdate={props.setStreetArtToUpdate}
+									/> 
+
+								</IonPopover>
+							}
+
+
+						</ReactMap>
+					}
 				</IonContent>
 			</IonPage>
 		</React.Fragment>
