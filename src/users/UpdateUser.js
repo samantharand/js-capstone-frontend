@@ -169,6 +169,7 @@ export default function UpdateUser(props) {
 							</IonItem>
 							<IonButton onClick={ handleSubmit }>Update Account</IonButton>
 						</form>
+						
 						<IonButton 
 							color="danger"
 							onClick={() => changeConfirmDeleteOpen(true)}

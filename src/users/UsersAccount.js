@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonContent,
   IonPage,
@@ -14,8 +14,11 @@ export default function UsersAccount(props) {
 	console.log('props in UsersAccount', props);
 	console.log('props.currentUser from UsersAccount', props.currentUser);
 	console.log('loggedin from UsersAccount', props.loggedIn);
-
-
+	
+	useEffect(() => {
+        props.getPostsByCurrentUser()
+	}, [])
+	
 	return (
 		<IonPage>
 		{

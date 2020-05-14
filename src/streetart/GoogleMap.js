@@ -97,7 +97,6 @@ function GoogleMap(props) {
 
 
 					</ReactMap>
-					<IonButton onClick={() => console.log(artIndex)}> TEST </IonButton>
 				</IonContent>
 			</IonPage>
 		</React.Fragment>
@@ -163,6 +162,6 @@ function GoogleMap(props) {
 
 // adding API key to .env disabled the map, would like to find a way to hide the key
 export default GoogleApiWrapper((props) => ({
-	apiKey: 'AIzaSyB7G8yZAkGYtf2QQzkS1n0E1gZtpPF_h8w',
+	apiKey: process.env.GOOGLE_MAPS_API_KEY,
 	// LoadingContainer: GoogleMap
 }))(GoogleMap)

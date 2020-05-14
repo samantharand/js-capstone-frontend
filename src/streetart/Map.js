@@ -19,6 +19,12 @@ export default function MapContainer(props) {
 		// console.log('allStreetArt.length in useEffect', allStreetArt.length);
 	}, [loading, idOfMockInfoWindowToShow])
 
+	 useEffect(() => {
+	    return () => {
+	      console.log("cleaned up");
+	    };
+	  }, []);
+
 	const getAllStreetArt = async () => {
 		console.log("GET ALL STREET ART BEING CALLED");
 		try {
@@ -83,9 +89,6 @@ export default function MapContainer(props) {
 		         		/>
 					}
 	        	</div>	 
-				<IonList>
-					
-				</IonList>	
 	        </IonPage>
 		}
 		</IonPage>

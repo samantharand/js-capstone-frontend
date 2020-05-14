@@ -34,6 +34,7 @@ function App(props) {
   console.log('APP PROPS', props);
   const [loggedIn, setLoggedIn] = useState(false)
   const [loginResponse, setLoginResponse] = useState('')
+  const [postsByCurrentUser, setPostsByCurrentUser] = useState([])
   const [streetArtToUpdate, setStreetArtToUpdate] = useState({})
   const [currentUser, setCurrentUser] = useState('')
   const [currentLoc, setCurrentLoc] = useState({
@@ -141,6 +142,34 @@ function App(props) {
     }
   }
 
+  const getPostsByCurrentUser = async () => {
+
+    try {
+
+      const url = process.env.REACT_APP_API_URL + '/streetart/map'
+
+      const getArtworkResponse = await fetch(url, {
+        credentials: 'include',
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const getArtworkJson = await getArtworkResponse.json()
+
+      console.log('getArtworkJson', getArtworkJson);
+      const postsByCurrentUser = getArtworkJson.data.filter(streetart => streetart.poster.id === currentUser.id)
+      // console.log('getArtworkJson.artwork', getArtworkJson.artwork);
+      setPostsByCurrentUser(postsByCurrentUser)
+
+    } catch (error) {
+      console.error('ERROR IN getPostsByCurrentUser')
+      console.error(error)
+    }
+    
+  }
+
   const logout = async () => {
     try {
     const url = process.env.REACT_APP_API_URL + '/users/logout'
@@ -166,8 +195,6 @@ function App(props) {
     }
   }
 
-  console.log('loggedIn',loggedIn);
-
   useEffect(() => {
     console.log('useEffect in app.js called');
     findBrowserLocation()
@@ -186,7 +213,11 @@ function App(props) {
                   path='/login' 
                   exact
                   render={props => {
-                    return <LoginContainer routeProps={props} login={login} loginResponse={loginResponse} />;
+                    return <LoginContainer 
+                      routeProps={props} 
+                      login={login} 
+                      loginResponse={loginResponse}
+                    />;
                   }}
                 />
                 <Route 
@@ -211,6 +242,8 @@ function App(props) {
                       loggedIn={loggedIn}
                       routeProps={props}
                       currentUser={currentUser}
+                      getPostsByCurrentUser={getPostsByCurrentUser}
+                      postsByCurrentUser={postsByCurrentUser}
                     />;
                   }}
                 />
