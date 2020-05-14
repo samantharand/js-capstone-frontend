@@ -73,40 +73,6 @@ function App(props) {
     }
   }
 
-  const register = async (registerInfo) => {
-    const url = process.env.REACT_APP_API_URL + '/users/register'
-    console.log(url);
-    try {
-
-      const registerResponse = await fetch(url, {
-        credentials: 'include',
-        method: 'POST',
-        body: JSON.stringify(registerInfo),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-      const registerJson = await registerResponse.json()
-
-      if(registerJson.status === 201) {
-
-        setLoggedIn(true)
-        setCurrentUser(registerJson.data)
-
-      } else {
-
-        console.log("registerJson.message --> ", registerJson.message);
-        console.log("registerJson.status --> ", registerJson.status);
-
-      }
-      
-    } catch (error) {
-      console.error("ERROR in REGISTER")
-      console.error(error)
-    }
-  }
-
   const getPostsByCurrentUser = async () => {
 
     try {
@@ -189,7 +155,11 @@ function App(props) {
                   path='/register' 
                   exact
                   render={props => {
-                    return <RegisterContainer routeProps={props} register={register} />;
+                    return <RegisterContainer 
+                    	routeProps={props}
+                    	setLoggedIn={setLoggedIn}
+                      setCurrentUser={setCurrentUser}
+                    />;
                   }}
                 />
                 <Route 

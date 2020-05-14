@@ -40,14 +40,46 @@ export default function Register(props){
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		props.register(userInfo)
+		register(userInfo)
 		// console.log('user info from submit', userInfo);
-	
-		props.routeProps.history.push('/')
+
 
 	}
 
+	const register = async (registerInfo) => {
+	    const url = process.env.REACT_APP_API_URL + '/users/register'
+	    console.log(url);
+	    try {
 
+	      const registerResponse = await fetch(url, {
+	        credentials: 'include',
+	        method: 'POST',
+	        body: JSON.stringify(registerInfo),
+	        headers: {
+	          'Content-Type': 'application/json'
+	        }
+	      })
+
+	      const registerJson = await registerResponse.json()
+
+	      if(registerJson.status === 201) {
+
+	        props.setLoggedIn(true)
+	        props.setCurrentUser(registerJson.data)
+	        props.routeProps.history.push('/')
+
+	      } else {
+
+	        console.log("registerJson.message --> ", registerJson.message);
+	        console.log("registerJson.status --> ", registerJson.status);
+
+	      }
+	      
+	    } catch (error) {
+	      console.error("ERROR in REGISTER")
+	      console.error(error)
+	    }
+	  }
 
 	return (
 		<IonPage className="LoginPage">
