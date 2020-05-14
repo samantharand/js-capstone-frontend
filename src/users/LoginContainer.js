@@ -21,17 +21,41 @@ export default function LoginContainer(props) {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault()
-		props.login(userInfo)
-	
-		// setUserInfo({
-		//   ...userInfo,
-		//   username: '',
-		//   password: ''
-		// })
-
-		props.routeProps.history.push('/')
-		
+		login(userInfo)
 	}
+
+	const login = async (loginInfo) => {
+	    const url = process.env.REACT_APP_API_URL + '/users/login'
+	    console.log(url)
+	    try {
+
+	      const loginResponse = await fetch(url, {
+	        credentials: 'include',
+	        method: 'POST',
+	        body: JSON.stringify(loginInfo),
+	        headers: {
+	          'Content-Type': 'application/json'
+	        }
+	      })
+
+	      const loginJson = await loginResponse.json()
+
+	      if(loginJson.status === 201) {
+	        props.setLoggedIn(true)
+	        props.setCurrentUser(loginJson.data)
+	        props.routeProps.history.push('/')	
+	      } else {
+	        console.log("loginJson.message --> ", loginJson.message);
+	        console.log("loginJson.status --> ", loginJson.status);
+	        
+	      }
+
+
+	    } catch (error) {
+	      console.error("ERROR in LOGIN")
+	      console.error(error)
+	    }
+	  }
 	
 	return (
 		<IonPage className="LoginPage">

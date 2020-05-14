@@ -31,10 +31,8 @@ import UpdateStreetArt from './streetart/UpdateStreetArt'
 
 function App(props) {
   console.log('APP PROPS', props);
-  
   // const [history, setHistory] = useState('/')
   const [loggedIn, setLoggedIn] = useState(false)
-  const [loginResponse, setLoginResponse] = useState('')
   const [postsByCurrentUser, setPostsByCurrentUser] = useState([])
   const [streetArtToUpdate, setStreetArtToUpdate] = useState({})
   const [currentUser, setCurrentUser] = useState('')
@@ -71,41 +69,6 @@ function App(props) {
       }
       
     } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const login = async (loginInfo) => {
-    const url = process.env.REACT_APP_API_URL + '/users/login'
-    console.log(url)
-    try {
-
-      const loginResponse = await fetch(url, {
-        credentials: 'include',
-        method: 'POST',
-        body: JSON.stringify(loginInfo),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-      console.log("lr", loginResponse);
-      const loginJson = await loginResponse.json()
-      setLoginResponse(loginJson.status)
-      console.log("lj", loginJson);
-
-      if(loginJson.status === 201) {
-        setLoggedIn(true)
-        setCurrentUser(loginJson.data)
-        
-      } else {
-        console.log("loginJson.message --> ", loginJson.message);
-        console.log("loginJson.status --> ", loginJson.status);
-      }
-
-
-    } catch (error) {
-      console.error("ERROR in LOGIN")
       console.error(error)
     }
   }
@@ -216,9 +179,9 @@ function App(props) {
                   exact
                   render={props => {
                     return <LoginContainer 
-                      routeProps={props} 
-                      login={login} 
-                      loginResponse={loginResponse}
+                      routeProps={props}
+                      setLoggedIn={setLoggedIn}
+                      setCurrentUser={setCurrentUser}
                     />;
                   }}
                 />
