@@ -28,3 +28,8 @@ code {
   display: flex;
   flex-wrap: wrap;
 }
+
+/*.RistrictedAuthContent {
+  display: flex;
+  justify-content: center;
+}*/

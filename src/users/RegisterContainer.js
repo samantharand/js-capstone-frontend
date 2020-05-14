@@ -82,10 +82,10 @@ export default function Register(props){
 	  }
 
 	return (
-		<IonPage className="LoginPage">
+		<IonPage className="RegisterPage">
 			<IonHeader translucent>
 				<IonToolbar>
-					<IonTitle> Login </IonTitle>
+					<IonTitle> Register </IonTitle>
 				</IonToolbar>
 			</IonHeader>
 			<IonContent>

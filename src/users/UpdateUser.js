@@ -193,9 +193,10 @@ export default function UpdateUser(props) {
 					</IonContent>
 				</IonPage>
 				:
-				<IonContent>
+				<div className="RistrictedAuthContent">
 					<IonTitle> Must be logged in to access account details </IonTitle>
-				</IonContent>
+					<IonContent> <a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a> </IonContent>
+				</div>
 
 			}
 		</IonPage>

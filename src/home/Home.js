@@ -6,9 +6,15 @@ export default function Home(props) {
 		<IonPage className="HomePage">
 			<IonContent>
 				<IonTitle> home :) </IonTitle>
-				<IonButton> IonButton </IonButton>
-				<button 
-					style={{border: 'solid black 1px'}}> button </button>
+				<div width='100px' overflow='scroll'>
+					<IonButton
+						expand='full'
+						fill='outline' 
+						size='small'
+						color='dark'> IonButton </IonButton>
+					<button 
+						style={{border: 'solid black 1px'}}> button </button>
+				</div>
 			</IonContent>
 		</IonPage>
 	)
