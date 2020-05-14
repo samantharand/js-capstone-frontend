@@ -9,6 +9,7 @@ import {
   IonCardSubtitle,
   IonCardTitle
 } from '@ionic/react';
+import '../index.css'
 
 export default function UsersAccount(props) {
 	console.log('props in UsersAccount', props);
@@ -25,7 +26,14 @@ export default function UsersAccount(props) {
 
 		userPosts = props.postsByCurrentUser.map((post) => {
 			return (
-				<li key={post.id}> {post.name} </li>
+				<IonCard class='card' key={post.id}> 
+					<img src={post.image}/>
+					location: {post.name} 
+					name: {post.name} 
+					artist: {post.artist}
+					description: {post.location}
+					year: {post.year}
+				</IonCard>
 			)
 		})
 
@@ -47,9 +55,12 @@ export default function UsersAccount(props) {
 								{props.currentUser.zip_code}
 							</IonCardSubtitle>
 						</IonCard>
-						<ul>
+
+						<div id='UserPostsGrid'>
 							{userPosts}
-						</ul>
+						</div>
+
+
 					</IonContent>
 				</IonPage>
 				:

@@ -16,3 +16,15 @@ code {
 	font-style: italic;
 	font-size: .5em;
 }
+
+.card {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#UserPostsGrid {
+  display: flex;
+  flex-wrap: wrap;
+}
