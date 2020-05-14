@@ -43,14 +43,6 @@ export default function Register(props){
 		props.register(userInfo)
 		// console.log('user info from submit', userInfo);
 	
-		setUserInfo({
-		  ...userInfo,
-		  username: '',
-		  password: '',
-		  email: '',
-		  zip_code: '',
-		  bio: ''
-		})
 		props.routeProps.history.push('/')
 
 	}

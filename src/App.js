@@ -30,8 +30,9 @@ import MapContainer from './streetart/Map'
 import UpdateStreetArt from './streetart/UpdateStreetArt'
 
 function App(props) {
-
   console.log('APP PROPS', props);
+  
+  // const [history, setHistory] = useState('/')
   const [loggedIn, setLoggedIn] = useState(false)
   const [loginResponse, setLoginResponse] = useState('')
   const [postsByCurrentUser, setPostsByCurrentUser] = useState([])
@@ -96,6 +97,7 @@ function App(props) {
       if(loginJson.status === 201) {
         setLoggedIn(true)
         setCurrentUser(loginJson.data)
+        
       } else {
         console.log("loginJson.message --> ", loginJson.message);
         console.log("loginJson.status --> ", loginJson.status);
