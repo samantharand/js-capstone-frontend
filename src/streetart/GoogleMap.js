@@ -162,6 +162,6 @@ function GoogleMap(props) {
 
 // adding API key to .env disabled the map, would like to find a way to hide the key
 export default GoogleApiWrapper((props) => ({
-	apiKey: process.env.GOOGLE_MAPS_API_KEY,
+	apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 	// LoadingContainer: GoogleMap
 }))(GoogleMap)
