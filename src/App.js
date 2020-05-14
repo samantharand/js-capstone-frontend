@@ -205,7 +205,7 @@ function App(props) {
     <Router>
       <div id='app'>
         <IonApp>
-          <IonSplitPane contentId='main'>
+          <IonSplitPane contentId='main' when='(min-width: 0px)'>
             <Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
               <Switch>
