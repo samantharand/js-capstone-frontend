@@ -15,7 +15,8 @@ import {
   IonSegment, 
   IonSegmentButton, 
   IonSplitPane,
-	IonMenuButton
+	IonMenuButton,
+	IonItem
 } from '@ionic/react'
 import './App.css';
 import './index.css'
@@ -137,10 +138,10 @@ function App(props) {
   return (
     <Router>
         <IonApp>
-        	<IonHeader> 
-	        		<IonTitle> HIIII </IonTitle>
-	        		<IonMenuButton auto-hide='false'/>
-        	</IonHeader>
+        	<IonItem> 
+	        		<IonTitle> STREET ART MAP </IonTitle>
+	        		<IonMenuButton slot='start'/>
+        	</IonItem>
           <IonSplitPane contentId='main' >
           	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
