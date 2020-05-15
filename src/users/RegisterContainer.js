@@ -87,7 +87,7 @@ export default function Register(props){
 	  }
 
 	return (
-			<IonContent>
+			<IonContent style={{width: '300px'}}>
 				<IonTitle> Register </IonTitle>
 				<form className="LoginForm" onSubmit={handleSubmit}>
 					<IonItem>
@@ -139,7 +139,8 @@ export default function Register(props){
 						fill='outline' 
 						size='small'
 						color='dark'
-						onClick={ handleSubmit }>Create Account</IonButton>
+						onClick={ handleSubmit }
+						style={{width: '200px'}}>Create Account</IonButton>
 				</form>
 				<ion-toast 
 					isOpen={toastOpen}

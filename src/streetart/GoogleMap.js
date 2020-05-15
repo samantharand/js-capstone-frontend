@@ -19,13 +19,12 @@ function GoogleMap(props) {
 		height: "75%",
 		width: "75%"
 	}
-
+	
 	const findArtToShowInPopover = async (id) => {
 		console.log('artToShowInPopover being called rn');
 		console.log('id argument in findArtToShowInPopover', id);
 
 		props.setIdOfMockInfoWindowToShow(id)
-
 	}
 	
 	let artIndex = props.allStreetArt.findIndex(art => art.id === props.idOfMockInfoWindowToShow)
@@ -49,6 +48,7 @@ function GoogleMap(props) {
 
 				}}
 				Label={streetArt.name}
+				style={{color: '#ff00ff'}}
 			/>
 		)
 		

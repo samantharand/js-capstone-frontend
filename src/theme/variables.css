@@ -108,11 +108,6 @@ ion-app > ion-header > ion-item {
   /*--background: #ffff00;*/
 }
 
-ion-page {
-  --background: #00ff00;
-}
-
-
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
