@@ -23,6 +23,7 @@ import {
 export default function Register(props){
 	console.log("props in reg", props);
 	const [toastOpen, setToastOpen] = useState(false)
+	const [flashMessage, setFlashMessage] = useState('')
 	const [userInfo, setUserInfo] = useState({
 	    username: '',  
 	    password: '',
@@ -30,7 +31,6 @@ export default function Register(props){
 	    zip_code: '',
 	    bio: ''
 	})
-	const [flashMessage, setFlashMessage] = useState('')
 
 	const handleChange = async (event) => {
 		// console.log("event", event);
@@ -142,10 +142,13 @@ export default function Register(props){
 					</IonItem>
 					<IonButton onClick={ handleSubmit }>Create Account</IonButton>
 				</form>
-				<IonToast 
+				<ion-toast 
 					isOpen={toastOpen}
 					onDidDismiss={ () => {setToastOpen(false)} }
 					message={flashMessage}
+					style={{
+						backgroundColor: 'red'
+					}}
 				/>
 			</IonContent>
 		</IonPage>
