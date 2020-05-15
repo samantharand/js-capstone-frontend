@@ -136,14 +136,13 @@ function App(props) {
 
   return (
     <Router>
-      <div id='app'>
         <IonApp>
         	<IonHeader> 
 	        		<IonTitle> HIIII </IonTitle>
-	        		<IonMenuButton/>
+	        		<IonMenuButton auto-hide='false'/>
         	</IonHeader>
-            <Menu loggedIn={loggedIn} logout={logout}/>
-          <IonSplitPane contentId='main' when='(min-width: 0px)'>
+          <IonSplitPane contentId='main' >
+          	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
               <Switch>
                 <Route 
@@ -241,7 +240,6 @@ function App(props) {
             </IonPage>
           </IonSplitPane>
         </IonApp>
-      </div> 
     </Router>
   );
 }

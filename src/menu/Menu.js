@@ -131,7 +131,7 @@ export default function Menu(props) {
 
 
   return (
-	    <IonMenu contentId="main">
+	    <IonMenu contentId="main" type="push">
 	    	<IonHeader>
 	    		<IonToolbar>
 	    			<IonTitle> Menu </IonTitle>
