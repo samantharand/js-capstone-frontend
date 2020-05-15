@@ -31,6 +31,7 @@ import UpdateUser from './users/UpdateUser'
 import NewStreetArt from './streetart/NewStreetArt'
 import MapContainer from './streetart/Map'
 import UpdateStreetArt from './streetart/UpdateStreetArt'
+import FourOhFourPage from './FourOhFourPage'
 
 function App(props) {
   console.log('APP PROPS', props);
@@ -138,12 +139,12 @@ function App(props) {
   return (
     <Router>
         <IonApp>
-        	<IonHeader>
+        	<IonToolbar translucent='true'>
 	        	<IonItem> 
 		        		<IonTitle> STREET ART MAP </IonTitle>
 		        		<IonMenuButton slot='start'/>
 	        	</IonItem>
-        	</IonHeader>
+        	</IonToolbar>
           <IonSplitPane contentId='main' >
           	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
@@ -237,6 +238,13 @@ function App(props) {
                       currentUser={currentUser}
                       streetArtToUpdate={streetArtToUpdate}
                     />;
+                  }}
+                />       
+                <Route 
+                  path='*' 
+                  exact
+                  render={props => {
+                    return <FourOhFourPage />;
                   }}
                 />                
               </Switch>

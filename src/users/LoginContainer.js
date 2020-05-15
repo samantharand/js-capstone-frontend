@@ -99,7 +99,11 @@ export default function LoginContainer(props) {
 							onIonChange={handleChange}
 						/>
 					</IonItem>
-					<IonButton onClick={ handleSubmit }>Login</IonButton>
+					<IonButton 
+						fill='outline' 
+						size='small'
+						color='dark'
+						onClick={ handleSubmit }>Login</IonButton>
 				</form>
 				<IonToast 
 					isOpen={toastOpen}

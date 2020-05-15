@@ -76,10 +76,15 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
+ion-toolbar > ion-item {
+  /*--background: #ff0000;*/
+  margin-bottom: 10px;
+}
 
 ion-content > ion-title {
   --background: #f0ffff;
-  margin-top: 50px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 .HomePage {
@@ -90,22 +95,23 @@ ion-toast {
   --background: #ff0000;
 }
 
+ion-popover {  
+  --background: #ff0000;
+}
+
 ion-button {
   --outline: #000000;
   --border-radius: 0;
 }
 
 ion-app > ion-header > ion-item {
-  --background: #ffff00;
+  /*--background: #ffff00;*/
 }
 
 ion-page {
   --background: #00ff00;
 }
 
-ion-header {
-  --background: #00ff00;
-}
 
 @media (prefers-color-scheme: dark) {
   /*

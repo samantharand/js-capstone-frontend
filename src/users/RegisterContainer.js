@@ -135,7 +135,11 @@ export default function Register(props){
 							value={userInfo.bio}
 						/>
 					</IonItem>
-					<IonButton onClick={ handleSubmit }>Create Account</IonButton>
+					<IonButton 
+						fill='outline' 
+						size='small'
+						color='dark'
+						onClick={ handleSubmit }>Create Account</IonButton>
 				</form>
 				<ion-toast 
 					isOpen={toastOpen}

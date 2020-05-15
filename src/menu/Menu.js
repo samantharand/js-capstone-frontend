@@ -90,7 +90,7 @@ export default function Menu(props) {
 					// routerDirection="none" 
 					lines="none" detail={false} 
 				>
-					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
+					<IonIcon slot='start' name={page.icon}></IonIcon>
 					<IonLabel> {page.title} </IonLabel>
 				</IonItem>
 			</IonMenuToggle>
@@ -110,7 +110,7 @@ export default function Menu(props) {
 					detail={false} 
 
 				>
-					<IonIcon slot='start' name={page.icon}>{page.icon}</IonIcon>
+					<IonIcon slot='start' name={page.icon}></IonIcon>
 					<IonLabel> {page.title} </IonLabel>
 				</IonItem>
 			</IonMenuToggle>
@@ -132,12 +132,8 @@ export default function Menu(props) {
 
   return (
 	    <IonMenu contentId="main" type="push">
-	    	<IonHeader>
-	    		<IonToolbar>
-	    			<IonTitle> Menu </IonTitle>
-	    		</IonToolbar>
-	    	</IonHeader>
 	      <IonContent>
+	    		<IonTitle>  </IonTitle>
 	        <IonList>
 	          { renderAppMenu() }
 	        </IonList>
@@ -148,10 +144,14 @@ export default function Menu(props) {
 		        {  			
 							props.loggedIn
 							&&
-							<IonItem>
-										<IonIcon name='exitSharp'></IonIcon>
-										<IonLabel onClick={logout}> Logout </IonLabel>
-							</IonItem>
+							<IonMenuToggle auto-hide='false'>
+								<IonItem>
+									<IonIcon name='exitSharp'></IonIcon>
+									<IonLabel 
+										style={{marginLeft: '32px'}}
+										onClick={logout}> Logout </IonLabel>
+								</IonItem>
+							</IonMenuToggle>
 						}
 
 		      </IonList>
