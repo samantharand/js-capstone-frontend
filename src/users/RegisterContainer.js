@@ -16,10 +16,13 @@ import {
 	IonContent, 
 	IonButton, 
 	IonSegment, 
-	IonSegmentButton } from '@ionic/react'
+	IonSegmentButton,
+	IonToast
+} from '@ionic/react'
 
 export default function Register(props){
 	console.log("props in reg", props);
+	const [toastOpen, setToastOpen] = useState(false)
 	const [userInfo, setUserInfo] = useState({
 	    username: '',  
 	    password: '',
@@ -27,6 +30,7 @@ export default function Register(props){
 	    zip_code: '',
 	    bio: ''
 	})
+	const [flashMessage, setFlashMessage] = useState('')
 
 	const handleChange = async (event) => {
 		// console.log("event", event);
@@ -72,7 +76,8 @@ export default function Register(props){
 
 	        console.log("registerJson.message --> ", registerJson.message);
 	        console.log("registerJson.status --> ", registerJson.status);
-
+	        setFlashMessage(registerJson.message)
+	        setToastOpen(true)
 	      }
 	      
 	    } catch (error) {
@@ -137,6 +142,11 @@ export default function Register(props){
 					</IonItem>
 					<IonButton onClick={ handleSubmit }>Create Account</IonButton>
 				</form>
+				<IonToast 
+					isOpen={toastOpen}
+					onDidDismiss={ () => {setToastOpen(false)} }
+					message={flashMessage}
+				/>
 			</IonContent>
 		</IonPage>
 	)
