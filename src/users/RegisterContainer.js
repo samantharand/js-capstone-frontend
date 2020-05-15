@@ -146,9 +146,6 @@ export default function Register(props){
 					isOpen={toastOpen}
 					onDidDismiss={ () => {setToastOpen(false)} }
 					message={flashMessage}
-					style={{
-						backgroundColor: 'red'
-					}}
 				/>
 			</IonContent>
 		</IonPage>

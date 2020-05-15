@@ -76,16 +76,16 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
-
+/*
 ion-toast {
   --background: #ff0000;
 }
 
 ion-button {
-  /*--background: #ff0000;*/
+  --background: #ff0000;
   --outline: #000000;
   --border-radius: 0;
-}
+}*/
 
 @media (prefers-color-scheme: dark) {
   /*
