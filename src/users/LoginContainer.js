@@ -1,13 +1,32 @@
 import React, { useState } from 'react'
-import { IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { 
+	IonRouterOutlet, 
+	IonInput, 
+	IonItem, 
+	IonTabs, 
+	IonTabBar, 
+	IonLabel, 
+	IonTabButton, 
+	IonPage, 
+	IonApp, 
+	IonHeader, 
+	IonToolbar, 
+	IonTitle, 
+	IonContent, 
+	IonButton, 
+	IonSegment, 
+	IonSegmentButton,
+	IonToast 
+	} from '@ionic/react'
 
 export default function LoginContainer(props) {
 	// console.log("props in login container", props);
-
+	const [toastOpen, setToastOpen] = useState(false)
 	const [userInfo, setUserInfo] = useState({
 	    username: '',  
 	    password: ''
 	  })
+	const [flashMessage, setFlashMessage] = useState('')
 
 	const handleChange = async (event) => {
 		// console.log("event", event);
@@ -47,7 +66,8 @@ export default function LoginContainer(props) {
 	      } else {
 	        console.log("loginJson.message --> ", loginJson.message);
 	        console.log("loginJson.status --> ", loginJson.status);
-	        
+	        setFlashMessage(loginJson.message)
+	        setToastOpen(true)
 	      }
 
 
@@ -86,6 +106,11 @@ export default function LoginContainer(props) {
 					</IonItem>
 					<IonButton onClick={ handleSubmit }>Login</IonButton>
 				</form>
+				<IonToast 
+					isOpen={toastOpen}
+					onDidDismiss={ () => {setToastOpen(false)} }
+					message={flashMessage}
+				/>
 			</IonContent>
 		</IonPage>
 	)
