@@ -8,7 +8,6 @@ export default function Home(props) {
 				<IonTitle> home :) </IonTitle>
 				<div width='100px' overflow='scroll'>
 					<IonButton
-						expand='full'
 						fill='outline' 
 						size='small'
 						color='dark'> IonButton </IonButton>

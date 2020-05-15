@@ -76,12 +76,23 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
+
+ion-toast {
+  --background: #ff0000;
+}
+
+ion-button {
+  /*--background: #ff0000;*/
+  --outline: #000000;
+  --border-radius: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
    */
-
+/*
   body {
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
@@ -151,7 +162,7 @@ http://ionicframework.com/docs/theming/ */
    * iOS Dark Theme
    * -------------------------------------------
    */
-
+/*
   .ios body {
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0,0,0;
@@ -189,7 +200,7 @@ http://ionicframework.com/docs/theming/ */
    * Material Design Dark Theme
    * -------------------------------------------
    */
-
+/*
   .md body {
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18,18,18;
@@ -226,9 +237,5 @@ http://ionicframework.com/docs/theming/ */
     --ion-tab-bar-background: #1f1f1f;
   }
 
-	ion-toast {
-		--background: #ff0000;
-	}
-
+*/
 }
-
