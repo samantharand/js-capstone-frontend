@@ -10,13 +10,13 @@ import {
   IonNote,
   IonHeader,
   IonToolbar,
-  IonTitle
+  IonTitle,
+  IonApp
 } from '@ionic/react';
 
 import React, { useState } from 'react';
 import { useLocation, Route, useHistory } from 'react-router-dom';
 import { exitSharp, mapOutline, mapSharp, bookmarkOutline, heartOutline, heartSharp, paperPlaneOutline, paperPlaneSharp, homeSharp, homeOutline } from 'ionicons/icons';
-// import './Menu.css';
 import LoginContainer from '../users/LoginContainer'
 
 
@@ -131,34 +131,32 @@ export default function Menu(props) {
 
 
   return (
-    <IonMenu contentId="main">
-    	<IonHeader>
-    		<IonToolbar>
-    			<IonTitle>
-    				Menu
-    			</IonTitle>
-    		</IonToolbar>
-    	</IonHeader>
-      <IonContent>
-        <IonList>
-          { renderAppMenu() }
-        </IonList>
-    	
-	      <IonList>
-	        { renderAuthMenu() }
-	        
-	        {  			
-						props.loggedIn
-						&&
-						<IonItem>
-									<IonIcon name='exitSharp'></IonIcon>
-									<IonLabel onClick={logout}> Logout </IonLabel>
-						</IonItem>
-					}
+	    <IonMenu contentId="main">
+	    	<IonHeader>
+	    		<IonToolbar>
+	    			<IonTitle> Menu </IonTitle>
+	    		</IonToolbar>
+	    	</IonHeader>
+	      <IonContent>
+	        <IonList>
+	          { renderAppMenu() }
+	        </IonList>
+	    	
+		      <IonList>
+		        { renderAuthMenu() }
+		        
+		        {  			
+							props.loggedIn
+							&&
+							<IonItem>
+										<IonIcon name='exitSharp'></IonIcon>
+										<IonLabel onClick={logout}> Logout </IonLabel>
+							</IonItem>
+						}
 
-	      </IonList>
+		      </IonList>
 
-      </IonContent>
-    </IonMenu>
+	      </IonContent>
+	    </IonMenu>
   );
 };
