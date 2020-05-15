@@ -87,13 +87,8 @@ export default function Register(props){
 	  }
 
 	return (
-		<IonPage className="RegisterPage">
-			<IonHeader translucent>
-				<IonToolbar>
-					<IonTitle> Register </IonTitle>
-				</IonToolbar>
-			</IonHeader>
 			<IonContent>
+				<IonTitle> Register </IonTitle>
 				<form className="LoginForm" onSubmit={handleSubmit}>
 					<IonItem>
 						<IonLabel position='stacked'> Email </IonLabel>
@@ -148,6 +143,5 @@ export default function Register(props){
 					message={flashMessage}
 				/>
 			</IonContent>
-		</IonPage>
 	)
 }

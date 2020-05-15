@@ -138,10 +138,12 @@ function App(props) {
   return (
     <Router>
         <IonApp>
-        	<IonItem> 
-	        		<IonTitle> STREET ART MAP </IonTitle>
-	        		<IonMenuButton slot='start'/>
-        	</IonItem>
+        	<IonHeader>
+	        	<IonItem> 
+		        		<IonTitle> STREET ART MAP </IonTitle>
+		        		<IonMenuButton slot='start'/>
+	        	</IonItem>
+        	</IonHeader>
           <IonSplitPane contentId='main' >
           	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>

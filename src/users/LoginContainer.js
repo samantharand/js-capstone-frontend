@@ -78,13 +78,8 @@ export default function LoginContainer(props) {
 	  }
 	
 	return (
-		<IonPage className="LoginPage">
-			<IonHeader translucent>
-				<IonToolbar>
-					<IonTitle> Login </IonTitle>
-				</IonToolbar>
-			</IonHeader>
 			<IonContent>
+				<IonTitle> Login </IonTitle>
 				<form className="LoginForm">
 					<IonItem>
 						<IonLabel position='stacked'> Username </IonLabel>
@@ -112,6 +107,5 @@ export default function LoginContainer(props) {
 					message={flashMessage}
 				/>
 			</IonContent>
-		</IonPage>
 	)
 }
