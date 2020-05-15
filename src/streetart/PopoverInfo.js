@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonButton
 } from '@ionic/react';
@@ -8,8 +8,16 @@ import UpdateStreetArt from './UpdateStreetArt'
 
 export default function PopoverInfo(props) {
 	console.log('props in PopoverInfo', props);
+	const [poster, setPoster] = useState(props.allStreetArt[props.artIndex].poster.username)
 	const history = useHistory()
 
+	useEffect(() => {
+		if(props.allStreetArt[props.artIndex].poster.username === props.currentUser.username) {
+			setPoster('You!')
+		} 
+	}, [])
+
+	console.log(poster);
 	return (
 		<React.Fragment>
 			<p> { props.allStreetArt[props.artIndex].name }</p>
@@ -26,6 +34,8 @@ export default function PopoverInfo(props) {
 				&&
 				<p> {props.allStreetArt[props.artIndex].description} </p>
 			}
+
+			<p> posted by: {poster} </p>
 
 			{
 				props.currentUser.id === props.allStreetArt[props.artIndex].poster.id

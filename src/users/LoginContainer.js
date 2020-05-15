@@ -78,7 +78,7 @@ export default function LoginContainer(props) {
 	  }
 	
 	return (
-			<IonContent>
+			<IonContent style={{width: '300px'}}>
 				<IonTitle> Login </IonTitle>
 				<form className="LoginForm">
 					<IonItem>
@@ -103,7 +103,8 @@ export default function LoginContainer(props) {
 						fill='outline' 
 						size='small'
 						color='dark'
-						onClick={ handleSubmit }>Login</IonButton>
+						onClick={ handleSubmit }
+						style={{width: '100px'}}>Login</IonButton>
 				</form>
 				<IonToast 
 					isOpen={toastOpen}
