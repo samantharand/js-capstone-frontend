@@ -145,7 +145,7 @@ function App(props) {
 		        		<IonMenuButton slot='start'/>
 	        	</IonItem>
         	</IonToolbar>
-          <IonSplitPane contentId='main' >
+          <IonSplitPane contentId='main' when='(min-width: 1200px)'>
           	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
               <Switch>

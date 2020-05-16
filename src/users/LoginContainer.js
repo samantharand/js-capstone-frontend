@@ -78,34 +78,37 @@ export default function LoginContainer(props) {
 	  }
 	
 	return (
-			<IonContent style={{width: '300px'}}>
-				<IonTitle> Login </IonTitle>
-				<form className="LoginForm">
-					<IonItem>
-						<IonLabel position='stacked'> Username </IonLabel>
-						<IonInput
-							type='text'
-							name='username'
-							value={userInfo.username}
-							onIonChange={handleChange}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonLabel position='stacked'> Password </IonLabel>
-						<IonInput
-							type='password'
-							name='password'
-							value={userInfo.password}
-							onIonChange={handleChange}
-						/>
-					</IonItem>
-					<IonButton 
-						fill='outline' 
-						size='small'
-						color='dark'
-						onClick={ handleSubmit }
-						style={{width: '100px'}}>Login</IonButton>
-				</form>
+			<IonContent>
+				<div className='LoginDiv'>
+					<div className='LoginDivInfo'>
+						<form className="LoginForm">
+							<IonItem>
+								<IonLabel position='stacked'> Username </IonLabel>
+								<IonInput
+									type='text'
+									name='username'
+									value={userInfo.username}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Password </IonLabel>
+								<IonInput
+									type='password'
+									name='password'
+									value={userInfo.password}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonButton 
+								fill='outline' 
+								size='small'
+								color='dark'
+								onClick={ handleSubmit }
+								style={{width: '100px'}}>Login</IonButton>
+						</form>
+					</div>
+				</div>
 				<IonToast 
 					isOpen={toastOpen}
 					onDidDismiss={ () => {setToastOpen(false)} }

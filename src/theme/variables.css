@@ -87,13 +87,13 @@ ion-content > ion-title {
   margin-bottom: 10px;
 }
 
-.MainHomeDiv, .RegisterDiv {
+.MainHomeDiv, .RegisterDiv, .LoginDiv {
   /*background-image: url(https://s3.amazonaws.com/zenplannerwordpress-stack0/wp-content/uploads/sites/97/2018/09/20141422/Sprinkles-Background.jpg);*/
   /*background-image: url(../background.jpg);*/
   background-image: url(../noise_v2.png);
   padding-left: 10px;
-  padding-bottom: 10px;
-  background-size: cover;
+  padding-bottom: 15px;
+  background-size: contain;
   width: 325px;
   display: flex;
   justify-content: flex-end;
@@ -101,34 +101,42 @@ ion-content > ion-title {
   /*background-color: #ff0000;*/
 }
 
-.RegisterDiv {
-  width: 300px;
-}
+/*.RegisterDiv {
+  width: 500px;
+  height: 500px;
+}*/
 
-.MainHomeDivInfo, .RegisterDivInfo {
-  background-color: rgba(255, 255, 255);
-  margin-top: -10px;
-  margin-right: -20px;
-  padding: 10px;
-  border: 4px solid black;
-}
-
-.RegisterDiv {
+.RegisterDiv, .LoginDiv {
   margin: 0 auto;
+  margin-top: 100px;
 }
 
-.RegisterForm {
+.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo {
+  background-color: rgba(255, 255, 255);
+  margin-top: -15px;
+  margin-right: -15px;
+  /*padding: 10px;*/
+  padding: 25px;
+  border: 4px solid black;
+  overflow: scroll;
+  width: 490px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.RegisterForm, .LoginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 275px;
+  /*width: 100%;*/
 }
 
-.form
-
-ion-button {
-  /*width: 200px;*/
-}
+/*.FormItems {
+  width: 75%;
+}*/
 
 ion-menu-toggle > ion-item:hover {
   /*--background: #ff0000;*/
@@ -160,6 +168,11 @@ ion-split-pane {
 
 #main {
   box-shadow: none;
+}
+
+.input-wrapper > .item-native {
+  background-color: #ff0000;
+  border: none;
 }
 
 @media (prefers-color-scheme: dark) {

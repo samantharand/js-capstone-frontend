@@ -90,10 +90,9 @@ export default function Register(props){
 
 	return (
 			<IonContent>
-				<IonTitle> </IonTitle>
 				<div className='RegisterDiv'> 
 					<div className='RegisterDivInfo'> 
-						<form className="RegisterForm" onSubmit={handleSubmit}>
+						<form className="RegisterForm">
 							<div className='FormItems'>
 								<IonItem>
 									<IonLabel position='stacked'> Email </IonLabel>
