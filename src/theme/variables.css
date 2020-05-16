@@ -87,7 +87,17 @@ ion-content > ion-title {
   margin-bottom: 10px;
 }
 
-.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer {
+a {
+  color: darkred;
+  text-decoration: none;
+}
+
+a:hover {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UserAccountDiv {
   /*background-image: url(https://s3.amazonaws.com/zenplannerwordpress-stack0/wp-content/uploads/sites/97/2018/09/20141422/Sprinkles-Background.jpg);*/
   /*background-image: url(../background.jpg);*/
   background-image: url(../noise_v2.png);
@@ -107,16 +117,20 @@ ion-content > ion-title {
   background-image: none;
 }
 
-.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv {
+.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv, .RistrictedAuth, .UserAccountDiv {
   margin: 0 auto;
   margin-top: 100px;
+}
+
+.RistrictedAuth {
+  text-align: center;
 }
 
 .MapDiv {
   margin: 0 auto;
 }
 
-.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo {
+.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo, .UsersAccountDivInfo, .RistrictedAuthInfo {
   background-color: rgba(255, 255, 255);
   margin-top: -15px;
   margin-right: -15px;

@@ -40,36 +40,34 @@ export default function UsersAccount(props) {
 	}
 
 	return (
-		<IonPage>
+		<IonContent>
 		{
 				props.loggedIn
 				?
-				<IonPage>
-					<IonTitle> Your Account </IonTitle>
-					<IonContent>
-						<IonCard>
-							<IonCardTitle>
-								{props.currentUser.username}
-							</IonCardTitle>
-							<IonCardSubtitle>
-								{props.currentUser.zip_code}
-							</IonCardSubtitle>
-						</IonCard>
+				<div className='UserAccountDiv'>
+						<div className='UsersAccountDivInfo'>
+							<IonTitle> Your Account </IonTitle>
+								<IonCard>
+									<IonCardTitle>
+										{props.currentUser.username}
+									</IonCardTitle>
+									<IonCardSubtitle>
+										{props.currentUser.zip_code}
+									</IonCardSubtitle>
+								</IonCard>
 
-						<div id='UserPostsGrid'>
-							{userPosts}
-						</div>
-
-
-					</IonContent>
-				</IonPage>
+								<div id='UserPostsGrid'>
+									{userPosts}
+								</div>
+					</div>
+				</div>	
 				:
-				<div className="RistrictedAuthContent">
-					<IonTitle> Must be logged in to access account details </IonTitle>
-					<IonContent> <a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a> </IonContent>
+				<div className="RistrictedAuth">
+						<IonTitle>Must be logged in to access account details.</IonTitle>
+						<p><a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a></p>
 				</div>
 
 		}
-		</IonPage>
+		</IonContent>
 	)
 }

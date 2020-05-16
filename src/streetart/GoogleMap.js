@@ -19,7 +19,7 @@ function GoogleMap(props) {
 		height: "65%",
 		width: "65%",
 		border: '4px solid black',
-		filter: 'grayscale(1)'
+		filter: 'grayscale(1) contrast(1.1)',
 	}
 	
 	const findArtToShowInPopover = async (id) => {
