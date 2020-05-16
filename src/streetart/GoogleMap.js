@@ -18,7 +18,8 @@ function GoogleMap(props) {
 	const containerStyle = {
 		height: "65%",
 		width: "65%",
-		border: '5px solid black',
+		border: '4px solid black',
+		filter: 'grayscale(1)'
 	}
 	
 	const findArtToShowInPopover = async (id) => {
