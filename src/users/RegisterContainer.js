@@ -74,75 +74,83 @@ export default function Register(props){
 
 	      } else {
 
-	        console.log("registerJson.message --> ", registerJson.message);
-	        console.log("registerJson.status --> ", registerJson.status);
 	        setFlashMessage(registerJson.message)
 	        setToastOpen(true)
+	        console.log("registerJson.message --> ", registerJson.message);
+	        console.log("registerJson.status --> ", registerJson.status);
 	      }
 	      
 	    } catch (error) {
+	      setFlashMessage('Please fill out the required forms!')
+	      setToastOpen(true)
 	      console.error("ERROR in REGISTER")
 	      console.error(error)
 	    }
 	  }
 
 	return (
-			<IonContent style={{width: '300px'}}>
-				<IonTitle> Register </IonTitle>
-				<form className="LoginForm" onSubmit={handleSubmit}>
-					<IonItem>
-						<IonLabel position='stacked'> Email </IonLabel>
-						<IonInput
-							type='text'
-							name='email'
-							onIonChange={handleChange}
-							value={userInfo.email}
-						></IonInput>
-					</IonItem>
-					<IonItem>
-						<IonLabel position='stacked'> Username </IonLabel>
-						<IonInput
-							type='text'
-							name='username'
-							onIonChange={handleChange}
-							value={userInfo.username}
-						></IonInput>
-					</IonItem>
-					<IonItem>
-						<IonLabel position='stacked'> Password </IonLabel>
-						<IonInput
-							type='password'
-							name='password'
-							onIonChange={handleChange}
-							value={userInfo.password}
-						></IonInput>
-					</IonItem>
-					<IonItem>
-						<IonLabel position='stacked'> Zipcode </IonLabel>
-						<IonInput
-							type='text'
-							name='zip_code'
-							onIonChange={handleChange}
-							value={userInfo.zip_code}
-						></IonInput>
-					</IonItem>
-					<IonItem>
-						<IonLabel position='stacked'> Bio </IonLabel>
-						<IonTextarea
-							type='text'
-							name='bio'
-							onIonChange={handleChange}
-							value={userInfo.bio}
-						/>
-					</IonItem>
-					<IonButton 
-						fill='outline' 
-						size='small'
-						color='dark'
-						onClick={ handleSubmit }
-						style={{width: '200px'}}>Create Account</IonButton>
-				</form>
-				<ion-toast 
+			<IonContent>
+				<IonTitle> </IonTitle>
+				<div className='RegisterDiv'> 
+					<div className='RegisterDivInfo'> 
+						<form className="RegisterForm" onSubmit={handleSubmit}>
+							<div className='FormItems'>
+								<IonItem>
+									<IonLabel position='stacked'> Email </IonLabel>
+									<IonInput
+										type='text'
+										name='email'
+										onIonChange={handleChange}
+										value={userInfo.email}
+									></IonInput>
+								</IonItem>
+								<IonItem>
+									<IonLabel position='stacked'> Username </IonLabel>
+									<IonInput
+										type='text'
+										name='username'
+										onIonChange={handleChange}
+										value={userInfo.username}
+									></IonInput>
+								</IonItem>
+								<IonItem>
+									<IonLabel position='stacked'> Password </IonLabel>
+									<IonInput
+										type='password'
+										name='password'
+										onIonChange={handleChange}
+										value={userInfo.password}
+									></IonInput>
+								</IonItem>
+								<IonItem>
+									<IonLabel position='stacked'> Zipcode </IonLabel>
+									<IonInput
+										type='text'
+										name='zip_code'
+										onIonChange={handleChange}
+										value={userInfo.zip_code}
+									></IonInput>
+								</IonItem>
+								<IonItem>
+									<IonLabel position='stacked'> Bio </IonLabel>
+									<IonTextarea
+										type='text'
+										name='bio'
+										onIonChange={handleChange}
+										value={userInfo.bio}
+									/>
+								</IonItem>
+							</div>
+							<IonButton 
+								fill='outline' 
+								size='small'
+								color='dark'
+								onClick={ handleSubmit }
+								>Create Account</IonButton>
+						</form>
+					</div>
+				</div>
+				<IonToast 
 					isOpen={toastOpen}
 					onDidDismiss={ () => {setToastOpen(false)} }
 					message={flashMessage}
