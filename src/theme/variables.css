@@ -87,12 +87,12 @@ ion-content > ion-title {
   margin-bottom: 10px;
 }
 
-.HomePage {
+/*.HomePage {
   --background: #ff0000;
-}
+}*/
 
 ion-toast {
-  --background: #ff0000;
+  --border-radius: 0;
 }
 
 ion-popover {  
