@@ -92,6 +92,7 @@ export default function Register(props){
 			<IonContent>
 				<div className='RegisterDiv'> 
 					<div className='RegisterDivInfo'> 
+						<h4>Register</h4>
 						<form className="RegisterForm">
 							<div className='FormItems'>
 								<IonItem>

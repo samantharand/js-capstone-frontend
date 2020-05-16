@@ -97,7 +97,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UserAccountDiv {
+.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UserAccountDiv, .EditAccountDiv {
   /*background-image: url(https://s3.amazonaws.com/zenplannerwordpress-stack0/wp-content/uploads/sites/97/2018/09/20141422/Sprinkles-Background.jpg);*/
   /*background-image: url(../background.jpg);*/
   background-image: url(../noise_v2.png);
@@ -117,7 +117,7 @@ a:hover {
   background-image: none;
 }
 
-.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv, .RistrictedAuth, .UserAccountDiv {
+.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv, .RistrictedAuth, .UserAccountDiv, .EditAccountDiv {
   margin: 0 auto;
   margin-top: 100px;
 }
@@ -130,7 +130,7 @@ a:hover {
   margin: 0 auto;
 }
 
-.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo, .UsersAccountDivInfo, .RistrictedAuthInfo {
+.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo, .UsersAccountDivInfo, .RistrictedAuthInfo, .EditAccountDivInfo {
   background-color: rgba(255, 255, 255);
   margin-top: -15px;
   margin-right: -15px;

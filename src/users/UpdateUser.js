@@ -137,18 +137,16 @@ export default function UpdateUser(props) {
 	}
 
 	return (
-		<IonPage>
+		<IonContent>
 			{
 				props.loggedIn
 				?
-				<IonPage className="editPage">
-					<IonHeader translucent>
-						<IonToolbar>
-							<IonTitle> edit </IonTitle>
-						</IonToolbar>
-					</IonHeader>
-					<IonContent>
+				<div className='EditAccountDiv'>
+					<div className='EditAccountDivInfo'>
 						<form className="editForm" onSubmit={handleSubmit}>
+							<IonItem>
+								<h4> Edit Account Details </h4>
+							</IonItem>
 							<IonItem>
 								<IonLabel position='stacked'> Zipcode </IonLabel>
 								<IonInput
@@ -167,17 +165,25 @@ export default function UpdateUser(props) {
 									value={updateUserInfo.bio}
 								/>
 							</IonItem>
-							<IonButton onClick={ handleSubmit }>Submit Updates</IonButton>
 						</form>
 						
 						<IonButton 
-							color="danger"
+							fill='outline' 
+							size='small'
+							color='dark'
+							onClick={ handleSubmit }>Submit Updates</IonButton>
+						
+						<IonButton 
+							color='danger'
+							fill='outline' 
+							size='small'
 							onClick={() => changeConfirmDeleteOpen(true)}
 							>Delete Account</IonButton>
 						<IonPopover
 							isOpen={confirmDeleteOpen}
 							id='confirmDelete'
-							backdropDismiss={false}
+							// backdropDismiss={false}
+							onDidDismiss={ () => changeConfirmDeleteOpen(false) }
 						>
 							<IonContent>
 									<IonTitle>
@@ -185,20 +191,25 @@ export default function UpdateUser(props) {
 									</IonTitle>
 									<IonButton 
 										color='danger'
+										fill='outline' 
+										size='small'
 										onClick={deleteUser}> DELETE </IonButton>
 									<IonButton
-										onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+									fill='outline' 
+									size='small'
+									color='dark'
+									onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
 							</IonContent>
 						</IonPopover>
-					</IonContent>
-				</IonPage>
+					</div>
+				</div>
 				:
-				<div className="RistrictedAuthContent">
-					<IonTitle> Must be logged in to access account details </IonTitle>
-					<IonContent> <a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a> </IonContent>
+				<div className="RistrictedAuth">
+						<IonTitle>Must be logged in to edit your account.</IonTitle>
+						<p><a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a></p>
 				</div>
 
 			}
-		</IonPage>
+		</IonContent>
 	)
 }
