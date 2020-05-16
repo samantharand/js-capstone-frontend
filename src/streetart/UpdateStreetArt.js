@@ -10,7 +10,6 @@ export default function UpdateStreetArt(props) {
 	const [updatedArtInfo, setUpdatedArtInfo] = useState({
 			name: props.streetArtToUpdate.name,
 			location: props.streetArtToUpdate.location,
-			year: props.streetArtToUpdate.year,
 			image: props.streetArtToUpdate.image,
 			artist: props.streetArtToUpdate.artist,
 			description: props.streetArtToUpdate.description
@@ -161,15 +160,6 @@ export default function UpdateStreetArt(props) {
 								/>
 							</IonItem>
 							<IonItem>
-								<IonLabel position='stacked'> Year </IonLabel>
-								<IonInput
-									type='number'
-									name='year'
-									value={updatedArtInfo.year}
-									onIonChange={handleChange}
-								/>
-							</IonItem>
-							<IonItem>
 								<IonLabel position='stacked'> Artist </IonLabel>
 								<IonInput
 									type='text'
@@ -206,10 +196,11 @@ export default function UpdateStreetArt(props) {
 								// backdropDismiss={false}
 								onDidDismiss={ () => changeConfirmDeleteOpen(false) }
 							>
-								<IonContent>
-										<IonTitle>
-											You sure?
-										</IonTitle>
+							<div className='DeleteConfirmDiv'>
+									<IonTitle>
+										You sure?
+									</IonTitle>
+									<div>
 										<IonButton 
 											color='danger'
 											fill='outline' 
@@ -220,7 +211,8 @@ export default function UpdateStreetArt(props) {
 											size='small'
 											color='dark'
 											onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
-								</IonContent>
+									</div>
+								</div>
 							</IonPopover>
 					</div>
 				</div>

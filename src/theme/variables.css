@@ -206,11 +206,23 @@ ion-split-pane {
   background-size: contain;
 }
 
-.PopoverInfo {
+.PopoverInfo > img {
+  border: 2px solid black;
+}
+
+.PopoverInfo, .DeleteConfirmDiv {
   margin: 10px 10px -2px -2px;
   padding: 10px;
   background-color: rgba(255, 255, 255, .98);
   border: 2px solid black;
+}
+
+.DeleteConfirmDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+  margin: -2px -2px 10px 10px;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -5,7 +5,6 @@ export default function NewStreetArt(props) {
 	const [newArtInfo, setNewArtInfo] = useState({
 			name: '',
 			location: '',
-			year: '',
 			image: '',
 			artist: '',
 			description: ''
@@ -82,7 +81,6 @@ export default function NewStreetArt(props) {
 		  ...newArtInfo,
 			name: '',
 			location: '',
-			year: '',
 			image: '',
 			artist: '',
 			description: ''
@@ -121,15 +119,6 @@ export default function NewStreetArt(props) {
 									type='file'
 									name='image'
 									onChange={handleSelectedFile}
-								/>
-							</IonItem>
-							<IonItem>
-								<IonLabel position='stacked'> Year </IonLabel>
-								<IonInput
-									type='number'
-									name='year'
-									value={newArtInfo.year}
-									onIonChange={handleChange}
 								/>
 							</IonItem>
 							<IonItem>

@@ -183,21 +183,21 @@ export default function UpdateUser(props) {
 							// backdropDismiss={false}
 							onDidDismiss={ () => changeConfirmDeleteOpen(false) }
 						>
-							<IonContent>
-									<IonTitle>
-										You sure?
-									</IonTitle>
-									<IonButton 
-										color='danger'
-										fill='outline' 
-										size='small'
-										onClick={deleteUser}> DELETE </IonButton>
-									<IonButton
+							<div className='DeleteConfirmDiv'>
+								<IonTitle>
+									You sure?
+								</IonTitle>
+								<IonButton 
+									color='danger'
 									fill='outline' 
 									size='small'
-									color='dark'
-									onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
-							</IonContent>
+									onClick={deleteUser}> DELETE </IonButton>
+								<IonButton
+								fill='outline' 
+								size='small'
+								color='dark'
+								onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+							</div>
 						</IonPopover>
 					</div>
 				</div>
