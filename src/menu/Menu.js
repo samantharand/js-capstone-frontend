@@ -53,7 +53,7 @@ export default function Menu(props) {
 
 		authPages = [
 		  {
-		    title: 'View Account',
+		    title: 'My Account',
 		    url: '/myaccount'
 		  }, {
 		  	title: 'Edit Account',

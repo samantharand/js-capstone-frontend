@@ -141,11 +141,12 @@ function App(props) {
         <IonApp>
         	<IonToolbar translucent='true'>
 	        	<IonItem> 
+		        		<div className='logoTest' /> 
 		        		<IonTitle> STREET ART MAP </IonTitle>
 		        		<IonMenuButton slot='start'/>
 	        	</IonItem>
         	</IonToolbar>
-          <IonSplitPane contentId='main' when='(min-width: 1200px)'>
+          <IonSplitPane contentId='main' when='(min-width: 1400px)'>
           	<Menu loggedIn={loggedIn} logout={logout}/>
             <IonPage id='main'>
               <Switch>

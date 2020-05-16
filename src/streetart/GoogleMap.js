@@ -17,7 +17,9 @@ function GoogleMap(props) {
 
 	const containerStyle = {
 		height: "75%",
-		width: "75%"
+		width: "75%",
+		border: '5px solid black',
+		margin: '0 auto'
 	}
 	
 	const findArtToShowInPopover = async (id) => {
@@ -58,86 +60,89 @@ function GoogleMap(props) {
 		<React.Fragment>
 			<IonPage>
 				<IonContent>
-				<IonTitle> Map </IonTitle>
-					{
-						props.currentLoc.lat !== ""
-						?
-						<ReactMap 
-							id="map"
-							google={props.google} 
-							zoom={14} 
-							initialCenter={{
-								lat: props.currentLoc.lat, 
-								lng: props.currentLoc.lng
-							}}
-							containerStyle={containerStyle}
-						>
-
-							{ streetArtMarkers }
-
+					<div className='MapDivContainer'>
+						<div className='MapDiv'>
 							{
-								props.idOfMockInfoWindowToShow !== ""
-								&&
-								<IonPopover
-										isOpen={true}
-										id='confirmDelete'
-										onDidDismiss={ () => {
-											// toggleMockInfoWindow(false)
-											props.setIdOfMockInfoWindowToShow('')
-										} }
-								> 
+								props.currentLoc.lat !== ""
+								?
+								<ReactMap 
+									id="map"
+									google={props.google} 
+									zoom={14} 
+									initialCenter={{
+										lat: props.currentLoc.lat, 
+										lng: props.currentLoc.lng
+									}}
+									containerStyle={containerStyle}
+								>
 
-									<PopoverInfo 
-										artIndex={artIndex}
-										allStreetArt={props.allStreetArt}
-										currentUser={props.currentUser}
-										setStreetArtToUpdate={props.setStreetArtToUpdate}
-									/> 
+									{ streetArtMarkers }
 
-								</IonPopover>
+									{
+										props.idOfMockInfoWindowToShow !== ""
+										&&
+										<IonPopover
+												isOpen={true}
+												id='confirmDelete'
+												onDidDismiss={ () => {
+													// toggleMockInfoWindow(false)
+													props.setIdOfMockInfoWindowToShow('')
+												} }
+										> 
+
+											<PopoverInfo 
+												artIndex={artIndex}
+												allStreetArt={props.allStreetArt}
+												currentUser={props.currentUser}
+												setStreetArtToUpdate={props.setStreetArtToUpdate}
+											/> 
+
+										</IonPopover>
+									}
+
+
+								</ReactMap>
+								:
+								<ReactMap 
+									id="map"
+									google={props.google} 
+									zoom={14} 
+									initialCenter={{
+										lat: 41.8757,
+										lng: -87.6243
+									}}
+									containerStyle={containerStyle}
+								>
+
+									{ streetArtMarkers }
+
+									{
+										props.idOfMockInfoWindowToShow !== ""
+										&&
+										<IonPopover
+												isOpen={true}
+												id='confirmDelete'
+												onDidDismiss={ () => {
+													// toggleMockInfoWindow(false)
+													props.setIdOfMockInfoWindowToShow('')
+												} }
+										> 
+
+											<PopoverInfo 
+												artIndex={artIndex}
+												allStreetArt={props.allStreetArt}
+												currentUser={props.currentUser}
+												setStreetArtToUpdate={props.setStreetArtToUpdate}
+											/> 
+
+										</IonPopover>
+									}
+
+
+								</ReactMap>
 							}
-
-
-						</ReactMap>
-						:
-						<ReactMap 
-							id="map"
-							google={props.google} 
-							zoom={14} 
-							initialCenter={{
-								lat: 41.8757,
-								lng: -87.6243
-							}}
-							containerStyle={containerStyle}
-						>
-
-							{ streetArtMarkers }
-
-							{
-								props.idOfMockInfoWindowToShow !== ""
-								&&
-								<IonPopover
-										isOpen={true}
-										id='confirmDelete'
-										onDidDismiss={ () => {
-											// toggleMockInfoWindow(false)
-											props.setIdOfMockInfoWindowToShow('')
-										} }
-								> 
-
-									<PopoverInfo 
-										artIndex={artIndex}
-										allStreetArt={props.allStreetArt}
-										currentUser={props.currentUser}
-										setStreetArtToUpdate={props.setStreetArtToUpdate}
-									/> 
-
-								</IonPopover>
-							}
-
-
-						</ReactMap>
-					}
+						</div>
+					</div>
 				</IonContent>
 			</IonPage>
 		</React.Fragment>

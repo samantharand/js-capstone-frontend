@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { IonPage, IonTitle, IonList, IonItem, IonImg, IonHeader } from '@ionic/react'
+import { IonContent, IonPage, IonTitle, IonList, IonItem, IonImg, IonHeader } from '@ionic/react'
 import GoogleApiWrapper from './GoogleMap'
 import '../index.css'
 
@@ -67,30 +67,32 @@ export default function MapContainer(props) {
 					// <img src={allStreetArt[i].image} />
 
 	return (
-		<IonPage className="MapPage">
-		{
-			loading === true
-			?
-			<div>nooo</div>
-			:
-			<IonPage>
-				<div className="mapContainer">
-					{	
-						allStreetArt.length > 0
-						&&
-		         		<GoogleApiWrapper 
-		         			allStreetArt={allStreetArt} 
-		         			currentUser={props.currentUser}
-		         			loading={loading} 
-		         			currentLoc={props.currentLoc}
-		         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
-		         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
-		         			setStreetArtToUpdate={props.setStreetArtToUpdate}
-		         		/>
+		<IonContent>
+			
+					{
+						loading === true
+						?
+						<div>nooo</div>
+						:
+						<IonPage>
+							<div className="mapContainer">
+								{	
+									allStreetArt.length > 0
+									&&
+					         		<GoogleApiWrapper 
+					         			allStreetArt={allStreetArt} 
+					         			currentUser={props.currentUser}
+					         			loading={loading} 
+					         			currentLoc={props.currentLoc}
+					         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
+					         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
+					         			setStreetArtToUpdate={props.setStreetArtToUpdate}
+					         		/>
+								}
+				        	</div>	 
+				        </IonPage>
 					}
-	        	</div>	 
-	        </IonPage>
-		}
-		</IonPage>
+		
+		</IonContent>
 	)
 }

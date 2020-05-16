@@ -167,7 +167,7 @@ export default function UpdateUser(props) {
 									value={updateUserInfo.bio}
 								/>
 							</IonItem>
-							<IonButton onClick={ handleSubmit }>Update Account</IonButton>
+							<IonButton onClick={ handleSubmit }>Submit Updates</IonButton>
 						</form>
 						
 						<IonButton 

@@ -87,7 +87,7 @@ ion-content > ion-title {
   margin-bottom: 10px;
 }
 
-.MainHomeDiv, .RegisterDiv, .LoginDiv {
+.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer {
   /*background-image: url(https://s3.amazonaws.com/zenplannerwordpress-stack0/wp-content/uploads/sites/97/2018/09/20141422/Sprinkles-Background.jpg);*/
   /*background-image: url(../background.jpg);*/
   background-image: url(../noise_v2.png);
@@ -101,14 +101,19 @@ ion-content > ion-title {
   /*background-color: #ff0000;*/
 }
 
-/*.RegisterDiv {
-  width: 500px;
-  height: 500px;
-}*/
+.MapDivContainer {
+  margin-top: 100px;
+  border: none;
+  background-image: none;
+}
 
-.RegisterDiv, .LoginDiv {
+.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv {
   margin: 0 auto;
   margin-top: 100px;
+}
+
+.MapDiv {
+  margin: 0 auto;
 }
 
 .MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo {
@@ -126,6 +131,10 @@ ion-content > ion-title {
   align-items: center;
 }
 
+/*.logoTest {
+  height: 100px;
+  background-image: url(../logo_maybe.png)
+}*/
 
 .RegisterForm, .LoginForm {
   display: flex;
@@ -174,6 +183,7 @@ ion-split-pane {
   background-color: #ff0000;
   border: none;
 }
+
 
 @media (prefers-color-scheme: dark) {
   /*
