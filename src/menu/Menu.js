@@ -82,18 +82,20 @@ export default function Menu(props) {
 
 	const renderAppMenu = () => {
 		return appPages.map((page) => (
-			<IonMenuToggle key={page.title} auto-hide='false'>
-				<IonItem 
-					onClick={ (e) => navToPage(page, e) }
-					className={location.pathname === appPages.url ? 'selected' : ''}
-					// routerLink={page.url} 
-					// routerDirection="none" 
-					lines="none" detail={false} 
-				>
-					<IonIcon slot='start' name={page.icon}></IonIcon>
-					<IonLabel> {page.title} </IonLabel>
-				</IonItem>
-			</IonMenuToggle>
+				<IonMenuToggle key={page.title} auto-hide='false'>
+					<IonItem 
+						onClick={ (e) => navToPage(page, e) }
+						className={location.pathname === appPages.url ? 'selected' : ''}
+						// routerLink={page.url} 
+						// routerDirection="none" 
+						lines="none" detail={false} 
+					>
+						<div className='testinggg'>
+							<IonIcon slot='start' name={page.icon}></IonIcon>
+							<IonLabel> {page.title} </IonLabel>
+						</div>
+					</IonItem>
+				</IonMenuToggle>
 		))
 	}
 
@@ -110,8 +112,10 @@ export default function Menu(props) {
 					detail={false} 
 
 				>
+				<div className='testinggg'>
 					<IonIcon slot='start' name={page.icon}></IonIcon>
 					<IonLabel> {page.title} </IonLabel>
+				</div>
 				</IonItem>
 			</IonMenuToggle>
 
@@ -146,10 +150,12 @@ export default function Menu(props) {
 							&&
 							<IonMenuToggle auto-hide='false'>
 								<IonItem>
-									<IonIcon name='exitSharp'></IonIcon>
-									<IonLabel 
-										style={{marginLeft: '32px'}}
-										onClick={logout}> Logout </IonLabel>
+									<div className='testinggg'>
+										<IonIcon name='exitSharp'></IonIcon>
+										<IonLabel 
+											style={{marginLeft: '32px'}}
+											onClick={logout}> Logout </IonLabel>
+									</div>
 								</IonItem>
 							</IonMenuToggle>
 						}

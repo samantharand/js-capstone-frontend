@@ -26,41 +26,43 @@ export default function UsersAccount(props) {
 
 		userPosts = props.postsByCurrentUser.map((post) => {
 			return (
-				<IonCard class='card' key={post.id}> 
-					<img src={post.image}/>
-					location: {post.name} 
-					name: {post.name} 
-					artist: {post.artist}
-					description: {post.location}
-					year: {post.year}
-				</IonCard>
+				<div className='UsersPostsDiv' key={post.id}>
+					<div className='UsersPostsDivGrid'>
+						<img src={post.image}/>
+						<p> <strong>Name: </strong>{post.name} </p>
+						<p> <strong>Location: </strong>{post.name} </p>
+						<p> <strong>Artist: </strong>{post.artist}</p>
+						<p> <strong>About this Piece: </strong>{post.location} </p>
+					</div>
+				</div>
 			)
 		})
-
 	}
+
+
+
+
 
 	return (
 		<IonContent>
 		{
 				props.loggedIn
 				?
-				<div className='UserAccountDiv'>
+				<React.Fragment>
+					<div className='UsersAccountDiv'>
 						<div className='UsersAccountDivInfo'>
 							<IonTitle> Your Account </IonTitle>
-								<IonCard>
-									<IonCardTitle>
-										{props.currentUser.username}
-									</IonCardTitle>
-									<IonCardSubtitle>
-										{props.currentUser.zip_code}
-									</IonCardSubtitle>
-								</IonCard>
-
-								<div id='UserPostsGrid'>
-									{userPosts}
-								</div>
+								<h3> {props.currentUser.username.toUpperCase()} </h3>
+								<p>	<strong>Zipcode:</strong> {props.currentUser.zip_code} </p>
+								<p>	<strong>About:</strong> {props.currentUser.bio} </p>
+						</div>
 					</div>
-				</div>	
+
+					<div className='UsersPostsGrid'>
+						{userPosts}
+					</div>
+
+				</React.Fragment>
 				:
 				<div className="RistrictedAuth">
 						<IonTitle>Must be logged in to access account details.</IonTitle>
