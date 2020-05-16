@@ -127,102 +127,110 @@ export default function UpdateStreetArt(props) {
 	}
 
 	return (
-		<IonPage className="UpdateArtPage">
-			<IonHeader translucent>
-				<IonToolbar>
-					<IonTitle> Update Your Post </IonTitle>
-				</IonToolbar>
-			</IonHeader>
+		<IonContent>
 			{
 				props.loggedIn
 				?
-				<IonContent>
-					<form className="New">
-						<IonItem>
-							<IonLabel position='stacked'> Name </IonLabel>
-							<IonInput
-								type='text'
-								name='name'
-								value={updatedArtInfo.name}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Location </IonLabel>
-							<IonInput
-								type='text'
-								name='location'
-								value={updatedArtInfo.location}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Image </IonLabel>
-							<input 
-								type='file'
-								name='image'
-								onChange={handleSelectedFile}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Year </IonLabel>
-							<IonInput
-								type='number'
-								name='year'
-								value={updatedArtInfo.year}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Artist </IonLabel>
-							<IonInput
-								type='text'
-								name='artist'
-								value={updatedArtInfo.artist}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Description </IonLabel>
-							<IonTextarea
-								type='text'
-								name='description'
-								onIonChange={handleChange}
-								value={updatedArtInfo.description}
-							/>
-						</IonItem>
+				<div className='UpdateStreetArtDiv'>
+					<div className='UpdateStreetArtDivInfo'>
+						<form className="UpdateStreetArtForm">
+							<IonItem>
+								<IonLabel position='stacked'> Name </IonLabel>
+								<IonInput
+									type='text'
+									name='name'
+									value={updatedArtInfo.name}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Location </IonLabel>
+								<IonInput
+									type='text'
+									name='location'
+									value={updatedArtInfo.location}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Image </IonLabel>
+								<input 
+									type='file'
+									name='image'
+									onChange={handleSelectedFile}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Year </IonLabel>
+								<IonInput
+									type='number'
+									name='year'
+									value={updatedArtInfo.year}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Artist </IonLabel>
+								<IonInput
+									type='text'
+									name='artist'
+									value={updatedArtInfo.artist}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Description </IonLabel>
+								<IonTextarea
+									type='text'
+									name='description'
+									onIonChange={handleChange}
+									value={updatedArtInfo.description}
+								/>
+							</IonItem>
 
-						<IonButton onClick={ handleSubmit }>Update Post</IonButton>
-					</form>
-					<IonButton 
-							color="danger"
-							onClick={() => changeConfirmDeleteOpen(true)}
-							>Delete Post</IonButton>
-					<IonPopover
-							isOpen={confirmDeleteOpen}
-							id='confirmDelete'
-							backdropDismiss={false}
-						>
-							<IonContent>
-									<IonTitle>
-										You sure?
-									</IonTitle>
-									<IonButton 
-										color='danger'
-										onClick={deleteStreetArt}> DELETE </IonButton>
-									<IonButton
-										onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
-							</IonContent>
-						</IonPopover>
-				</IonContent>
-				:
-				<div className="RistrictedAuthContent">
-					<IonTitle> Must be logged in to access account details </IonTitle>
-					<IonContent> <a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a> </IonContent>
+						</form>
+						<IonButton 
+							fill='outline' 
+							size='small'
+							color='dark'
+							onClick={ handleSubmit }>Update Post</IonButton>
+						<IonButton 
+								color='danger'
+								fill='outline' 
+								size='small'
+								onClick={() => changeConfirmDeleteOpen(true)}
+								>Delete Post</IonButton>
+						<IonPopover
+								isOpen={confirmDeleteOpen}
+								id='confirmDelete'
+								// backdropDismiss={false}
+								onDidDismiss={ () => changeConfirmDeleteOpen(false) }
+							>
+								<IonContent>
+										<IonTitle>
+											You sure?
+										</IonTitle>
+										<IonButton 
+											color='danger'
+											fill='outline' 
+											size='small'
+											onClick={deleteStreetArt}> DELETE </IonButton>
+										<IonButton
+											fill='outline' 
+											size='small'
+											color='dark'
+											onClick={() => changeConfirmDeleteOpen(false)}> NVM </IonButton>
+								</IonContent>
+							</IonPopover>
+					</div>
 				</div>
-
+				:
+				<div className="RistrictedAuth">
+						<IonTitle>Must be logged in to edit your account.</IonTitle>
+						<p><a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a></p>
+				</div>
 			}
-		</IonPage>
+		</IonContent>
 	)
 
 }
