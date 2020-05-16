@@ -16,10 +16,9 @@ function GoogleMap(props) {
 	const [mockInfoWindow, toggleMockInfoWindow] = useState(false)
 
 	const containerStyle = {
-		height: "75%",
-		width: "75%",
+		height: "65%",
+		width: "65%",
 		border: '5px solid black',
-		margin: '0 auto'
 	}
 	
 	const findArtToShowInPopover = async (id) => {
@@ -49,8 +48,11 @@ function GoogleMap(props) {
 					findArtToShowInPopover(streetArt.id)
 
 				}}
-				Label={streetArt.name}
-				style={{color: '#ff00ff'}}
+				// Label={streetArt.name}
+				icon={{
+					url: 'https://i.imgur.com/ITTuJu8.png'
+				}}
+
 			/>
 		)
 		
