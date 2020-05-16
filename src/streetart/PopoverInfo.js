@@ -8,12 +8,12 @@ import UpdateStreetArt from './UpdateStreetArt'
 
 export default function PopoverInfo(props) {
 	console.log('props in PopoverInfo', props);
-	const [poster, setPoster] = useState(props.allStreetArt[props.artIndex].poster.username)
+	const [poster, setPoster] = useState('Posted By: ' + props.allStreetArt[props.artIndex].poster.username)
 	const history = useHistory()
 
 	useEffect(() => {
 		if(props.allStreetArt[props.artIndex].poster.username === props.currentUser.username) {
-			setPoster('You!')
+			setPoster('You posted this!')
 		} 
 	}, [])
 
@@ -35,7 +35,7 @@ export default function PopoverInfo(props) {
 				<p> {props.allStreetArt[props.artIndex].description} </p>
 			}
 
-			<p> posted by: {poster} </p>
+			<p> {poster} </p>
 
 			{
 				props.currentUser.id === props.allStreetArt[props.artIndex].poster.id
