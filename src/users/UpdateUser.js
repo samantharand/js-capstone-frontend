@@ -144,9 +144,7 @@ export default function UpdateUser(props) {
 				<div className='EditAccountDiv'>
 					<div className='EditAccountDivInfo'>
 						<form className="editForm" onSubmit={handleSubmit}>
-							<IonItem>
-								<h4> Edit Account Details </h4>
-							</IonItem>
+							<h4> Edit Account Details </h4>
 							<IonItem>
 								<IonLabel position='stacked'> Zipcode </IonLabel>
 								<IonInput

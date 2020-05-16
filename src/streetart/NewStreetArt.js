@@ -90,81 +90,82 @@ export default function NewStreetArt(props) {
 	}
 
 	return (
-		<IonPage className="NewArtPage">
-			<IonHeader translucent>
-				<IonToolbar>
-					<IonTitle> Add StreetArt </IonTitle>
-				</IonToolbar>
-			</IonHeader>
+		<IonContent>
 			{
 				props.loggedIn
 				?
-				<IonContent>
-					<form className="New">
-						<IonItem>
-							<IonLabel position='stacked'> Name </IonLabel>
-							<IonInput
-								type='text'
-								name='name'
-								value={newArtInfo.name}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Location </IonLabel>
-							<IonInput
-								type='text'
-								name='location'
-								value={newArtInfo.location}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Image </IonLabel>
-							<input 
-								type='file'
-								name='image'
-								onChange={handleSelectedFile}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Year </IonLabel>
-							<IonInput
-								type='number'
-								name='year'
-								value={newArtInfo.year}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Artist </IonLabel>
-							<IonInput
-								type='text'
-								name='artist'
-								value={newArtInfo.artist}
-								onIonChange={handleChange}
-							/>
-						</IonItem>
-						<IonItem>
-							<IonLabel position='stacked'> Description </IonLabel>
-							<IonTextarea
-								type='text'
-								name='description'
-								onIonChange={handleChange}
-								value={newArtInfo.description}
-							/>
-						</IonItem>
+				<div className='NewStreetArtDiv'>
+					<div className='NewStreetArtDivInfo'>
+						<form className="NewStreetArtForm">
+							<IonItem>
+								<IonLabel position='stacked'> Name </IonLabel>
+								<IonInput
+									type='text'
+									name='name'
+									value={newArtInfo.name}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Location </IonLabel>
+								<IonInput
+									type='text'
+									name='location'
+									value={newArtInfo.location}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Image </IonLabel>
+								<input 
+									type='file'
+									name='image'
+									onChange={handleSelectedFile}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Year </IonLabel>
+								<IonInput
+									type='number'
+									name='year'
+									value={newArtInfo.year}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Artist </IonLabel>
+								<IonInput
+									type='text'
+									name='artist'
+									value={newArtInfo.artist}
+									onIonChange={handleChange}
+								/>
+							</IonItem>
+							<IonItem>
+								<IonLabel position='stacked'> Description </IonLabel>
+								<IonTextarea
+									type='text'
+									name='description'
+									onIonChange={handleChange}
+									value={newArtInfo.description}
+								/>
+							</IonItem>
 
-						<IonButton onClick={ handleSubmit }>Add Art</IonButton>
-					</form>
-				</IonContent>
+							<IonButton 
+								fill='outline' 
+								size='small'
+								color='dark'
+								onClick={ handleSubmit }>Add Art</IonButton>
+						</form>
+					</div>
+				</div>
 				:
-				<div className="RistrictedAuthContent">
-					<IonTitle> Must be logged in to access account details </IonTitle>
-					<IonContent> <a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a> </IonContent>
+				<div className="RistrictedAuth">
+						<IonTitle>Must be logged in to edit your account.</IonTitle>
+						<p><a href='/login'>LOGIN</a> || <a href='/register'>REGISTER</a></p>
 				</div>
 
 			}
-		</IonPage>
+		</IonContent>
 	)
 }

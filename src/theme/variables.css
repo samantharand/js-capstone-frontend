@@ -88,7 +88,7 @@ ion-content > ion-title {
 }
 
 a {
-  color: darkred;
+  color:  #eb445a;
   text-decoration: none;
 }
 
@@ -97,7 +97,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UserAccountDiv, .EditAccountDiv {
+.MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UserAccountDiv, .EditAccountDiv, .NewStreetArtDiv {
   /*background-image: url(https://s3.amazonaws.com/zenplannerwordpress-stack0/wp-content/uploads/sites/97/2018/09/20141422/Sprinkles-Background.jpg);*/
   /*background-image: url(../background.jpg);*/
   background-image: url(../noise_v2.png);
@@ -117,7 +117,7 @@ a:hover {
   background-image: none;
 }
 
-.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv, .RistrictedAuth, .UserAccountDiv, .EditAccountDiv {
+.RegisterDiv, .LoginDiv, .MainHomeDiv, .MapDiv, .RistrictedAuth, .UserAccountDiv, .EditAccountDiv, .NewStreetArtDiv {
   margin: 0 auto;
   margin-top: 100px;
 }
@@ -130,7 +130,7 @@ a:hover {
   margin: 0 auto;
 }
 
-.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo, .UsersAccountDivInfo, .RistrictedAuthInfo, .EditAccountDivInfo {
+.MainHomeDivInfo, .RegisterDivInfo, .LoginDivInfo, .UsersAccountDivInfo, .RistrictedAuthInfo, .EditAccountDivInfo, .NewStreetArtDivInfo {
   background-color: rgba(255, 255, 255);
   margin-top: -15px;
   margin-right: -15px;
@@ -150,11 +150,15 @@ a:hover {
   background-image: url(../logo_maybe.png)
 }*/
 
-.RegisterForm, .LoginForm {
+.RegisterForm, .LoginForm, .NewStreetArtForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   /*width: 100%;*/
+}
+
+.NewStreetArtForm > ion-item {
+  width: 75%;
 }
 
 /*.FormItems {
@@ -171,9 +175,6 @@ ion-toast {
   --border-radius: 0;
 }
 
-ion-popover {  
-  --background: #ff0000;
-}
 
 ion-button {
   /*--outline: #000000;*/
@@ -198,6 +199,19 @@ ion-split-pane {
   border: none;
 }
 
+.popover-content.sc-ion-popover-md {  
+  border: 2px solid black;
+  border-radius: 0;
+  background-image: url('../background.jpg');
+  background-size: contain;
+}
+
+.PopoverInfo {
+  margin: 10px 10px -2px -2px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid black;
+}
 
 @media (prefers-color-scheme: dark) {
   /*

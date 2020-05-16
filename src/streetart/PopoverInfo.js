@@ -19,7 +19,7 @@ export default function PopoverInfo(props) {
 
 	console.log(poster);
 	return (
-		<React.Fragment>
+		<div className='PopoverInfo'> 
 			<p> { props.allStreetArt[props.artIndex].name }</p>
 			<p> { props.allStreetArt[props.artIndex].location }</p>
 
@@ -52,7 +52,7 @@ export default function PopoverInfo(props) {
 			}
 
 
-		</React.Fragment>
+		</div>
 	)
 }
 			// <UpdateStreetArt artworkToEdit={props.allStreetArt[props.artIndex]}/>

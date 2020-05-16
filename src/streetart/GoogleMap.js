@@ -9,7 +9,7 @@ import {
   IonButton
 } from '@ionic/react';
 import PopoverInfo from './PopoverInfo'
-import '../index.css'
+// import '../index.css'
 
 function GoogleMap(props) {
 
@@ -60,95 +60,93 @@ function GoogleMap(props) {
 	})
 
 	return (
-		<React.Fragment>
-			<IonPage>
-				<IonContent>
-					<div className='MapDivContainer'>
-						<div className='MapDiv'>
-							{
-								props.currentLoc.lat !== ""
-								?
-								<ReactMap 
-									id="map"
-									google={props.google} 
-									zoom={14} 
-									initialCenter={{
-										lat: props.currentLoc.lat, 
-										lng: props.currentLoc.lng
-									}}
-									containerStyle={containerStyle}
-								>
+		<IonPage>
+			<IonContent>
+				<div className='MapDivContainer'>
+					<div className='MapDiv'>
+						{
+							props.currentLoc.lat !== ""
+							?
+							<ReactMap 
+								id="map"
+								google={props.google} 
+								zoom={14} 
+								initialCenter={{
+									lat: props.currentLoc.lat, 
+									lng: props.currentLoc.lng
+								}}
+								containerStyle={containerStyle}
+							>
 
-									{ streetArtMarkers }
+								{ streetArtMarkers }
 
-									{
-										props.idOfMockInfoWindowToShow !== ""
-										&&
-										<IonPopover
-												isOpen={true}
-												id='confirmDelete'
-												onDidDismiss={ () => {
-													// toggleMockInfoWindow(false)
-													props.setIdOfMockInfoWindowToShow('')
-												} }
-										> 
+								{
+									props.idOfMockInfoWindowToShow !== ""
+									&&
+									<IonPopover
+											isOpen={true}
+											id='confirmDelete'
+											onDidDismiss={ () => {
+												// toggleMockInfoWindow(false)
+												props.setIdOfMockInfoWindowToShow('')
+											} }
+									> 
 
-											<PopoverInfo 
-												artIndex={artIndex}
-												allStreetArt={props.allStreetArt}
-												currentUser={props.currentUser}
-												setStreetArtToUpdate={props.setStreetArtToUpdate}
-											/> 
+										<PopoverInfo 
+											artIndex={artIndex}
+											allStreetArt={props.allStreetArt}
+											currentUser={props.currentUser}
+											setStreetArtToUpdate={props.setStreetArtToUpdate}
+										/> 
 
-										</IonPopover>
-									}
-
-
-								</ReactMap>
-								:
-								<ReactMap 
-									id="map"
-									google={props.google} 
-									zoom={14} 
-									initialCenter={{
-										lat: 41.8757,
-										lng: -87.6243
-									}}
-									containerStyle={containerStyle}
-								>
-
-									{ streetArtMarkers }
-
-									{
-										props.idOfMockInfoWindowToShow !== ""
-										&&
-										<IonPopover
-												isOpen={true}
-												id='confirmDelete'
-												onDidDismiss={ () => {
-													// toggleMockInfoWindow(false)
-													props.setIdOfMockInfoWindowToShow('')
-												} }
-										> 
-
-											<PopoverInfo 
-												artIndex={artIndex}
-												allStreetArt={props.allStreetArt}
-												currentUser={props.currentUser}
-												setStreetArtToUpdate={props.setStreetArtToUpdate}
-											/> 
-
-										</IonPopover>
-									}
+									</IonPopover>
+								}
 
 
-								</ReactMap>
-							}
-						</div>
+							</ReactMap>
+							:
+							<ReactMap 
+								id="map"
+								google={props.google} 
+								zoom={14} 
+								initialCenter={{
+									lat: 41.8757,
+									lng: -87.6243
+								}}
+								containerStyle={containerStyle}
+							>
+
+								{ streetArtMarkers }
+
+								{
+									props.idOfMockInfoWindowToShow !== ""
+									&&
+									<IonPopover
+											isOpen={true}
+											id='confirmDelete'
+											onDidDismiss={ () => {
+												// toggleMockInfoWindow(false)
+												props.setIdOfMockInfoWindowToShow('')
+											} }
+									> 
+
+										<PopoverInfo 
+											artIndex={artIndex}
+											allStreetArt={props.allStreetArt}
+											currentUser={props.currentUser}
+											setStreetArtToUpdate={props.setStreetArtToUpdate}
+										/> 
+
+									</IonPopover>
+								}
+
+
+							</ReactMap>
+						}
 					</div>
-				</IonContent>
-			</IonPage>
-		</React.Fragment>
+				</div>
+			</IonContent>
+		</IonPage>
 	)
 }
 
