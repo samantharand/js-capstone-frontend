@@ -122,7 +122,6 @@ export default function NewStreetArt(props) {
 									name='location'
 									value={newArtInfo.location}
 									onIonChange={handleChange}
-									required
 								/>
 							</IonItem>
 							<IonItem>
@@ -131,7 +130,6 @@ export default function NewStreetArt(props) {
 									type='file'
 									name='image'
 									onChange={handleSelectedFile}
-									required
 								/>
 							</IonItem>
 							<IonItem>

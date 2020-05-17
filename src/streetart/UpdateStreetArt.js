@@ -145,7 +145,6 @@ export default function UpdateStreetArt(props) {
 									name='location'
 									value={updatedArtInfo.location}
 									onIonChange={handleChange}
-									required
 								/>
 							</IonItem>
 							<IonItem>
@@ -154,7 +153,6 @@ export default function UpdateStreetArt(props) {
 									type='file'
 									name='image'
 									onChange={handleSelectedFile}
-									required
 								/>
 							</IonItem>
 							<IonItem>
