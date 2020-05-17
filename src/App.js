@@ -141,8 +141,7 @@ function App(props) {
         <IonApp>
         	<IonToolbar translucent='true'>
 	        	<IonItem> 
-		        		<div className='logoTest' /> 
-		        		<IonTitle> STREET ART MAP </IonTitle>
+		      			<img className='Logo' src='../LOGO.png' />
 		        		<IonMenuButton slot='start'/>
 	        	</IonItem>
         	</IonToolbar>

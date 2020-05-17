@@ -57,9 +57,7 @@ export default function UsersAccount(props) {
 					</div>
 
 					<div className='UsersPostsDiv'>
-						<div className='UsersPostsDivGrid'>
 							{userPosts}
-						</div>
 					</div>
 
 				</div>
