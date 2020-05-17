@@ -74,23 +74,21 @@ export default function MapContainer(props) {
 						?
 						<div>nooo</div>
 						:
-						<IonPage>
-							<div className="mapContainer">
-								{	
-									allStreetArt.length > 0
-									&&
-					         		<GoogleApiWrapper 
-					         			allStreetArt={allStreetArt} 
-					         			currentUser={props.currentUser}
-					         			loading={loading} 
-					         			currentLoc={props.currentLoc}
-					         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
-					         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
-					         			setStreetArtToUpdate={props.setStreetArtToUpdate}
-					         		/>
-								}
-				        	</div>	 
-				        </IonPage>
+						<div className="mapContainer">
+							{	
+								allStreetArt.length > 0
+								&&
+				         		<GoogleApiWrapper 
+				         			allStreetArt={allStreetArt} 
+				         			currentUser={props.currentUser}
+				         			loading={loading} 
+				         			currentLoc={props.currentLoc}
+				         			idOfMockInfoWindowToShow={idOfMockInfoWindowToShow}
+				         			setIdOfMockInfoWindowToShow={setIdOfMockInfoWindowToShow}
+				         			setStreetArtToUpdate={props.setStreetArtToUpdate}
+				         		/>
+							}
+			        	</div>	 
 					}
 		
 		</IonContent>

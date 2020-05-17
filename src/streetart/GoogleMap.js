@@ -60,8 +60,8 @@ function GoogleMap(props) {
 	})
 
 	return (
-		<IonPage>
-			<IonContent>
+		// <IonPage>
+		// 	<IonContent>
 				<div className='MapDivContainer'>
 					<div className='MapDiv'>
 						{
@@ -145,8 +145,8 @@ function GoogleMap(props) {
 						}
 					</div>
 				</div>
-			</IonContent>
-		</IonPage>
+		// 	</IonContent>
+		// </IonPage>
 	)
 }
 
