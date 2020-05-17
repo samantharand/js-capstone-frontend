@@ -107,13 +107,12 @@ export default function NewStreetArt(props) {
 					<div className='NewStreetArtDivInfo'>
 						<form className="NewStreetArtForm">
 							<IonItem>
-								<IonLabel position='stacked'> Name * </IonLabel>
+								<IonLabel position='stacked'> Name </IonLabel>
 								<IonInput
 									type='text'
 									name='name'
 									value={newArtInfo.name}
 									onIonChange={handleChange}
-									required
 								/>
 							</IonItem>
 							<IonItem>

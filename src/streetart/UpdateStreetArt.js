@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { IonPopover, IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { IonToast, IonPopover, IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 import { useHistory } from 'react-router-dom';
 
 export default function UpdateStreetArt(props) {
 
 	const history = useHistory()
-	console.log('props in updateStreetArt', props);
+	const [toastOpen, setToastOpen] = useState(false)
+	const [flashMessage, setFlashMessage] = useState('')
 	const [confirmDeleteOpen, changeConfirmDeleteOpen] = useState(false)
 	const [updatedArtInfo, setUpdatedArtInfo] = useState({
 			name: props.streetArtToUpdate.name,
@@ -77,14 +78,7 @@ export default function UpdateStreetArt(props) {
 
 			const updateStreetArtJson = await updateStreetArtResponse.json()
 
-			// console.log({
-			// 	infoToUpdate,
-			// 	updateStreetArtResponse,
-			// 	updateStreetArtJson
-			// });
-
 			if(updateStreetArtJson.status === 201) {
-				console.log('updated!');
 				props.routeProps.history.push('/map')
 			} else {
 				console.log('updateStreetArtJson.message -->', updateStreetArtJson.message);
@@ -92,6 +86,8 @@ export default function UpdateStreetArt(props) {
 			}
 
 		} catch (error) {
+	    	setFlashMessage('Please fill out the required forms!')
+	    	setToastOpen(true)
 			console.error('ERROR in UPDATESTREETART')
 			console.error(error)
 		}
@@ -149,6 +145,7 @@ export default function UpdateStreetArt(props) {
 									name='location'
 									value={updatedArtInfo.location}
 									onIonChange={handleChange}
+									required
 								/>
 							</IonItem>
 							<IonItem>
@@ -157,6 +154,7 @@ export default function UpdateStreetArt(props) {
 									type='file'
 									name='image'
 									onChange={handleSelectedFile}
+									required
 								/>
 							</IonItem>
 							<IonItem>
@@ -215,6 +213,11 @@ export default function UpdateStreetArt(props) {
 								</div>
 							</IonPopover>
 					</div>
+					<IonToast 
+						isOpen={toastOpen}
+						onDidDismiss={ () => {setToastOpen(false)} }
+						message={flashMessage}
+					/>
 				</div>
 				:
 				<div className="RistrictedAuth">
