@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
+import { IonToast, IonTextarea, IonRouterOutlet, IonInput, IonItem, IonTabs, IonTabBar, IonLabel, IonTabButton, IonPage, IonApp, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonSegment, IonSegmentButton } from '@ionic/react'
 
 export default function NewStreetArt(props) {
+	const [toastOpen, setToastOpen] = useState(false)
+	const [flashMessage, setFlashMessage] = useState('')
 	const [newArtInfo, setNewArtInfo] = useState({
 			name: '',
 			location: '',
@@ -11,25 +13,34 @@ export default function NewStreetArt(props) {
 		})
 
 	const addArt = async (artInfo) => {
-		const url = process.env.REACT_APP_API_URL + '/streetart/add'
+		try {
 
-		const addArtResponse = await fetch(url, {
-			credentials: 'include',
-			method: 'POST',
-			body: JSON.stringify(artInfo),
-			headers: {
-				'Content-Type': 'application/json'
+			const url = process.env.REACT_APP_API_URL + '/streetart/add'
+
+			const addArtResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'POST',
+				body: JSON.stringify(artInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			const addArtJson = await addArtResponse.json()
+
+			if(addArtJson.status === 201) {
+				console.log("addArtJson.message --> ", addArtJson.message);
+				props.routeProps.history.push('/map')
+			} else {
+		     	setFlashMessage('Please fill out the required forms!')
+		     	setToastOpen(true)
+				console.log("addArtJson.message --> ", addArtJson.message);
+	        	console.log("addArtJson.status --> ", addArtJson.status);
 			}
-		})
-
-		const addArtJson = await addArtResponse.json()
-
-		if(addArtJson.status === 201) {
-			console.log("addArtJson.message --> ", addArtJson.message);
-			props.routeProps.history.push('/map')
-		} else {
-			console.log("addArtJson.message --> ", addArtJson.message);
-        	console.log("addArtJson.status --> ", addArtJson.status);
+		} catch (error) {
+	     	setFlashMessage('Please fill out the required forms!')
+	     	setToastOpen(true)
+			console.error(error)
 		}
 	}
 
@@ -96,29 +107,32 @@ export default function NewStreetArt(props) {
 					<div className='NewStreetArtDivInfo'>
 						<form className="NewStreetArtForm">
 							<IonItem>
-								<IonLabel position='stacked'> Name </IonLabel>
+								<IonLabel position='stacked'> Name * </IonLabel>
 								<IonInput
 									type='text'
 									name='name'
 									value={newArtInfo.name}
 									onIonChange={handleChange}
+									required
 								/>
 							</IonItem>
 							<IonItem>
-								<IonLabel position='stacked'> Location </IonLabel>
+								<IonLabel position='stacked'> Location * </IonLabel>
 								<IonInput
 									type='text'
 									name='location'
 									value={newArtInfo.location}
 									onIonChange={handleChange}
+									required
 								/>
 							</IonItem>
 							<IonItem>
-								<IonLabel position='stacked'> Image </IonLabel>
+								<IonLabel position='stacked'> Image * </IonLabel>
 								<input 
 									type='file'
 									name='image'
 									onChange={handleSelectedFile}
+									required
 								/>
 							</IonItem>
 							<IonItem>
@@ -147,6 +161,11 @@ export default function NewStreetArt(props) {
 								onClick={ handleSubmit }>Add Art</IonButton>
 						</form>
 					</div>
+					<IonToast 
+					isOpen={toastOpen}
+					onDidDismiss={ () => {setToastOpen(false)} }
+					message={flashMessage}
+					/>
 				</div>
 				:
 				<div className="RistrictedAuth">
