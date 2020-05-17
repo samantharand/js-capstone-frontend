@@ -15,6 +15,8 @@ export default function UsersAccount(props) {
 	console.log('props in UsersAccount', props);
 	console.log('props.currentUser from UsersAccount', props.currentUser);
 	console.log('loggedin from UsersAccount', props.loggedIn);
+	console.log('props.postsByCurrentUser', props.postsByCurrentUser);
+	console.log('props.postsByCurrentUser.length', props.postsByCurrentUser.length);
 	
 	useEffect(() => {
         props.getPostsByCurrentUser()
@@ -26,7 +28,7 @@ export default function UsersAccount(props) {
 
 		userPosts = props.postsByCurrentUser.map((post) => {
 			return (
-				<div className='SinglePost'>
+				<div className='SinglePost' key={post.id}>
 						<img src={post.image}/>
 						<p> <strong>Name: </strong>{post.name} </p>
 						<p> <strong>Location: </strong>{post.name} </p>
@@ -57,7 +59,18 @@ export default function UsersAccount(props) {
 					</div>
 
 					<div className='UsersPostsDiv'>
-							{userPosts}
+						{
+							props.postsByCurrentUser.length !== 0
+							?
+							<React.Fragment>
+								{userPosts}
+							</React.Fragment>
+							:
+							<React.Fragment>
+								<h4> No Posts Yet :( </h4>
+								<p> Why not <span onClick={() => props.routeProps.history.push('/newstreetart')} className='FakeLink'>add one?</span> </p>
+							</React.Fragment>
+						}
 					</div>
 
 				</div>

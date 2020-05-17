@@ -91,14 +91,18 @@ ion-content > ion-title {
   height: 100px;
 }
 
-a {
+a, .FakeLink {
   color:  #eb445a;
   text-decoration: none;
 }
 
-a:hover {
+.FakeLink:hover, a:hover {
   font-style: italic;
   text-decoration: underline;
+}
+
+.FakeLink:hover {
+  cursor: pointer;
 }
 
 .MainHomeDiv, .RegisterDiv, .LoginDiv, .MapDivContainer, .UsersAccountDiv, .EditAccountDiv, .NewStreetArtDiv, .UpdateStreetArtDiv {
@@ -124,11 +128,6 @@ a:hover {
 .MainHomeDiv, .RegisterDiv, .LoginDiv, .RistrictedAuth, .UsersAccountDiv, .EditAccountDiv, .NewStreetArtDiv, .UpdateStreetArtDiv {
   margin: 0 auto;
   margin-top: 100px;
-}
-
-.RegisterDiv {
-  background-image: url(../background5.jpg);
-  background-size: cover;
 }
 
 .RistrictedAuth {

@@ -96,30 +96,33 @@ export default function Register(props){
 						<form className="RegisterForm">
 							<div className='FormItems'>
 								<IonItem>
-									<IonLabel position='stacked'> Email </IonLabel>
+									<IonLabel position='stacked'> Email * </IonLabel>
 									<IonInput
 										type='text'
 										name='email'
 										onIonChange={handleChange}
 										value={userInfo.email}
+										required
 									></IonInput>
 								</IonItem>
 								<IonItem>
-									<IonLabel position='stacked'> Username </IonLabel>
+									<IonLabel position='stacked'> Username * </IonLabel>
 									<IonInput
 										type='text'
 										name='username'
 										onIonChange={handleChange}
 										value={userInfo.username}
+										required
 									></IonInput>
 								</IonItem>
 								<IonItem>
-									<IonLabel position='stacked'> Password </IonLabel>
+									<IonLabel position='stacked'> Password * </IonLabel>
 									<IonInput
 										type='password'
 										name='password'
 										onIonChange={handleChange}
 										value={userInfo.password}
+										required
 									></IonInput>
 								</IonItem>
 								<IonItem>
