@@ -26,14 +26,12 @@ export default function UsersAccount(props) {
 
 		userPosts = props.postsByCurrentUser.map((post) => {
 			return (
-				<div className='UsersPostsDiv' key={post.id}>
-					<div className='UsersPostsDivGrid'>
+				<div className='SinglePost'>
 						<img src={post.image}/>
 						<p> <strong>Name: </strong>{post.name} </p>
 						<p> <strong>Location: </strong>{post.name} </p>
 						<p> <strong>Artist: </strong>{post.artist}</p>
 						<p> <strong>About this Piece: </strong>{post.location} </p>
-					</div>
 				</div>
 			)
 		})
@@ -48,7 +46,7 @@ export default function UsersAccount(props) {
 		{
 				props.loggedIn
 				?
-				<React.Fragment>
+				<div className='UsersAccountPage'>
 					<div className='UsersAccountDiv'>
 						<div className='UsersAccountDivInfo'>
 							<IonTitle> Your Account </IonTitle>
@@ -58,11 +56,13 @@ export default function UsersAccount(props) {
 						</div>
 					</div>
 
-					<div className='UsersPostsGrid'>
-						{userPosts}
+					<div className='UsersPostsDiv'>
+						<div className='UsersPostsDivGrid'>
+							{userPosts}
+						</div>
 					</div>
 
-				</React.Fragment>
+				</div>
 				:
 				<div className="RistrictedAuth">
 						<IonTitle>Must be logged in to access account details.</IonTitle>
