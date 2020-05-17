@@ -21,7 +21,6 @@ import {
 } from '@ionic/react'
 
 export default function Register(props){
-	console.log("props in reg", props);
 	const [toastOpen, setToastOpen] = useState(false)
 	const [flashMessage, setFlashMessage] = useState('')
 	const [userInfo, setUserInfo] = useState({
