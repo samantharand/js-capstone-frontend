@@ -35,6 +35,12 @@ export default function PopoverInfo(props) {
 			}
 
 			{
+				props.allStreetArt[props.artIndex].artist
+				&&
+				<p> <strong>Made By: </strong>{props.allStreetArt[props.artIndex].artist} </p>
+			}
+
+			{
 				props.allStreetArt[props.artIndex].description
 				&&
 				<p> <strong>About this Piece: </strong>{props.allStreetArt[props.artIndex].description} </p>
