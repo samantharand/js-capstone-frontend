@@ -144,6 +144,7 @@ a, .FakeLink {
 }
 
 .HomePageGraphic {
+  margin-top: 50px;
   height: 50vw;
   width: 50vw;
   background-image: url(../HOME.png);

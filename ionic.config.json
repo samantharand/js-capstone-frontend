@@ -1,0 +1,7 @@
+{
+  "name": "StreetArtMap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
