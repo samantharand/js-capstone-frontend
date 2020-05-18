@@ -38,7 +38,7 @@ export default function UpdateStreetArt(props) {
 	    })
 
 	    const file = await uploadImageResponse.json()
-
+	    console.log('AHHHH', file.secure_url);
 	    setUpdatedArtInfo({
 	    	...updatedArtInfo,
 	    	image: file.secure_url

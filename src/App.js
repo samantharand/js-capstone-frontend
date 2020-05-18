@@ -45,21 +45,15 @@ function App(props) {
     lng: ''
   })
 
-  console.log('loggedIn from app.js', loggedIn);
-  console.log('currentUser from app.js -- ( ', currentUser, ' )');
-
-
   const findBrowserLocation = async () => {
     try {
 
       const success = (position) => {
         console.log('successss');
-        console.log('position', position);
         setCurrentLoc({
           lat: position.coords.latitude,
           lng: position.coords.longitude
         })
-        console.log('currentLoc !!!!!!!!',currentLoc);
       }
 
       const error = () => {
@@ -93,9 +87,8 @@ function App(props) {
 
       const getArtworkJson = await getArtworkResponse.json()
 
-      console.log('getArtworkJson', getArtworkJson);
       const postsByCurrentUser = getArtworkJson.data.filter(streetart => streetart.poster.id === currentUser.id)
-      // console.log('getArtworkJson.artwork', getArtworkJson.artwork);
+
       setPostsByCurrentUser(postsByCurrentUser)
 
     } catch (error) {
@@ -256,50 +249,3 @@ function App(props) {
 }
 
 export default App;
-
-
-    
-
-/////////////////
-
-
-    // <IonApp>
-    //   <IonReactRouter>
-    //     <IonHeader>
-    //       <IonToolbar>
-    //         <IonTitle>Streetart App</IonTitle>
-    //       </IonToolbar>
-    //     </IonHeader>
-    //     <IonContent>
-    //       <IonSplitPane contentId="main">
-    //         <Menu />
-    //         <IonTabs>
-    //           <IonRouterOutlet>
-    //             <Route path='/' exact>
-    //               <Home />
-    //             </Route>
-    //             <Route path='/login' exact>
-    //               <LoginContainer login={login} />
-    //             </Route>
-    //             <Route path='/register' exact>
-    //               <RegisterContainer register={register} />
-    //             </Route>
-    //           </IonRouterOutlet>
-    //             <IonTabBar slot="bottom">
-    //               <IonTabButton tab='login' href='/'>
-    //                   <IonLabel> Home </IonLabel>
-    //               </IonTabButton>
-    //             </IonTabBar>
-    //         </IonTabs>
-    //       {
-    //         !loggedIn
-    //         &&
-    //         <React.Fragment>
-    //           <IonButton href='/login'>Login</IonButton>
-    //           <IonButton href='/register'>Register</IonButton>
-    //         </React.Fragment>
-    //       }
-    //     </IonSplitPane>
-    //     </IonContent>
-    //   </IonReactRouter>
-    // </IonApp>
