@@ -40,8 +40,8 @@ export default function MapContainer(props) {
 			if(getAllStreetArtJson.status === 200) {
 				setAllStreetArt(getAllStreetArtJson.data)
 				setLoading(false)
-				// console.log('loadingggg', loading);
-				// findBrowserLocation()
+
+
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);
 			} else {
 				console.log("getAllStreetArtJson.message --> ", getAllStreetArtJson.message);

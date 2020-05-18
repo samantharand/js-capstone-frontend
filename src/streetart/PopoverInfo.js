@@ -20,7 +20,12 @@ export default function PopoverInfo(props) {
 	console.log(poster);
 	return (
 		<div className='PopoverInfo'> 
-			<p> <strong>Name: </strong>{ props.allStreetArt[props.artIndex].name }</p>
+
+			{
+				props.allStreetArt[props.artIndex].image
+				&&
+				<p> <strong>Name: </strong>{ props.allStreetArt[props.artIndex].name }</p>
+			}
 			<p> <strong>Location: </strong>{ props.allStreetArt[props.artIndex].location }</p>
 
 			{

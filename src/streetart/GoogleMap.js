@@ -60,152 +60,91 @@ function GoogleMap(props) {
 	})
 
 	return (
-		// <IonPage>
-		// 	<IonContent>
-				<div className='MapDivContainer'>
-					<div className='MapDiv'>
+		<div className='MapDivContainer'>
+			<div className='MapDiv'>
+				{
+					props.currentLoc.lat !== ""
+					?
+					<ReactMap 
+						id="map"
+						google={props.google} 
+						zoom={14} 
+						initialCenter={{
+							lat: props.currentLoc.lat, 
+							lng: props.currentLoc.lng
+						}}
+						containerStyle={containerStyle}
+					>
+
+						{ streetArtMarkers }
+
 						{
-							props.currentLoc.lat !== ""
-							?
-							<ReactMap 
-								id="map"
-								google={props.google} 
-								zoom={14} 
-								initialCenter={{
-									lat: props.currentLoc.lat, 
-									lng: props.currentLoc.lng
-								}}
-								containerStyle={containerStyle}
-							>
+							props.idOfMockInfoWindowToShow !== ""
+							&&
+							<IonPopover
+									isOpen={true}
+									id='confirmDelete'
+									onDidDismiss={ () => {
+										// toggleMockInfoWindow(false)
+										props.setIdOfMockInfoWindowToShow('')
+									} }
+							> 
 
-								{ streetArtMarkers }
+								<PopoverInfo 
+									artIndex={artIndex}
+									allStreetArt={props.allStreetArt}
+									currentUser={props.currentUser}
+									setStreetArtToUpdate={props.setStreetArtToUpdate}
+								/> 
 
-								{
-									props.idOfMockInfoWindowToShow !== ""
-									&&
-									<IonPopover
-											isOpen={true}
-											id='confirmDelete'
-											onDidDismiss={ () => {
-												// toggleMockInfoWindow(false)
-												props.setIdOfMockInfoWindowToShow('')
-											} }
-									> 
-
-										<PopoverInfo 
-											artIndex={artIndex}
-											allStreetArt={props.allStreetArt}
-											currentUser={props.currentUser}
-											setStreetArtToUpdate={props.setStreetArtToUpdate}
-										/> 
-
-									</IonPopover>
-								}
-
-
-							</ReactMap>
-							:
-							<ReactMap 
-								id="map"
-								google={props.google} 
-								zoom={14} 
-								initialCenter={{
-									lat: 41.8757,
-									lng: -87.6243
-								}}
-								containerStyle={containerStyle}
-							>
-
-								{ streetArtMarkers }
-
-								{
-									props.idOfMockInfoWindowToShow !== ""
-									&&
-									<IonPopover
-											isOpen={true}
-											id='confirmDelete'
-											onDidDismiss={ () => {
-												// toggleMockInfoWindow(false)
-												props.setIdOfMockInfoWindowToShow('')
-											} }
-									> 
-
-										<PopoverInfo 
-											artIndex={artIndex}
-											allStreetArt={props.allStreetArt}
-											currentUser={props.currentUser}
-											setStreetArtToUpdate={props.setStreetArtToUpdate}
-										/> 
-
-									</IonPopover>
-								}
-
-
-							</ReactMap>
+							</IonPopover>
 						}
-					</div>
-				</div>
-		// 	</IonContent>
-		// </IonPage>
+
+
+					</ReactMap>
+					:
+					<ReactMap 
+						id="map"
+						google={props.google} 
+						zoom={14} 
+						initialCenter={{
+							lat: 41.8757,
+							lng: -87.6243
+						}}
+						containerStyle={containerStyle}
+					>
+
+						{ streetArtMarkers }
+
+						{
+							props.idOfMockInfoWindowToShow !== ""
+							&&
+							<IonPopover
+									isOpen={true}
+									id='confirmDelete'
+									onDidDismiss={ () => {
+										// toggleMockInfoWindow(false)
+										props.setIdOfMockInfoWindowToShow('')
+									} }
+							> 
+
+								<PopoverInfo 
+									artIndex={artIndex}
+									allStreetArt={props.allStreetArt}
+									currentUser={props.currentUser}
+									setStreetArtToUpdate={props.setStreetArtToUpdate}
+								/> 
+
+							</IonPopover>
+						}
+
+
+					</ReactMap>
+				}
+			</div>
+		</div>
 	)
 }
-
-
-// new component that shows what i want in the modal -- rener component in the ionpopover
-
-
-
-
-
-					// {
-					// 	props.currentLoc == undefined
-					// 	?
-					// 	<ReactMap 
-					// 		id="map"
-					// 		google={props.google} 
-					// 		zoom={14} 
-					// 		initialCenter={{
-					// 			lat: 39.9526, 
-					// 			lng: -75.1652
-					// 		}}
-					// 		containerStyle={containerStyle}
-					// 	>
-
-					// 		{ streetArtMarkers }
-
-					// 		<IonPopover
-					// 				isOpen={mockInfoWindow}
-					// 				id='confirmDelete'
-					// 				onDidDismiss={ () => toggleMockInfoWindow(false) }
-					// 		> hihihi </IonPopover>
-
-					// 	</ReactMap>
-					// 	:
-					// 	<ReactMap 
-					// 		id="map"
-					// 		google={props.google} 
-					// 		zoom={14} 
-					// 		initialCenter={{
-					// 			lat: props.currentLoc.lat, 
-					// 			lng: props.currentLoc.lng
-					// 		}}
-					// 		containerStyle={containerStyle}
-					// 	>
-
-					// 		{ streetArtMarkers }
-
-					// 		<IonPopover
-					// 				isOpen={mockInfoWindow}
-					// 				id='confirmDelete'
-					// 				onDidDismiss={ () => toggleMockInfoWindow(false) }
-					// 		> hihihi </IonPopover>
-
-					// 	</ReactMap>
-					// }
-
-
-
-
 
 // adding API key to .env disabled the map, would like to find a way to hide the key
 export default GoogleApiWrapper((props) => ({

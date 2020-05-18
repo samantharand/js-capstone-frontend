@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.StreetArtMap",
-  "appName": "StreetArtApp",
+  "appName": "Street Art Map",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
